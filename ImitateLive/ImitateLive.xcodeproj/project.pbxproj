@@ -410,6 +410,8 @@
 		D65E23B21D35091F00BA0BF0 /* LiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B11D35091F00BA0BF0 /* LiveModel.m */; };
 		D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B41D3509D000BA0BF0 /* VideoModel.m */; };
 		D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B71D3509FC00BA0BF0 /* VideoRelationModel.m */; };
+		D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BA1D350DD000BA0BF0 /* ListModel.m */; };
+		D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
 		D6A7E7751D34DF96006649CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7741D34DF96006649CC /* main.m */; };
 		D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E77A1D34DF96006649CC /* ViewController.m */; };
 		D6A7E77E1D34DF96006649CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E77C1D34DF96006649CC /* Main.storyboard */; };
@@ -863,6 +865,10 @@
 		D65E23B41D3509D000BA0BF0 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		D65E23B61D3509FC00BA0BF0 /* VideoRelationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRelationModel.h; sourceTree = "<group>"; };
 		D65E23B71D3509FC00BA0BF0 /* VideoRelationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRelationModel.m; sourceTree = "<group>"; };
+		D65E23B91D350DD000BA0BF0 /* ListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListModel.h; sourceTree = "<group>"; };
+		D65E23BA1D350DD000BA0BF0 /* ListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListModel.m; sourceTree = "<group>"; };
+		D65E23BC1D350E3800BA0BF0 /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		D65E23BD1D350E3800BA0BF0 /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		D6A7E7701D34DF96006649CC /* ImitateLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A7E7741D34DF96006649CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6A7E7791D34DF96006649CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1001,6 +1007,8 @@
 			children = (
 				D65E23AA1D3508AB00BA0BF0 /* ColumnModel.h */,
 				D65E23AB1D3508AB00BA0BF0 /* ColumnModel.m */,
+				D65E23BC1D350E3800BA0BF0 /* GameModel.h */,
+				D65E23BD1D350E3800BA0BF0 /* GameModel.m */,
 				D65E23AD1D3508F900BA0BF0 /* ColumnDetailModel.h */,
 				D65E23AE1D3508F900BA0BF0 /* ColumnDetailModel.m */,
 			);
@@ -1039,6 +1047,8 @@
 			children = (
 				D65E23A71D35081300BA0BF0 /* HomeModel.h */,
 				D65E23A81D35081300BA0BF0 /* HomeModel.m */,
+				D65E23B91D350DD000BA0BF0 /* ListModel.h */,
+				D65E23BA1D350DD000BA0BF0 /* ListModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2277,6 +2287,7 @@
 				D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */,
 				D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */,
 				D6A7E7C31D34EE68006649CC /* LiveRequest.m in Sources */,
+				D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */,
 				D65E23A61D3507DA00BA0BF0 /* BaseModel.m in Sources */,
 				D6CA57361D34FE7700E5C4BE /* CustomTabbar.m in Sources */,
 				D6A7E7D21D34FB45006649CC /* AppDelegate.m in Sources */,
@@ -2295,6 +2306,7 @@
 				D65E23AC1D3508AB00BA0BF0 /* ColumnModel.m in Sources */,
 				D65E23AF1D3508F900BA0BF0 /* ColumnDetailModel.m in Sources */,
 				D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */,
+				D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */,
 				D65E20941D35069B00BA0BF0 /* ColumnViewController.m in Sources */,
 				D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */,
 			);
