@@ -412,6 +412,7 @@
 		D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B71D3509FC00BA0BF0 /* VideoRelationModel.m */; };
 		D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BA1D350DD000BA0BF0 /* ListModel.m */; };
 		D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
+		D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */; };
 		D6A7E7751D34DF96006649CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7741D34DF96006649CC /* main.m */; };
 		D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E77A1D34DF96006649CC /* ViewController.m */; };
 		D6A7E77E1D34DF96006649CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E77C1D34DF96006649CC /* Main.storyboard */; };
@@ -869,6 +870,8 @@
 		D65E23BA1D350DD000BA0BF0 /* ListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListModel.m; sourceTree = "<group>"; };
 		D65E23BC1D350E3800BA0BF0 /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		D65E23BD1D350E3800BA0BF0 /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		D65E23BF1D35101B00BA0BF0 /* WheelImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelImageModel.h; sourceTree = "<group>"; };
+		D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelImageModel.m; sourceTree = "<group>"; };
 		D6A7E7701D34DF96006649CC /* ImitateLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A7E7741D34DF96006649CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6A7E7791D34DF96006649CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1049,6 +1052,8 @@
 				D65E23A81D35081300BA0BF0 /* HomeModel.m */,
 				D65E23B91D350DD000BA0BF0 /* ListModel.h */,
 				D65E23BA1D350DD000BA0BF0 /* ListModel.m */,
+				D65E23BF1D35101B00BA0BF0 /* WheelImageModel.h */,
+				D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2299,6 +2304,7 @@
 				D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */,
 				D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */,
 				D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */,
+				D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */,
 				D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */,
 				D6A7E7CE1D34FA2F006649CC /* BaseRequest.m in Sources */,
 				D6A7E7C01D34EA42006649CC /* HomeRequest.m in Sources */,
