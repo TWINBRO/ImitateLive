@@ -10,6 +10,12 @@
 
 @implementation LiveModel
 
-
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        _liveID = value;
+    }
+    NSLog(@"%@",value);
+}
 
 @end

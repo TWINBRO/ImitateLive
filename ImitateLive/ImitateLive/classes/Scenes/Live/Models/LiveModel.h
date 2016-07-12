@@ -15,7 +15,7 @@
 @property (nonatomic,copy) NSString *cnt;// 可能是数字
 @property (nonatomic,copy) NSArray *rooms;
 // rooms的属性
-@property (nonatomic,copy) NSString *roomsId;// (id)
+@property (nonatomic,copy) NSString *liveID;// (id)
 @property (nonatomic,copy) NSString *uid;
 @property (nonatomic,copy) NSString *nickname;// 下方的姓名
 @property (nonatomic,copy) NSString *gender;// 性别使用1和2分别

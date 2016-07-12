@@ -15,7 +15,7 @@
 @property (nonatomic,copy) NSString *cnt;// 数字48
 @property (nonatomic,copy) NSArray *videos;// 视频数组
 // videos的属性
-@property (nonatomic,copy) NSString *videosID;// (id)
+@property (nonatomic,copy) NSString *videoRelationID;// (id)
 @property (nonatomic,copy) NSString *title;// 历史视频标题
 @property (nonatomic,copy) NSString *gameId;
 @property (nonatomic,copy) NSString *albumId;

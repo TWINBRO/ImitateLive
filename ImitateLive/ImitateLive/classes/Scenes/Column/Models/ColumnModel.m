@@ -10,4 +10,12 @@
 
 @implementation ColumnModel
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        _columnID = value;
+    }
+    NSLog(@"%@",value);
+}
+
 @end

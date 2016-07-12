@@ -12,7 +12,7 @@
 
 // 分类界面
 // data下的数据
-@property (nonatomic,copy) NSString *classID;//(id)
+@property (nonatomic,copy) NSString *columnID;//(id)
 @property (nonatomic,copy) NSString *position;//
 @property (nonatomic,copy) NSString *chnId;
 @property (nonatomic,copy) NSString *roomId;

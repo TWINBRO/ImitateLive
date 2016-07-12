@@ -10,4 +10,12 @@
 
 @implementation VideoModel
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        _videoID = value;
+    }
+    NSLog(@"%@",value);
+}
+
 @end

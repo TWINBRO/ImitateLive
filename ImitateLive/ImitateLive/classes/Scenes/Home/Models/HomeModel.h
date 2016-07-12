@@ -12,7 +12,7 @@
 
 // 首页面
 // data下的字典
-@property (nonatomic,copy) NSString *firstID;// 首页第一个ID(id)
+@property (nonatomic,copy) NSString *homeID;// 首页第一个ID(id)
 @property (nonatomic,copy) NSString *keyword;//
 @property (nonatomic,copy) NSString *title;// 分块的主题
 @property (nonatomic,copy) NSString *icon;//  分区图标
