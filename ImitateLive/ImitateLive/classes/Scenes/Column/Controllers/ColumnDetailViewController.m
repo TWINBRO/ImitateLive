@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.model.name;
+    
     // 创建collectionView
     [self creatColumnDetailView];
     self.allVideoArr = [NSMutableArray array];
@@ -150,7 +151,7 @@
     LiveDetailViewController *liveDetail = [[LiveDetailViewController alloc] init];
     LiveModel *model = self.allVideoArr[indexPath.row];
     liveDetail.liveModel = model;
-    [self.navigationController pushViewController:liveDetail animated:YES];
+    [self.navigationController presentViewController:liveDetail animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
