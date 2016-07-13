@@ -20,10 +20,10 @@
 #define AuthorHistoryVideoRequest_Url @"http://www.zhanqi.tv/api/static/video.anchor_hots/108821138-20-1.json?os=1&ver=3.1.4"
 
 // 所有栏目请求Url
-#define AllColumnRequest_Url @"http://www.zhanqi.tv/api/static/apps.recommend/game.json?ver=2.7.1&os=3&time1468293045452"
-
+#define AllColumnRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lists/18-%@.json?ver=2.7.1&os=3&time1468331065160",ID]
+//
 // 栏目详情请求Url
-#define ColumnDetailRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lives/%@/20-1.json?ver=2.7.1&os=3&time1468306552272",ID]
+#define ColumnDetailRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lives/%@.json?ver=2.7.1&os=3&time1468306552272",ID]
 
 // 直播页面请求Url
 #define LiveRequest_Url @"http://www.zhanqi.tv/api/static/live.hots/20-1.json?os=1&ver=3.1.4"

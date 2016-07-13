@@ -15,7 +15,7 @@
     if ([key isEqualToString:@"id"]) {
         _gameID = value;
     }
-    NSLog(@"%@",value);
+//    NSLog(@"%@",key);
 }
 
 @end
