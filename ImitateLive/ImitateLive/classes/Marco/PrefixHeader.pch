@@ -14,6 +14,8 @@
 #import "NetworkRequest.h"
 #import "Color_marco.h"
 #import "UIImage+ImageContentWithColor.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "CommonString.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
