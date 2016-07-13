@@ -14,7 +14,7 @@
     // Initialization code
 }
 
-- (void)setModel:(ColumnDetailModel *)model
+- (void)setModel:(LiveModel *)model
 {
     _model = model;
     [self.backImageView setImageWithURL:[NSURL URLWithString:model.spic] placeholderImage:nil];

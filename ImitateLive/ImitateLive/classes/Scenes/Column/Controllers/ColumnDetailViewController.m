@@ -11,7 +11,6 @@
 #import "ColumnRequest.h"
 #import "ColumnDetailModel.h"
 #import "LiveDetailViewController.h"
-#import <MJRefresh.h>
 #import "ListModel.h"
 
 #define header_Identifier @"header_Identifier"

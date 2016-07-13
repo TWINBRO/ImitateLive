@@ -26,6 +26,6 @@
 #define ColumnDetailRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lives/%@.json?ver=2.7.1&os=3&time1468306552272",ID]
 
 // 直播页面请求Url
-#define LiveRequest_Url @"http://www.zhanqi.tv/api/static/live.hots/20-1.json?os=1&ver=3.1.4"
+#define LiveRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/live.hots/20-%@.json?os=1&ver=3.1.4",ID]
 
 #endif /* RequestUrl_h */

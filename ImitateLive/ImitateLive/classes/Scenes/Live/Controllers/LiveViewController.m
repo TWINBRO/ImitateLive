@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) NSMutableArray *allLivesArray;
 
+@property (assign, nonatomic) NSInteger page;
+
 @end
 
 #define LiveCollectionViewCell_Identify @"LiveCollectionViewCell_Identify"
@@ -43,15 +45,50 @@
     [self.liveCollectionView registerNib:[UINib nibWithNibName:@"LiveCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:LiveCollectionViewCell_Identify];
     
     [self.view addSubview:self.liveCollectionView];
-    [self requestAllLives];
+    [self loadTop];
+    // 下拉刷新
+    self.liveCollectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadTop];
+    }];
+    // 上拉刷新
+    self.liveCollectionView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMore];
+    }];
+}
+
+// 判断是否是顶部
+- (void)loadTop
+{
+    self.page = 1;
+    [self loadDataPageIndex:self.page top:YES];
+}
+
+- (void)loadMore
+{
+    self.page += 1;
+    [self loadDataPageIndex:self.page top:NO];
+}
+// 判断请求的方式
+- (void)loadDataPageIndex:(NSInteger)page top:(BOOL)isTop
+{
+    NSString *ID = [NSString stringWithFormat:@"%ld",page];
+    if (isTop) {
+        [self.allLivesArray removeAllObjects];
+        [self requestAllLives:ID];
+        
+    }else{
+        [self requestAllLives:ID];
+    }
+    
 }
 
 // 获取直播界面
-- (void)requestAllLives {
+- (void)requestAllLives:(NSString *)ID {
     
     __weak typeof(self) weakSelf = self;
     LiveRequest *request = [[LiveRequest alloc] init];
-    [request liveRequestWithParameter:nil success:^(NSDictionary *dic) {
+    NSDictionary *parmar = [NSDictionary dictionaryWithObject:ID forKey:@"id"];
+    [request liveRequestWithParameter:parmar success:^(NSDictionary *dic) {
         
         NSArray *tmpArray = [[dic objectForKey:@"data"] objectForKey:@"rooms"];
         for (NSDictionary *tmpDic in tmpArray) {
@@ -60,6 +97,8 @@
             [weakSelf.allLivesArray addObject:liveModel];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.liveCollectionView.mj_header endRefreshing];
+                [weakSelf.liveCollectionView.mj_footer endRefreshing];
                 [weakSelf.liveCollectionView reloadData];
             });
         }

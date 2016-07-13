@@ -13,7 +13,8 @@
 - (void)liveRequestWithParameter:(NSDictionary *)parameter success:(SuccessResponse)success failure:(FailureResponse)failure {
 
     NetworkRequest *request = [[NetworkRequest alloc] init];
-    [request requestWithUrl:LiveRequest_Url parameters:parameter successResponse:^(NSDictionary *dic) {
+    NSString *ID = [parameter objectForKey:@"id"];
+    [request requestWithUrl:LiveRequest_Url(ID) parameters:parameter successResponse:^(NSDictionary *dic) {
         success(dic);
     } failureResponse:^(NSError *error) {
         failure(error);

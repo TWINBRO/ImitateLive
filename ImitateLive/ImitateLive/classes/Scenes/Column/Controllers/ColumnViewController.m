@@ -12,7 +12,7 @@
 #import "GameModel.h"
 #import "ColumnCollectionViewCell.h"
 #import "ColumnDetailViewController.h"
-#import <MJRefresh/MJRefresh.h>
+
 #define header_Identifier @"header_Identifier"
 #define footer_identifier @"footer_Identifier"
 
