@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColumnDetailModel.h"
+#import "LiveModel.h"
 
 #define ColumnDetailCollectionViewCell_Identifier @"ColumnDetailCollectionViewCell_Identifier"
 
@@ -23,5 +24,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *peopleNamuberLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *peopleLabelWidth;
 
-@property (nonatomic, strong) ColumnDetailModel *model;
+@property (nonatomic, strong) LiveModel *model;
 @end

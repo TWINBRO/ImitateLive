@@ -12,6 +12,7 @@
 #import "ColumnDetailModel.h"
 #import "LiveDetailViewController.h"
 #import <MJRefresh.h>
+#import "ListModel.h"
 
 #define header_Identifier @"header_Identifier"
 #define footer_identifier @"footer_Identifier"
@@ -70,33 +71,6 @@
     
     [self.view addSubview:self.columnDetailView];
 }
-/*
-// 判断是否是顶部
-- (void)loadTop
-{
-    self.page = 1;
-    [self loadDataPageIndex:self.page top:YES];
-}
-
-- (void)loadMore
-{
-    self.page += 1;
-    [self loadDataPageIndex:self.page top:NO];
-}
-// 判断请求的方式
-- (void)loadDataPageIndex:(NSInteger)page top:(BOOL)isTop
-{
-    NSString *ID = [NSString stringWithFormat:@"%ld",page];
-    if (isTop) {
-        [self.allGamesArr removeAllObjects];
-        [self requestColumnData:ID];
-        
-    }else{
-        [self requestColumnData:ID];
-    }
-    
-}
-*/
 
 // 判断是否是顶部
 - (void)loadTop
@@ -136,7 +110,8 @@
         NSArray *tempArr = [tempDict objectForKey:@"rooms"];
         for (NSDictionary *tempdic in tempArr) {
             // item数组赋值
-            ColumnDetailModel *model = [[ColumnDetailModel alloc] init];
+//            ColumnDetailModel *model = [[ColumnDetailModel alloc] init];
+            LiveModel *model = [[LiveModel alloc] init];
             [model setValuesForKeysWithDictionary:tempdic];
             [weakSelf.allVideoArr addObject:model];
 //            NSLog(@"%@",weakSelf.allVideoArr);
@@ -156,7 +131,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat width = WindownWidth / 2.0 - 15;
-    CGFloat height = WindowHeight / 3.0 - 20;
+    CGFloat height = WindowHeight / 4.0 - 20;
     return CGSizeMake(width, height);
 }
 
@@ -174,7 +149,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LiveDetailViewController *liveDetail = [[LiveDetailViewController alloc] init];
-    
+    LiveModel *model = self.allVideoArr[indexPath.row];
+    liveDetail.liveModel = model;
     [self.navigationController pushViewController:liveDetail animated:YES];
 }
 
