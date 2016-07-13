@@ -12,8 +12,10 @@
 // 所有栏目
 - (void)allColumnRequestWithParameter:(NSDictionary *)parameter success:(SuccessResponse)success failure:(FailureResponse)failure {
 
+    
     NetworkRequest *request = [[NetworkRequest alloc] init];
-    [request requestWithUrl:AllColumnRequest_Url parameters:parameter successResponse:^(NSDictionary *dic) {
+    NSString *ID = [parameter objectForKey:@"id"];
+    [request requestWithUrl:AllColumnRequest_Url(ID) parameters:parameter successResponse:^(NSDictionary *dic) {
         success(dic);
     } failureResponse:^(NSError *error) {
         failure(error);

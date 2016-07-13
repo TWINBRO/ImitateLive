@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
-#import "VideoModel.h"
+#import "LiveModel.h"
 
 @interface LiveDetailViewController : BaseViewController
 
-@property (strong, nonatomic) VideoModel *videoModel;
+@property (strong, nonatomic) LiveModel *liveModel;
+
+
+
 
 @end

@@ -20,7 +20,7 @@
     [_backgroundImageView setImageWithURL:[NSURL URLWithString:liveModel.spic]];
     _liveNameLabel.text = liveModel.title;
     _authorNameLabel.text = liveModel.nickname;
-    _onlineNumberLabel.text = liveModel.online;
+    _onlineNumberLabel.text = [NSString stringWithFormat:@"%@",[self number]];
     
     if ([liveModel.gender isEqualToString:@"2"]) {
         _sexImageView.image = [UIImage imageNamed:@"male"];
@@ -28,6 +28,20 @@
         _sexImageView.image = [UIImage imageNamed:@"female"];
     }
     
+}
+
+- (NSString *)number
+{
+    int number = [self.liveModel.online intValue];
+    int value = number / 10000;
+    
+    NSString *string = [NSString string];
+    if (value > 0) {
+        string = [NSString stringWithFormat:@"%d万",value];
+    }else{
+        string = [NSString stringWithFormat:@"%d",number];
+    }
+    return string;
 }
 
 @end
