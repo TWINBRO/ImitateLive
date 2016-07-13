@@ -32,7 +32,7 @@
     
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, 414, 250)];
-   
+    
     NSLog(@"%f",self.view.frame.size.height);
     [self.view.layer addSublayer:self.playerView.playerLayer];
     

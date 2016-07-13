@@ -47,6 +47,8 @@ static NSString * const headID = @"head";
     self.homeDataDetail = [NSMutableArray array];
     self.sectionDic = [NSMutableDictionary dictionary];
     
+    [self requestHomeData];
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(self.view.bounds.size.width/2.0, 174);
     layout.minimumInteritemSpacing = 0.0;
@@ -65,11 +67,16 @@ static NSString * const headID = @"head";
     //注册增补视图
     [self.homeCollectionView registerNib:[UINib nibWithNibName:@"HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     
-  
-    
     [self.view addSubview:self.homeCollectionView];
     
-    [self requestHomeData];
+    // 下拉刷新
+    self.homeCollectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self.homeDataArr removeAllObjects];
+        [self.homeDataDetail removeAllObjects];
+        [self requestHomeData];
+    }];
+    
+    
 
 }
 
@@ -106,6 +113,7 @@ static NSString * const headID = @"head";
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.homeCollectionView.mj_header endRefreshing];
             [weakSelf.homeCollectionView reloadData];
         });
         
