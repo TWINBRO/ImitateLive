@@ -7,18 +7,101 @@
 //
 
 #import "LiveViewController.h"
+#import "LiveCollectionViewCell.h"
+#import "LiveDetailViewController.h"
+#import "LiveRequest.h"
 
-@interface LiveViewController ()
+@interface LiveViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+
+@property (strong, nonatomic) UICollectionView *liveCollectionView;
+
+@property (strong, nonatomic) NSMutableArray *allLivesArray;
 
 @end
+
+#define LiveCollectionViewCell_Identify @"LiveCollectionViewCell_Identify"
 
 @implementation LiveViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.title = @"直播";
     
+    self.allLivesArray = [NSMutableArray array];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(self.view.bounds.size.width/2.0, 174);
+    layout.minimumInteritemSpacing = 0.0;
+    layout.minimumLineSpacing = 0.0;
+    
+    self.liveCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 105) collectionViewLayout:layout];
+    self.liveCollectionView.delegate = self;
+    self.liveCollectionView.dataSource = self;
+    self.liveCollectionView.backgroundColor = [UIColor whiteColor];
+    
+    [self.liveCollectionView registerNib:[UINib nibWithNibName:@"LiveCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:LiveCollectionViewCell_Identify];
+    
+    [self.view addSubview:self.liveCollectionView];
+    [self requestAllLives];
 }
+
+// 获取直播界面
+- (void)requestAllLives {
+    
+    __weak typeof(self) weakSelf = self;
+    LiveRequest *request = [[LiveRequest alloc] init];
+    [request liveRequestWithParameter:nil success:^(NSDictionary *dic) {
+        
+        NSArray *tmpArray = [[dic objectForKey:@"data"] objectForKey:@"rooms"];
+        for (NSDictionary *tmpDic in tmpArray) {
+            LiveModel *liveModel = [LiveModel new];
+            [liveModel setValuesForKeysWithDictionary:tmpDic];
+            [weakSelf.allLivesArray addObject:liveModel];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.liveCollectionView reloadData];
+            });
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"error = %@",error);
+    }];
+    
+}
+
+
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return _allLivesArray.count;
+    
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LiveCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LiveCollectionViewCell_Identify forIndexPath:indexPath];
+    
+    cell.liveModel = self.allLivesArray[indexPath.row];
+    
+    return cell;
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+    liveDetailVC.videoModel = self.allLivesArray[indexPath.row];
+    [self.navigationController pushViewController:liveDetailVC animated:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

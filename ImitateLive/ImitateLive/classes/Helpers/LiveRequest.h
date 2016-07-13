@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface LiveRequest : NSObject
+
 - (void)liveRequestWithParameter:(NSDictionary *)parameter
                          success:(SuccessResponse)success
                          failure:(FailureResponse)failure;
+
 - (void)liveDetailRequestWithParameter:(NSDictionary *)parameter
                                success:(SuccessResponse)success
                                failure:(FailureResponse)failure;

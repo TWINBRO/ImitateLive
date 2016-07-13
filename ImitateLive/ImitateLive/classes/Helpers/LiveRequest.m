@@ -20,6 +20,7 @@
     }];
     
 }
+
 // 直播间详情
 - (void)liveDetailRequestWithParameter:(NSDictionary *)parameter success:(SuccessResponse)success failure:(FailureResponse)failure {
 
