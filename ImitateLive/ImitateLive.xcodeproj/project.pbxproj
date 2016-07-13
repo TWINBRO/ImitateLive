@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		201D9FAEF462A07B84B9AF31 /* libPods-ImitateLive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */; };
+		D60D8CBF1D35E865001B6BCE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CBD1D35E865001B6BCE /* HeaderView.m */; };
+		D60D8CC01D35E865001B6BCE /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CBE1D35E865001B6BCE /* HeaderView.xib */; };
+		D60D8CC41D35E91E001B6BCE /* Img_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC11D35E91E001B6BCE /* Img_orange.png */; };
+		D60D8CC51D35E91E001B6BCE /* Img_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC21D35E91E001B6BCE /* Img_orange@2x.png */; };
+		D60D8CC61D35E91E001B6BCE /* Img_orange@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */; };
+		D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
 		D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208D1D35068900BA0BF0 /* LiveViewController.m */; };
 		D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E20901D35069400BA0BF0 /* HomeViewController.m */; };
@@ -461,6 +467,14 @@
 		383FE3F08338E93639316F61 /* Pods-ImitateLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.debug.xcconfig"; sourceTree = "<group>"; };
 		48BA5A2FF347F63627C56B83 /* Pods-ImitateLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.release.xcconfig"; sourceTree = "<group>"; };
 		A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImitateLive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60D8CBC1D35E865001B6BCE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = ImitateLive/classes/Appdelegate/HeaderView.h; sourceTree = SOURCE_ROOT; };
+		D60D8CBD1D35E865001B6BCE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = ImitateLive/classes/Appdelegate/HeaderView.m; sourceTree = SOURCE_ROOT; };
+		D60D8CBE1D35E865001B6BCE /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HeaderView.xib; path = ImitateLive/classes/Appdelegate/HeaderView.xib; sourceTree = SOURCE_ROOT; };
+		D60D8CC11D35E91E001B6BCE /* Img_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Img_orange.png; sourceTree = "<group>"; };
+		D60D8CC21D35E91E001B6BCE /* Img_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Img_orange@2x.png"; sourceTree = "<group>"; };
+		D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Img_orange@3x.png"; sourceTree = "<group>"; };
+		D60D8CC71D3638E6001B6BCE /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarouselCollectionViewCell.h; path = ImitateLive/classes/Appdelegate/CarouselCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
+		D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarouselCollectionViewCell.m; path = ImitateLive/classes/Appdelegate/CarouselCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
 		D65E20891D35068000BA0BF0 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		D65E208A1D35068000BA0BF0 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		D65E208C1D35068900BA0BF0 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
@@ -1082,6 +1096,11 @@
 			isa = PBXGroup;
 			children = (
 				D6A7E7D91D351205006649CC /* Carousel */,
+				D60D8CBC1D35E865001B6BCE /* HeaderView.h */,
+				D60D8CBD1D35E865001B6BCE /* HeaderView.m */,
+				D60D8CBE1D35E865001B6BCE /* HeaderView.xib */,
+				D60D8CC71D3638E6001B6BCE /* CarouselCollectionViewCell.h */,
+				D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1168,12 +1187,12 @@
 		D65E20951D35074100BA0BF0 /* 战旗资源 */ = {
 			isa = PBXGroup;
 			children = (
-
+				D60D8CC11D35E91E001B6BCE /* Img_orange.png */,
+				D60D8CC21D35E91E001B6BCE /* Img_orange@2x.png */,
+				D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */,
 				D6A7E7DD1D351962006649CC /* lunbo.png */,
-
 				D6CA5D6A1D35233F00E5C4BE /* female.png */,
 				D6CA5D6B1D35233F00E5C4BE /* male.png */,
-
 				D65E20961D35074100BA0BF0 /* AppIcon29x29.png */,
 				D65E20971D35074100BA0BF0 /* AppIcon29x29@2x.png */,
 				D65E20981D35074100BA0BF0 /* AppIcon29x29@2x~ipad.png */,
@@ -1923,11 +1942,13 @@
 				D65E22D51D35074200BA0BF0 /* ic_level_hj_01_no@2x.png in Resources */,
 				D65E22E71D35074200BA0BF0 /* ic_level_qt_05_no@2x.png in Resources */,
 				D65E22BD1D35074200BA0BF0 /* ic_level_by_01@2x.png in Resources */,
+				D60D8CC41D35E91E001B6BCE /* Img_orange.png in Resources */,
 				D65E22871D35074200BA0BF0 /* grinning@2x.png in Resources */,
 				D65E237B1D35074200BA0BF0 /* movie_play@2x.png in Resources */,
 				D65E22BA1D35074200BA0BF0 /* ic_level_bj_04_no@2x.png in Resources */,
 				D65E22961D35074200BA0BF0 /* ic_bjk_slevel_4@2x.png in Resources */,
 				D65E23071D35074200BA0BF0 /* ic_medal_07@2x.png in Resources */,
+				D60D8CC51D35E91E001B6BCE /* Img_orange@2x.png in Resources */,
 				D65E23961D35074200BA0BF0 /* tabbar_game@2x.png in Resources */,
 				D65E22951D35074200BA0BF0 /* ic_bjk_slevel_3@2x.png in Resources */,
 				D65E22DE1D35074200BA0BF0 /* ic_level_qt_01@2x.png in Resources */,
@@ -2051,16 +2072,14 @@
 				D65E22F31D35074200BA0BF0 /* ic_level_wz_05@2x.png in Resources */,
 				D65E22C81D35074200BA0BF0 /* ic_level_ds01@2x.png in Resources */,
 				D65E22EF1D35074200BA0BF0 /* ic_level_wz_03@2x.png in Resources */,
+				D60D8CC61D35E91E001B6BCE /* Img_orange@3x.png in Resources */,
 				D65E22CB1D35074200BA0BF0 /* ic_level_ds_01_no@2x.png in Resources */,
 				D65E22591D35074200BA0BF0 /* btn_home_normal@2x.png in Resources */,
 				D65E236A1D35074200BA0BF0 /* more_game_normal@2x.png in Resources */,
 				D65E232C1D35074200BA0BF0 /* ic_personal_homepage_setting_confirm@2x.png in Resources */,
 				D65E22D91D35074200BA0BF0 /* ic_level_hj_03_no@2x.png in Resources */,
-
 				D6A7E7DE1D351962006649CC /* lunbo.png in Resources */,
-
 				D6CA5D6D1D35233F00E5C4BE /* male.png in Resources */,
-
 				D65E23861D35074200BA0BF0 /* nav_home_search@2x.png in Resources */,
 				D65E23481D35074200BA0BF0 /* icon_firework_clock@2x.png in Resources */,
 				D65E232D1D35074200BA0BF0 /* ic_phone@2x.png in Resources */,
@@ -2127,6 +2146,7 @@
 				D65E22911D35074200BA0BF0 /* ic_big_normal@2x.png in Resources */,
 				D65E23651D35074200BA0BF0 /* more_block_selected@2x.png in Resources */,
 				D65E22FF1D35074200BA0BF0 /* ic_logo_big@2x.png in Resources */,
+				D60D8CC01D35E865001B6BCE /* HeaderView.xib in Resources */,
 				D65E22DF1D35074200BA0BF0 /* ic_level_qt_01_no@2x.png in Resources */,
 				D65E23721D35074200BA0BF0 /* more_tiger_disable@2x.png in Resources */,
 				D65E237E1D35074200BA0BF0 /* movie_setting@2x.png in Resources */,
@@ -2349,6 +2369,7 @@
 				D6A7E7D21D34FB45006649CC /* AppDelegate.m in Sources */,
 				D6A7E7BA1D34E4AB006649CC /* BaseViewController.m in Sources */,
 				D6A7E7DC1D351214006649CC /* CarouselFingure.m in Sources */,
+				D60D8CBF1D35E865001B6BCE /* HeaderView.m in Sources */,
 				D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */,
 				D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */,
 				D65E23A91D35081300BA0BF0 /* HomeModel.m in Sources */,
@@ -2366,6 +2387,7 @@
 				D65E23AF1D3508F900BA0BF0 /* ColumnDetailModel.m in Sources */,
 				D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */,
 				D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */,
+				D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */,
 				D65E20941D35069B00BA0BF0 /* ColumnViewController.m in Sources */,
 				D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */,
 				D6CA5D701D3534C600E5C4BE /* LiveDetailViewController.m in Sources */,

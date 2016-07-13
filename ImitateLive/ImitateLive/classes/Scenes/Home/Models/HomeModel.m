@@ -15,7 +15,7 @@
     if ([key isEqualToString:@"id"]) {
         _homeID = value;
     }
-    NSLog(@"%@",value);
+    
 }
 
 @end

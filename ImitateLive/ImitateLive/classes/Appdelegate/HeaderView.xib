@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="HeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_orange.png" translatesAutoresizingMaskIntoConstraints="NO" id="t2T-hu-HoR">
+                    <rect key="frame" x="8" y="4" width="6" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="bsR-Kv-HKF"/>
+                        <constraint firstAttribute="width" constant="6" id="joe-T4-xVC"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6m-GW-fAA">
+                    <rect key="frame" x="22" y="5" width="167" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="NSc-Hs-ix3"/>
+                        <constraint firstAttribute="width" constant="167" id="V9p-lh-o3v"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="t2T-hu-HoR" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="0Ig-4V-6QQ"/>
+                <constraint firstAttribute="bottom" secondItem="t2T-hu-HoR" secondAttribute="bottom" constant="4" id="Ffw-mb-BgQ"/>
+                <constraint firstAttribute="bottom" secondItem="i6m-GW-fAA" secondAttribute="bottom" constant="4" id="YpN-ze-vPq"/>
+                <constraint firstItem="i6m-GW-fAA" firstAttribute="leading" secondItem="t2T-hu-HoR" secondAttribute="trailing" constant="8" symbolic="YES" id="d8o-sO-glA"/>
+                <constraint firstItem="t2T-hu-HoR" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="4" id="qNM-5G-bbe"/>
+            </constraints>
+            <connections>
+                <outlet property="headerTitleLabel" destination="i6m-GW-fAA" id="vqQ-ff-fWB"/>
+                <outlet property="imgView" destination="t2T-hu-HoR" id="Bxo-Nn-8K0"/>
+            </connections>
+            <point key="canvasLocation" x="305" y="316"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="Img_orange.png" width="3" height="14"/>
+    </resources>
+</document>

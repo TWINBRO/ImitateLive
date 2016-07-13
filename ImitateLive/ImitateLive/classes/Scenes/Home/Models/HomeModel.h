@@ -7,7 +7,7 @@
 //
 
 #import "BaseModel.h"
-
+#import "ListModel.h"
 @interface HomeModel : BaseModel
 
 // 首页面
@@ -27,6 +27,6 @@
 @property (nonatomic,copy) NSArray *anchors;//
 @property (nonatomic,copy) NSString *token;//
 @property (nonatomic,copy) NSArray *lists;//
-
+@property (strong, nonatomic) ListModel *listModel;
 
 @end
