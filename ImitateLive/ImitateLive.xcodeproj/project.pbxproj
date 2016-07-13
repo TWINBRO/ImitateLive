@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		201D9FAEF462A07B84B9AF31 /* libPods-ImitateLive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */; };
+		D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */; };
+		D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
 		D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208D1D35068900BA0BF0 /* LiveViewController.m */; };
 		D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E20901D35069400BA0BF0 /* HomeViewController.m */; };
@@ -413,6 +415,9 @@
 		D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BA1D350DD000BA0BF0 /* ListModel.m */; };
 		D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
 		D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */; };
+		D65E23C71D3515FB00BA0BF0 /* ColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C51D3515FB00BA0BF0 /* ColumnCollectionViewCell.m */; };
+		D65E23C81D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */; };
+		D65E23CE1D35358A00BA0BF0 /* ColumnDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */; };
 		D6A7E7751D34DF96006649CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7741D34DF96006649CC /* main.m */; };
 		D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E77A1D34DF96006649CC /* ViewController.m */; };
 		D6A7E77E1D34DF96006649CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E77C1D34DF96006649CC /* Main.storyboard */; };
@@ -453,6 +458,9 @@
 		383FE3F08338E93639316F61 /* Pods-ImitateLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.debug.xcconfig"; sourceTree = "<group>"; };
 		48BA5A2FF347F63627C56B83 /* Pods-ImitateLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.release.xcconfig"; sourceTree = "<group>"; };
 		A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImitateLive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D610B1FB1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailCollectionViewCell.h; sourceTree = "<group>"; };
+		D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailCollectionViewCell.m; sourceTree = "<group>"; };
+		D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnDetailCollectionViewCell.xib; sourceTree = "<group>"; };
 		D65E20891D35068000BA0BF0 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		D65E208A1D35068000BA0BF0 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		D65E208C1D35068900BA0BF0 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
@@ -872,6 +880,11 @@
 		D65E23BD1D350E3800BA0BF0 /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		D65E23BF1D35101B00BA0BF0 /* WheelImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WheelImageModel.h; sourceTree = "<group>"; };
 		D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WheelImageModel.m; sourceTree = "<group>"; };
+		D65E23C41D3515FB00BA0BF0 /* ColumnCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnCollectionViewCell.h; sourceTree = "<group>"; };
+		D65E23C51D3515FB00BA0BF0 /* ColumnCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnCollectionViewCell.m; sourceTree = "<group>"; };
+		D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnCollectionViewCell.xib; sourceTree = "<group>"; };
+		D65E23CC1D35358A00BA0BF0 /* ColumnDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailViewController.h; sourceTree = "<group>"; };
+		D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailViewController.m; sourceTree = "<group>"; };
 		D6A7E7701D34DF96006649CC /* ImitateLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A7E7741D34DF96006649CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6A7E7791D34DF96006649CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1001,6 +1014,8 @@
 			children = (
 				D65E20921D35069B00BA0BF0 /* ColumnViewController.h */,
 				D65E20931D35069B00BA0BF0 /* ColumnViewController.m */,
+				D65E23CC1D35358A00BA0BF0 /* ColumnDetailViewController.h */,
+				D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1021,6 +1036,12 @@
 		D65E207C1D3505F800BA0BF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D65E23C41D3515FB00BA0BF0 /* ColumnCollectionViewCell.h */,
+				D65E23C51D3515FB00BA0BF0 /* ColumnCollectionViewCell.m */,
+				D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */,
+				D610B1FB1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.h */,
+				D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */,
+				D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2026,6 +2047,7 @@
 				D65E23791D35074200BA0BF0 /* movie_pause@2x.png in Resources */,
 				D65E23971D35074200BA0BF0 /* tabbar_game_sel@2x.png in Resources */,
 				D65E237F1D35074200BA0BF0 /* movie_subtitle_off@2x.png in Resources */,
+				D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */,
 				D65E223D1D35074200BA0BF0 /* brightness_0@2x.png in Resources */,
 				D65E22921D35074200BA0BF0 /* ic_big_pressed@2x.png in Resources */,
 				D65E22521D35074200BA0BF0 /* btn_down@2x.png in Resources */,
@@ -2200,6 +2222,7 @@
 				D65E22E91D35074200BA0BF0 /* ic_level_wz01@2x.png in Resources */,
 				D65E23681D35074200BA0BF0 /* more_fire_normal@2x.png in Resources */,
 				D65E22B51D35074200BA0BF0 /* ic_level_bj_02@2x.png in Resources */,
+				D65E23C81D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib in Resources */,
 				D65E22611D35074200BA0BF0 /* btn_live_normal@3x.png in Resources */,
 				D65E23181D35074200BA0BF0 /* ic_medal_24@2x.png in Resources */,
 				D65E22AC1D35074200BA0BF0 /* ic_feijipiao_normal@2x.png in Resources */,
@@ -2299,11 +2322,13 @@
 				D6A7E7BA1D34E4AB006649CC /* BaseViewController.m in Sources */,
 				D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */,
 				D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */,
+				D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */,
 				D65E23A91D35081300BA0BF0 /* HomeModel.m in Sources */,
 				D65E23B21D35091F00BA0BF0 /* LiveModel.m in Sources */,
 				D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */,
 				D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */,
 				D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */,
+				D65E23CE1D35358A00BA0BF0 /* ColumnDetailViewController.m in Sources */,
 				D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */,
 				D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */,
 				D6A7E7CE1D34FA2F006649CC /* BaseRequest.m in Sources */,
@@ -2313,6 +2338,7 @@
 				D65E23AF1D3508F900BA0BF0 /* ColumnDetailModel.m in Sources */,
 				D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */,
 				D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */,
+				D65E23C71D3515FB00BA0BF0 /* ColumnCollectionViewCell.m in Sources */,
 				D65E20941D35069B00BA0BF0 /* ColumnViewController.m in Sources */,
 				D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */,
 			);

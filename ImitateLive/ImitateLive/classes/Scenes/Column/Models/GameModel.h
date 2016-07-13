@@ -21,9 +21,9 @@
 @property (nonatomic,copy) NSDictionary *desc;
 
 // desc的属性
-@property (nonatomic,copy) NSString *系统;
-@property (nonatomic,copy) NSString *平台;
-@property (nonatomic,copy) NSString *简介;
+//@property (nonatomic,copy) NSString *系统;
+//@property (nonatomic,copy) NSString *平台;
+//@property (nonatomic,copy) NSString *简介;
 // desc属性结束
 
 @property (nonatomic,copy) NSString *weight;// 
