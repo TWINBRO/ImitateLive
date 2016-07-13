@@ -36,7 +36,7 @@
 @property (nonatomic,copy) NSString *allowRecord;
 @property (nonatomic,copy) NSString *allowVideo;
 @property (nonatomic,copy) NSString *publishUrl;
-@property (nonatomic,copy) NSString *videoId;
+@property (nonatomic,copy) NSString *videoId; /////////////
 @property (nonatomic,copy) NSString *chatStatus;
 @property (nonatomic,copy) NSString *roomNotice;
 @property (nonatomic,copy) NSString *anchorNotice;
