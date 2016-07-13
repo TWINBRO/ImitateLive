@@ -27,7 +27,25 @@
         self.genderImageView.image = [UIImage imageNamed:@"icon_room_male@2x"];
     }
     self.nicknameLabel.text = model.nickname;
-    self.peopleNamuberLabel.text = [NSString stringWithFormat:@"%@",model.online];
+    
+    self.peopleNamuberLabel.text = [NSString stringWithFormat:@"%@",[self number]];
+    
+    CGSize detailSize = [[self number] sizeWithAttributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:15.0f] }];
+    self.peopleLabelWidth.constant = detailSize.width;
+}
+
+- (NSString *)number
+{
+    int number = [self.model.online intValue];
+    int value = number / 10000;
+    
+    NSString *string = [NSString string];
+    if (value > 0) {
+        string = [NSString stringWithFormat:@"%d万",value];
+    }else{
+        string = [NSString stringWithFormat:@"%d",number];
+    }
+    return string;
 }
 
 @end

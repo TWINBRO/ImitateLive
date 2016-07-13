@@ -27,22 +27,22 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2Z-6G-gmF">
-                                <rect key="frame" x="34" y="8" width="131" height="21"/>
+                                <rect key="frame" x="34" y="8" width="146" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRR-nI-0oL">
-                                <rect key="frame" x="216" y="6" width="45" height="25"/>
+                                <rect key="frame" x="231" y="6" width="30" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="RMf-xk-pu7"/>
+                                    <constraint firstAttribute="width" constant="30" id="Eit-JY-Ioz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audience.png" translatesAutoresizingMaskIntoConstraints="NO" id="jbT-I2-AHM">
-                                <rect key="frame" x="173" y="6" width="35" height="26"/>
+                                <rect key="frame" x="188" y="6" width="35" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="0Kv-Vv-yrj"/>
                                     <constraint firstAttribute="width" constant="35" id="p8n-ZK-hhW"/>
@@ -95,6 +95,7 @@
                 <outlet property="backImageView" destination="lRv-XX-SCn" id="q7v-z2-Bgi"/>
                 <outlet property="genderImageView" destination="htc-Ah-aRV" id="Fv6-1c-k2m"/>
                 <outlet property="nicknameLabel" destination="v2Z-6G-gmF" id="meu-BR-sg9"/>
+                <outlet property="peopleLabelWidth" destination="Eit-JY-Ioz" id="tV8-75-s2S"/>
                 <outlet property="peopleNamuberLabel" destination="KRR-nI-0oL" id="Pie-fq-fzQ"/>
                 <outlet property="titleLabel" destination="t4e-G1-rO3" id="aFV-Ql-IYU"/>
             </connections>

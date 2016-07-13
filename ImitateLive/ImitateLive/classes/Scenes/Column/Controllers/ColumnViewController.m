@@ -13,12 +13,15 @@
 #import "ColumnCollectionViewCell.h"
 #import "ColumnDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#define header_Identifier @"header_Identifier"
+#define footer_identifier @"footer_Identifier"
 
 @interface ColumnViewController ()
 <
     UICollectionViewDataSource,
     UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout
+    
 >
 
 @property (nonatomic, strong) NSMutableArray *allColumnArr;
@@ -41,30 +44,23 @@
     self.allGamesArr = [NSMutableArray array];
     // 请求数据
     [self loadTop];
-    // 下拉刷新
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadTop)];
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    
-    [header setImages:nil forState:MJRefreshStatePulling];
-    
-    // 设置正在刷新状态的动画图片
-    
-//    [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
-    
-    // 设置普通状态的动画图片
-    
-//    [header setImages:idleImages forState:MJRefreshStateIdle];
-    self.columnCollectionView.mj_header = header;
-    
-    // 上拉刷新
-    MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
-    
-    self.columnCollectionView.mj_footer = footer;
-    
     // 创建UICollerctionView
     
     [self creatColumnCollectionView];
+    
+    
+    // 下拉刷新
+    self.columnCollectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadTop];
+    }];
+    // 上拉刷新
+    self.columnCollectionView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMore];
+    }];
+    
+    
 }
+
 // 创建collectionView
 - (void)creatColumnCollectionView
 {
@@ -76,6 +72,7 @@
     self.columnCollectionView.backgroundColor = [UIColor whiteColor];
     self.columnCollectionView.delegate = self;
     self.columnCollectionView.dataSource = self;
+    
     // 可以下拉
     self.columnCollectionView.alwaysBounceVertical = YES;
     
@@ -127,6 +124,8 @@
 //            NSLog(@"%@",weakSelf.allGamesArr);
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.columnCollectionView.mj_header endRefreshing];
+            [weakSelf.columnCollectionView.mj_footer endRefreshing];
             [weakSelf.columnCollectionView reloadData];
         });
         
@@ -136,7 +135,7 @@
     }];
 }
 
-
+#pragma mark -- 代理方法
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;

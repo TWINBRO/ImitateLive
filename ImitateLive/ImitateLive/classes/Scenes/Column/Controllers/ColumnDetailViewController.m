@@ -10,6 +10,11 @@
 #import "ColumnDetailCollectionViewCell.h"
 #import "ColumnRequest.h"
 #import "ColumnDetailModel.h"
+#import "LiveDetailViewController.h"
+#import <MJRefresh.h>
+
+#define header_Identifier @"header_Identifier"
+#define footer_identifier @"footer_Identifier"
 
 @interface ColumnDetailViewController ()
 <
@@ -31,7 +36,20 @@
     // 创建collectionView
     [self creatColumnDetailView];
     self.allVideoArr = [NSMutableArray array];
-    [self requestColumnData:self.model.gameID];
+    [self loadMore];
+    // 下拉刷新
+    
+    self.columnDetailView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadTop];
+    }];
+    // 上拉刷新
+    self.columnDetailView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMore];
+    }];
+    // 注册头视图
+    [self.columnDetailView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header_Identifier];
+    // 注册尾视图
+    [self.columnDetailView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footer_identifier];
 }
 // 创建collectionView
 - (void)creatColumnDetailView
@@ -79,6 +97,33 @@
     
 }
 */
+
+// 判断是否是顶部
+- (void)loadTop
+{
+    self.page = 1;
+    [self loadDataPageIndex:self.page top:YES];
+}
+
+- (void)loadMore
+{
+    self.page += 1;
+    [self loadDataPageIndex:self.page top:NO];
+}
+// 判断请求的方式
+- (void)loadDataPageIndex:(NSInteger)page top:(BOOL)isTop
+{
+    NSString *ID = [NSString stringWithFormat:@"%@/20-%ld",self.model.gameID,page];
+    
+    if (isTop) {
+        [self.allVideoArr removeAllObjects];
+        [self requestColumnData:ID];
+        
+    }else{
+        [self requestColumnData:ID];
+    }
+    
+}
 // 请求数据
 - (void)requestColumnData:(NSString *)ID
 {
@@ -97,6 +142,8 @@
 //            NSLog(@"%@",weakSelf.allVideoArr);
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.columnDetailView.mj_header endRefreshing];
+            [weakSelf.columnDetailView.mj_footer endRefreshing];
             [weakSelf.columnDetailView reloadData];
         });
         
@@ -105,7 +152,7 @@
         NSLog(@"%@",error);
     }];
 }
-
+#pragma mark -- 代理方法
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat width = WindownWidth / 2.0 - 15;
@@ -124,7 +171,12 @@
     cell.model = self.allVideoArr[indexPath.row];
     return cell;
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LiveDetailViewController *liveDetail = [[LiveDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:liveDetail animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

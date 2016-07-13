@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *peopleNamuberLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *peopleLabelWidth;
 
 @property (nonatomic, strong) ColumnDetailModel *model;
 @end
