@@ -427,6 +427,9 @@
 		D6A7E7CE1D34FA2F006649CC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7CB1D34FA2F006649CC /* BaseRequest.m */; };
 		D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7CD1D34FA2F006649CC /* NetworkRequest.m */; };
 		D6A7E7D21D34FB45006649CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7D11D34FB45006649CC /* AppDelegate.m */; };
+		D6A7E7DC1D351214006649CC /* CarouselFingure.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7DB1D351214006649CC /* CarouselFingure.m */; };
+		D6A7E7DE1D351962006649CC /* lunbo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E7DD1D351962006649CC /* lunbo.png */; };
+		D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7E01D35384F006649CC /* WTImageScroll.m */; };
 		D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57251D34FE4700E5C4BE /* RootViewController.m */; };
 		D6CA57361D34FE7700E5C4BE /* CustomTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57351D34FE7700E5C4BE /* CustomTabbar.m */; };
 		D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57381D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m */; };
@@ -903,6 +906,11 @@
 		D6A7E7CD1D34FA2F006649CC /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
 		D6A7E7D01D34FB45006649CC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D6A7E7D11D34FB45006649CC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D6A7E7DA1D351214006649CC /* CarouselFingure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselFingure.h; sourceTree = SOURCE_ROOT; };
+		D6A7E7DB1D351214006649CC /* CarouselFingure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselFingure.m; sourceTree = SOURCE_ROOT; };
+		D6A7E7DD1D351962006649CC /* lunbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunbo.png; sourceTree = "<group>"; };
+		D6A7E7DF1D35384F006649CC /* WTImageScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTImageScroll.h; sourceTree = SOURCE_ROOT; };
+		D6A7E7E01D35384F006649CC /* WTImageScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTImageScroll.m; sourceTree = SOURCE_ROOT; };
 		D6CA57241D34FE4700E5C4BE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D6CA57251D34FE4700E5C4BE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D6CA57341D34FE7700E5C4BE /* CustomTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabbar.h; sourceTree = "<group>"; };
@@ -1061,6 +1069,7 @@
 		D65E20801D3505F800BA0BF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6A7E7D91D351205006649CC /* Carousel */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1142,6 +1151,7 @@
 		D65E20951D35074100BA0BF0 /* 战旗资源 */ = {
 			isa = PBXGroup;
 			children = (
+				D6A7E7DD1D351962006649CC /* lunbo.png */,
 				D65E20961D35074100BA0BF0 /* AppIcon29x29.png */,
 				D65E20971D35074100BA0BF0 /* AppIcon29x29@2x.png */,
 				D65E20981D35074100BA0BF0 /* AppIcon29x29@2x~ipad.png */,
@@ -1708,6 +1718,17 @@
 			name = Request;
 			sourceTree = "<group>";
 		};
+		D6A7E7D91D351205006649CC /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				D6A7E7DF1D35384F006649CC /* WTImageScroll.h */,
+				D6A7E7E01D35384F006649CC /* WTImageScroll.m */,
+				D6A7E7DA1D351214006649CC /* CarouselFingure.h */,
+				D6A7E7DB1D351214006649CC /* CarouselFingure.m */,
+			);
+			name = Carousel;
+			sourceTree = "<group>";
+		};
 		FDEE42DBD74B1EDFE4CCDDD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2012,6 +2033,7 @@
 				D65E236A1D35074200BA0BF0 /* more_game_normal@2x.png in Resources */,
 				D65E232C1D35074200BA0BF0 /* ic_personal_homepage_setting_confirm@2x.png in Resources */,
 				D65E22D91D35074200BA0BF0 /* ic_level_hj_03_no@2x.png in Resources */,
+				D6A7E7DE1D351962006649CC /* lunbo.png in Resources */,
 				D65E23861D35074200BA0BF0 /* nav_home_search@2x.png in Resources */,
 				D65E23481D35074200BA0BF0 /* icon_firework_clock@2x.png in Resources */,
 				D65E232D1D35074200BA0BF0 /* ic_phone@2x.png in Resources */,
@@ -2292,11 +2314,13 @@
 				D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */,
 				D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */,
 				D6A7E7C31D34EE68006649CC /* LiveRequest.m in Sources */,
+				D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */,
 				D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */,
 				D65E23A61D3507DA00BA0BF0 /* BaseModel.m in Sources */,
 				D6CA57361D34FE7700E5C4BE /* CustomTabbar.m in Sources */,
 				D6A7E7D21D34FB45006649CC /* AppDelegate.m in Sources */,
 				D6A7E7BA1D34E4AB006649CC /* BaseViewController.m in Sources */,
+				D6A7E7DC1D351214006649CC /* CarouselFingure.m in Sources */,
 				D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */,
 				D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */,
 				D65E23A91D35081300BA0BF0 /* HomeModel.m in Sources */,
