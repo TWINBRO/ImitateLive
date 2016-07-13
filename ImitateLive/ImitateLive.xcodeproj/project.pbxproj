@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		201D9FAEF462A07B84B9AF31 /* libPods-ImitateLive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */; };
+		D60D85DE1D35D3F800D08387 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D85DD1D35D3F800D08387 /* PlayerView.m */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
 		D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208D1D35068900BA0BF0 /* LiveViewController.m */; };
 		D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E20901D35069400BA0BF0 /* HomeViewController.m */; };
@@ -458,6 +459,8 @@
 		383FE3F08338E93639316F61 /* Pods-ImitateLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.debug.xcconfig"; sourceTree = "<group>"; };
 		48BA5A2FF347F63627C56B83 /* Pods-ImitateLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImitateLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImitateLive/Pods-ImitateLive.release.xcconfig"; sourceTree = "<group>"; };
 		A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImitateLive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60D85DC1D35D3F800D08387 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = ImitateLive/classes/Scenes/Live/Controllers/PlayerView.h; sourceTree = SOURCE_ROOT; };
+		D60D85DD1D35D3F800D08387 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerView.m; path = ImitateLive/classes/Scenes/Live/Controllers/PlayerView.m; sourceTree = SOURCE_ROOT; };
 		D65E20891D35068000BA0BF0 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		D65E208A1D35068000BA0BF0 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		D65E208C1D35068900BA0BF0 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
@@ -1118,6 +1121,8 @@
 				D6CA5D5B1D35147700E5C4BE /* LiveCollectionViewCell.h */,
 				D6CA5D5C1D35147700E5C4BE /* LiveCollectionViewCell.m */,
 				D6CA5D5D1D35147700E5C4BE /* LiveCollectionViewCell.xib */,
+				D60D85DC1D35D3F800D08387 /* PlayerView.h */,
+				D60D85DD1D35D3F800D08387 /* PlayerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2330,6 +2335,7 @@
 				D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */,
 				D6A7E7CE1D34FA2F006649CC /* BaseRequest.m in Sources */,
 				D6A7E7C01D34EA42006649CC /* HomeRequest.m in Sources */,
+				D60D85DE1D35D3F800D08387 /* PlayerView.m in Sources */,
 				D6CA5D5E1D35147700E5C4BE /* LiveCollectionViewCell.m in Sources */,
 				D6A7E7751D34DF96006649CC /* main.m in Sources */,
 				D65E23AC1D3508AB00BA0BF0 /* ColumnModel.m in Sources */,

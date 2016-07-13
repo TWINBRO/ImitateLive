@@ -97,8 +97,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
-    liveDetailVC.videoModel = self.allLivesArray[indexPath.row];
-    [self.navigationController pushViewController:liveDetailVC animated:YES];
+    liveDetailVC.liveModel = self.allLivesArray[indexPath.row];
+//    [self.navigationController pushViewController:liveDetailVC animated:YES];
+    [self presentViewController:liveDetailVC animated:YES completion:nil];
     
 }
 
