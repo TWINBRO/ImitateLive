@@ -36,4 +36,23 @@
     
 }
 
+// 直播间历史视频(ID为uid)
+- (void)historyVideoRequestWithID:(NSString *)ID success:(SuccessResponse)success failure:(FailureResponse)failure {
+    
+    NetworkRequest *request = [[NetworkRequest alloc] init];
+    
+    NSMutableString * filePath = [[NSMutableString alloc]initWithString:  [NSString stringWithFormat:@"%@",AuthorHistoryVideoRequest_Url(ID)]];
+    filePath=[filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [request requestWithUrl:filePath parameters:nil successResponse:^(NSDictionary *dic) {
+        success(dic);
+    } failureResponse:^(NSError *error) {
+        failure(error);
+    }];
+    
+}
+
+
+
+
 @end
