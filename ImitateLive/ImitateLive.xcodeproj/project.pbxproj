@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		201D9FAEF462A07B84B9AF31 /* libPods-ImitateLive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */; };
 		D60D85DE1D35D3F800D08387 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D85DD1D35D3F800D08387 /* PlayerView.m */; };
-
-
 		D60D860C1D3679F500D08387 /* DLLRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D85FD1D3679F500D08387 /* DLLRUCache.m */; };
 		D60D860D1D3679F500D08387 /* DLCustomSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D85FF1D3679F500D08387 /* DLCustomSlideView.m */; };
 		D60D860E1D3679F500D08387 /* DLSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D86011D3679F500D08387 /* DLSlideView.m */; };
@@ -18,20 +16,16 @@
 		D60D86101D3679F500D08387 /* DLScrollTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D86061D3679F500D08387 /* DLScrollTabbarView.m */; };
 		D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D86091D3679F500D08387 /* DLTabedSlideView.m */; };
 		D60D86121D3679F500D08387 /* DLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D860B1D3679F500D08387 /* DLUtility.m */; };
-
 		D60D8CBF1D35E865001B6BCE /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CBD1D35E865001B6BCE /* HeaderView.m */; };
 		D60D8CC01D35E865001B6BCE /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CBE1D35E865001B6BCE /* HeaderView.xib */; };
 		D60D8CC41D35E91E001B6BCE /* Img_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC11D35E91E001B6BCE /* Img_orange.png */; };
 		D60D8CC51D35E91E001B6BCE /* Img_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC21D35E91E001B6BCE /* Img_orange@2x.png */; };
 		D60D8CC61D35E91E001B6BCE /* Img_orange@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */; };
 		D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */; };
-
 		D60D8CCF1D367017001B6BCE /* MyHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CCD1D367017001B6BCE /* MyHeaderTableViewCell.m */; };
 		D60D8CD01D367017001B6BCE /* MyHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CCE1D367017001B6BCE /* MyHeaderTableViewCell.xib */; };
 		D60D8CD21D36745C001B6BCE /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD11D36745C001B6BCE /* avatar.png */; };
 		D60D8CD41D367508001B6BCE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD31D367508001B6BCE /* background.png */; };
-
-
 		D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */; };
 		D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
@@ -458,7 +452,6 @@
 		D6A7E7991D34DF96006649CC /* ImitateLiveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7981D34DF96006649CC /* ImitateLiveUITests.m */; };
 		D6A7E7BA1D34E4AB006649CC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7B91D34E4AB006649CC /* BaseViewController.m */; };
 		D6A7E7C01D34EA42006649CC /* HomeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7BF1D34EA42006649CC /* HomeRequest.m */; };
-		D6A7E7C31D34EE68006649CC /* LiveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7C21D34EE68006649CC /* LiveRequest.m */; };
 		D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7C71D34F213006649CC /* ColumnRequest.m */; };
 		D6A7E7CE1D34FA2F006649CC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7CB1D34FA2F006649CC /* BaseRequest.m */; };
 		D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7CD1D34FA2F006649CC /* NetworkRequest.m */; };
@@ -476,6 +469,7 @@
 		D6CA5D701D3534C600E5C4BE /* LiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA5D6F1D3534C600E5C4BE /* LiveDetailViewController.m */; };
 		D6F334BC1D38856A004B7A6B /* lun.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F334BB1D38856A004B7A6B /* lun.png */; };
 		D6F334BF1D389316004B7A6B /* RoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F334BE1D389316004B7A6B /* RoomModel.m */; };
+		D6F334C01D38CA08004B7A6B /* LiveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7C21D34EE68006649CC /* LiveRequest.m */; };
 		D6F864AF1D37321C00A3EBA4 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F864AD1D37321C00A3EBA4 /* MyTableViewCell.m */; };
 		D6F864B01D37321C00A3EBA4 /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F864AE1D37321C00A3EBA4 /* MyTableViewCell.xib */; };
 		D6F864B41D373DA900A3EBA4 /* Image_focus.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F864B11D373DA900A3EBA4 /* Image_focus.png */; };
@@ -522,8 +516,6 @@
 		A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImitateLive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60D85DC1D35D3F800D08387 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = ImitateLive/classes/Scenes/Live/Controllers/PlayerView.h; sourceTree = SOURCE_ROOT; };
 		D60D85DD1D35D3F800D08387 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerView.m; path = ImitateLive/classes/Scenes/Live/Controllers/PlayerView.m; sourceTree = SOURCE_ROOT; };
-
-
 		D60D85FB1D3679F500D08387 /* DLCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCacheProtocol.h; sourceTree = "<group>"; };
 		D60D85FC1D3679F500D08387 /* DLLRUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLRUCache.h; sourceTree = "<group>"; };
 		D60D85FD1D3679F500D08387 /* DLLRUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLRUCache.m; sourceTree = "<group>"; };
@@ -540,7 +532,6 @@
 		D60D86091D3679F500D08387 /* DLTabedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTabedSlideView.m; sourceTree = "<group>"; };
 		D60D860A1D3679F500D08387 /* DLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUtility.h; sourceTree = "<group>"; };
 		D60D860B1D3679F500D08387 /* DLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtility.m; sourceTree = "<group>"; };
-
 		D60D8CBC1D35E865001B6BCE /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = ImitateLive/classes/Appdelegate/HeaderView.h; sourceTree = SOURCE_ROOT; };
 		D60D8CBD1D35E865001B6BCE /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = ImitateLive/classes/Appdelegate/HeaderView.m; sourceTree = SOURCE_ROOT; };
 		D60D8CBE1D35E865001B6BCE /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HeaderView.xib; path = ImitateLive/classes/Appdelegate/HeaderView.xib; sourceTree = SOURCE_ROOT; };
@@ -549,14 +540,11 @@
 		D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Img_orange@3x.png"; sourceTree = "<group>"; };
 		D60D8CC71D3638E6001B6BCE /* CarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarouselCollectionViewCell.h; path = ImitateLive/classes/Appdelegate/CarouselCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
 		D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarouselCollectionViewCell.m; path = ImitateLive/classes/Appdelegate/CarouselCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
-
 		D60D8CCC1D367017001B6BCE /* MyHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyHeaderTableViewCell.h; path = ImitateLive/classes/Appdelegate/MyHeaderTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		D60D8CCD1D367017001B6BCE /* MyHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyHeaderTableViewCell.m; path = ImitateLive/classes/Appdelegate/MyHeaderTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		D60D8CCE1D367017001B6BCE /* MyHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyHeaderTableViewCell.xib; path = ImitateLive/classes/Appdelegate/MyHeaderTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		D60D8CD11D36745C001B6BCE /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		D60D8CD31D367508001B6BCE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-
-
 		D610B1FB1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnDetailCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2610,19 +2598,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6F334C01D38CA08004B7A6B /* LiveRequest.m in Sources */,
 				D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */,
 				D60D860C1D3679F500D08387 /* DLLRUCache.m in Sources */,
 				D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */,
-
 				D6F864EA1D37AB3000A3EBA4 /* RegisterRequest.m in Sources */,
 				D6F864C51D3741C600A3EBA4 /* LoginViewController.m in Sources */,
-				D6A7E7C31D34EE68006649CC /* LiveRequest.m in Sources */,
 				D6F864E91D37AB3000A3EBA4 /* LoginRequest.m in Sources */,
-
 				D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */,
-				D6A7E7C31D34EE68006649CC /* LiveRequest.m in Sources */,
 				D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */,
-
 				D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */,
 				D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */,
 				D65E23A61D3507DA00BA0BF0 /* BaseModel.m in Sources */,
@@ -2663,10 +2647,7 @@
 				D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */,
 				D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */,
 				D65E23C71D3515FB00BA0BF0 /* ColumnCollectionViewCell.m in Sources */,
-
-
 				D67B01821D376B150072967A /* BriefViewController.m in Sources */,
-
 				D65E20941D35069B00BA0BF0 /* ColumnViewController.m in Sources */,
 				D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */,
 				D60D860E1D3679F500D08387 /* DLSlideView.m in Sources */,
@@ -2816,6 +2797,24 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijinghui.ImitateLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2829,6 +2828,24 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijinghui.ImitateLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

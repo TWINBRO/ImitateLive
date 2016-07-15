@@ -13,7 +13,7 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     if ([key isEqualToString:@"id"]) {
-        _listsID = value;
+        _liveID = value;
     }
     NSLog(@"%@",value);
 }

@@ -10,7 +10,8 @@
 
 @interface ListModel : BaseModel
 // list下的属性
-@property (nonatomic,copy) NSString *listsID;//(id)
+//@property (nonatomic,copy) NSString *listsID;//(id)
+@property (nonatomic,copy) NSString *liveID;
 @property (nonatomic,copy) NSString *uid;
 @property (nonatomic,copy) NSString *nickname;// 主播姓名
 @property (nonatomic,copy) NSString *gender;// 性别
