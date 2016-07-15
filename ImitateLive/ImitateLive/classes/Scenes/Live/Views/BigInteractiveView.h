@@ -90,6 +90,10 @@
 @property (strong, nonatomic) UILabel *nowTimeLabel;// 当前时间
 @property (strong, nonatomic) UILabel *longTimeLabel;// 总时长
 
+/** 快进快退label */
+@property (nonatomic, strong) UILabel *horizontalLabel;
+/** 系统菊花 */
+@property (nonatomic, strong) UIActivityIndicatorView *activity;
 
 // 是否是历史视频
 @property (assign, nonatomic) BOOL isHistory;

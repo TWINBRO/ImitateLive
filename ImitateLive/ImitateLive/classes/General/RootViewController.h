@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CustomTabbar.h"
 @interface RootViewController : UITabBarController
-
+@property (strong, nonatomic) CustomTabbar* customTabBar;
 @end

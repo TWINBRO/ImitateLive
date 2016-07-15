@@ -7,7 +7,7 @@
 //
 
 #import "BaseModel.h"
-
+#import "RoomModel.h"
 @interface WheelImageModel : BaseModel
 // 轮播图
 // data下的属性
@@ -25,7 +25,8 @@
 @property (nonatomic,copy) NSString *endTime;
 @property (nonatomic,copy) NSString *weight;
 @property (nonatomic,copy) NSString *positionType;
-@property (nonatomic,copy) NSArray *room;
+@property (nonatomic,copy) NSDictionary *room;
+//@property (nonatomic, strong) RoomModel *roommodel;
 // room下的属性
 @property (nonatomic,copy) NSString *roomID;// (id)
 @property (nonatomic,copy) NSString *uid;//

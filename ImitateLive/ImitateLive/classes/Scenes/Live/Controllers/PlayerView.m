@@ -8,6 +8,10 @@
 
 #import "PlayerView.h"
 
+@interface PlayerView ()
+
+@end
+
 
 @implementation PlayerView
 
@@ -28,7 +32,7 @@
         _player = [AVPlayer playerWithPlayerItem:_playerItem];
         _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
         _playerLayer.frame = frame;
-        NSLog(@"%f",frame.size.width);
+        
         [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
@@ -41,8 +45,9 @@
             [_player play];
         }
     }
-    
 }
+
+
 
 - (void)dealloc {
     [_player removeObserver:self forKeyPath:@"status" context:nil];

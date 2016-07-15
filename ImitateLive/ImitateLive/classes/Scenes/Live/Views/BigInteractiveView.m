@@ -41,9 +41,10 @@
     self.playOrPauseBtn = [self buttonWithImage:@"" frame:CGRectMake(10, 0, 48, 48) action:@selector(playOrPauseAction:) superView:self.bottomBackgroundView corner:YES];
     self.lockScreenBtn = [self buttonWithImage:@"" frame:CGRectMake(10, kHeight / 2.0 - 30, 40, 40) action:@selector(lockScreenAction:)  superView:self corner:YES];
     self.fullScreenBtn = [self buttonWithImage:@"" frame: CGRectMake(kWidth - 47, 0, 37, 37) action:@selector(fullScreenAction:)  superView:self.bottomBackgroundView corner:YES];
-    self.titleLabel = [self labelWithTitle:@"" color:[UIColor whiteColor] frame:CGRectMake(60, 10, 300, 30) superView:self.topBackgroundView];
-    self.onlineLabel = [self labelWithTitle:@"" color:[UIColor whiteColor] frame:CGRectMake(kWidth - 60, 100, 50, 40) superView:self];
-    self.onlineImage = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth - 100, 100, 36, 36)];
+    self.titleLabel = [self labelWithTitle:@"" color:[UIColor clearColor] textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(60, 10, 300, 30) superView:self.topBackgroundView];
+    self.onlineLabel = [self labelWithTitle:@"" color:YD_COLOR(115, 115, 115, 0.75) textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(kWidth - 84, 100, 70, 36) superView:self];
+    self.onlineImage = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth - 120, 100, 36, 36)];
+    self.onlineImage.backgroundColor = YD_COLOR(115, 115, 115, 0.75);
     self.onlineImage.image = [UIImage imageNamed:@"ic_account@2x"];
     [self addSubview:self.onlineImage];
 }
@@ -64,8 +65,8 @@
 }
 - (void)addHistoryControl
 {
-    self.nowTimeLabel = [self labelWithTitle:@"00:00:00" color:[UIColor whiteColor] frame:CGRectMake(50, 35, 100, 15) superView:self.bottomBackgroundView];
-    self.longTimeLabel = [self labelWithTitle:@"" color:[UIColor whiteColor] frame:CGRectMake(self.frame.size.width - 150, 35, 100, 15) superView:self.bottomBackgroundView];
+    self.nowTimeLabel = [self labelWithTitle:@"00:00:00" color:[UIColor whiteColor] textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(50, 35, 100, 15) superView:self.bottomBackgroundView];
+    self.longTimeLabel = [self labelWithTitle:@"" color:[UIColor whiteColor] textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(self.frame.size.width - 150, 35, 100, 15) superView:self.bottomBackgroundView];
     self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 6, self.frame.size.width - 97, 20)];
     self.progressSlider.maximumValue = 1.0;
     [self.progressSlider setMaximumTrackTintColor:[UIColor grayColor]];
@@ -73,7 +74,12 @@
     [self.progressSlider setThumbTintColor:[UIColor whiteColor]];
     [self.progressSlider addTarget:self action:@selector(progressSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.bottomBackgroundView addSubview:self.progressSlider];
+    
+    // 快进快退label
+    self.horizontalLabel = [self labelWithTitle:@"" color:YD_COLOR(115, 115, 115, 0.5) textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(kWidth / 2, kHeight / 2, 100, 50) superView:self];
+    self.horizontalLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ZFPlayer_management_mask"]];
 }
+
 // 创建按钮
 - (UIButton *)buttonWithImage:(NSString *)image frame:(CGRect)frame action:(SEL)action superView:(UIView *)view corner:(BOOL)corner
 {
@@ -99,11 +105,13 @@
     return view;
 }
 // 创建label
-- (UILabel *)labelWithTitle:(NSString *)title color:(UIColor *)color frame:(CGRect)frame superView:(UIView *)view
+- (UILabel *)labelWithTitle:(NSString *)title color:(UIColor *)color textColor:(UIColor *)textColor fontSize:(CGFloat)fontSize frame:(CGRect)frame superView:(UIView *)view
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.text = title;
-    label.font = [UIFont systemFontOfSize:15.0];
+    label.font = [UIFont systemFontOfSize:fontSize];
+    label.textColor = textColor;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = color;
     [view addSubview:label];
     return label;
@@ -177,6 +185,14 @@
     if (_delegate) {
         [_delegate progressSLiderValueChangedAction:progress];
     }
+}
+
+- (UIActivityIndicatorView *)activity
+{
+    if (!_activity) {
+        _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    }
+    return _activity;
 }
 
 /*

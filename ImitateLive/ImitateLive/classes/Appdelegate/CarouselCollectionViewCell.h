@@ -7,6 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CarouselFingure.h"
+#import "LiveModel.h"
+@protocol CarouselDelegate <NSObject>
+
+- (void)changeController:(LiveModel *)model;
+
+@end
+
+
+
 
 @interface CarouselCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) NSMutableArray *carousels;
@@ -14,4 +24,11 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 - (void)requestCarouselData;
 - (void)addCarousel;
+
+@property (strong, nonatomic) NSMutableArray *roomArr;
+
+
+
+@property (weak, nonatomic) id<CarouselDelegate> carouselDelegate;
+
 @end

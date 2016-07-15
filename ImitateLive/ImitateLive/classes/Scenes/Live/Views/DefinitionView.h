@@ -7,22 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-enum definition{
-    superDefinition,
+typedef NS_ENUM(NSInteger,Definition) {
+    superDefinition = 300,
     highDefinition,
     standardDefinition
 };
 
 @protocol DefinitionViewDelegate <NSObject>
-
-// 超清代理方法
-- (void)superDefinitionAction:(UIButton *)buttton;
-// 高清代理方法
-- (void)highDefinitionAction:(UIButton *)buttton;
-// 标清代理方法
-- (void)standardDefinition:(UIButton *)buttton;
-
+// 代理方法
+- (void)adjustDefinitionAction:(UIButton *)button definition:(Definition)definition;
 @end
 
 @interface DefinitionView : UIView

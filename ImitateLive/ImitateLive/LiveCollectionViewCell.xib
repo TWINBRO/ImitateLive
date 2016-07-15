@@ -78,7 +78,7 @@
                 <outlet property="onlineNumberLabel" destination="Ne8-9O-fdy" id="2Qc-vK-LGU"/>
                 <outlet property="sexImageView" destination="0ZP-2c-9Yd" id="fgh-5K-Zsd"/>
             </connections>
-            <point key="canvasLocation" x="467" y="575"/>
+            <point key="canvasLocation" x="574" y="608"/>
         </collectionViewCell>
     </objects>
 </document>

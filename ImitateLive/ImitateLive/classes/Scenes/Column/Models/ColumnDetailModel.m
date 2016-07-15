@@ -15,7 +15,7 @@
     if ([key isEqualToString:@"id"]) {
         _columnDetailID = value;
     }
-    NSLog(@"%@",key);
+//    NSLog(@"%@",key);
 }
 
 @end

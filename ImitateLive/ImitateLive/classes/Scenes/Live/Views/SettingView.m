@@ -29,8 +29,8 @@
 
 - (void)creatViewControll
 {
-    NSLog(@"%lf",settingWidth);
-    NSLog(@"%lf",settingHeight);
+//    NSLog(@"%lf",settingWidth);
+//    NSLog(@"%lf",settingHeight);
     self.barrageSizeLabel = [self labelWithTitle:@"弹幕大小" color:[UIColor clearColor] textColot:[UIColor blackColor] frame:CGRectMake(0, 0, 100, 50) center:CGPointMake(60, settingWidth) superView:self];
     self.barrageTransparencyLabel = [self labelWithTitle:@"弹幕透明度" color:[UIColor clearColor] textColot:[UIColor blackColor] frame:CGRectMake(0, 0, 100, 50) center:CGPointMake(60, settingWidth * 2.0) superView:self];
     self.barragePositionLabel = [self labelWithTitle:@"弹幕位置" color:[UIColor clearColor] textColot:[UIColor blackColor] frame:CGRectMake(0, 0, 100, 50) center:CGPointMake(60, settingWidth * 3.0) superView:self];
@@ -93,8 +93,8 @@
 - (void)barragePosition
 {
     self.topScreenBtn = [self buttonWithImage:@"btn_setting_shangfgang_normal@2x" frame:CGRectMake(120, settingWidth * 3.0 - 40, 80, 80) action:@selector(topScreenClick:) superView:self corner:NO];
-    self.fullScreenBtn = [self buttonWithImage:@"btn_setting_shangfgang_normal@2x" frame:CGRectMake(210, settingWidth * 3.0 - 40, 80, 80) action:@selector(fullScreenClick:) superView:self corner:NO];
-    self.bottomScreenBtn = [self buttonWithImage:@"btn_setting_shangfgang_normal@2x" frame:CGRectMake(300, settingWidth * 3.0 - 40, 80, 80) action:@selector(bottomScreenClick:) superView:self corner:NO];
+    self.fullScreenBtn = [self buttonWithImage:@"btn_setting_quanping_highlight@2x" frame:CGRectMake(210, settingWidth * 3.0 - 40, 80, 80) action:@selector(fullScreenClick:) superView:self corner:NO];
+    self.bottomScreenBtn = [self buttonWithImage:@"btn_setting_xiafang_normal@2x" frame:CGRectMake(300, settingWidth * 3.0 - 40, 80, 80) action:@selector(bottomScreenClick:) superView:self corner:NO];
     
 }
 - (void)topScreenClick:(UIButton *)btn
@@ -128,6 +128,7 @@
 - (void)timeSleep
 {
     self.timeSleepSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(120, settingWidth * 4.0 - 40, 150, 80)];
+    self.timeSleepSwitch.center = CGPointMake(196, settingWidth * 4.0);
     self.timeSleepSwitch.tintColor = [UIColor magentaColor];
     self.timeSleepSwitch.onTintColor = [UIColor cyanColor];
     self.timeSleepSwitch.thumbTintColor = [UIColor redColor];
@@ -146,7 +147,7 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor whiteColor];
+//    button.backgroundColor = [UIColor whiteColor];
     if (corner) {
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = frame.size.width / 2.0;

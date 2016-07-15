@@ -14,18 +14,31 @@
 #import "PlayerViewController.h"
 #import "NSString+timeFormatter.h"
 #import "VideoRelationModel.h"
+#import "DLTabedSlideView.h"
+#import "BriefViewController.h"
+#import "VideoModel.h"
+#import "HistoryVideoViewController.h"
 
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 
-@interface LiveDetailViewController ()<littleInteractiveViewDelegate>
-
+@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,littleInteractiveViewDelegate>
 
 @property (strong, nonatomic) VideoRelationModel *videoRelationModel;
 
 @property (strong, nonatomic) PlayerView *playerView;
 
+
 @property (strong, nonatomic) LittleInteractiveView *littleView;
 @property (strong, nonatomic) BigInteractiveView *bigView;
+@property (strong, nonatomic) UISegmentedControl *segmentedControl;
+
+@property (strong, nonatomic) UIScrollView *scrollView;
+
+@property (strong, nonatomic) DLTabedSlideView *tabedSlideView;
+
+@property (strong, nonatomic) BriefViewController *briefVC;
+
+@property (strong, nonatomic) HistoryVideoViewController *historyVideoVC;
 
 @property (strong, nonatomic) NSTimer *timer;
 @property (assign, nonatomic) BOOL isPlaying;
@@ -38,17 +51,18 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     NSMutableString * filePath = [[NSMutableString alloc]initWithString:  [NSString stringWithFormat:@"%@%@.m3u8",HLS_URL,self.liveModel.videoId]];
     filePath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
-    self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, 414, 250)];
+    self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
     
-    NSLog(@"%f",self.view.frame.size.height);
+    [self addView];
     [self.view.layer addSublayer:self.playerView.playerLayer];
     
+
     [self beginTimer];
     
     self.isHistory = NO;
@@ -109,6 +123,10 @@
 
 - (void)shareVideoAction:(UIButton *)button
 {
+
+    // 添加通知观测是否确定播放历史视频
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideo) name:@"PLAYVIDEO" object:nil];
+
     
 }
 - (void)playOrPauseAction:(UIButton *)buttton
@@ -129,7 +147,7 @@
     [self.timer invalidate];
     CGFloat longTime = [self.videoRelationModel.duration getSecondsFormatByString];
     [self.playerView.player seekToTime:CMTimeMakeWithSeconds(progress.value * longTime, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
-        NSLog(@"Complete. Current Time: %f", CMTimeGetSeconds(self.playerView.player.currentTime));
+//        NSLog(@"Complete. Current Time: %f", CMTimeGetSeconds(self.playerView.player.currentTime));
     }];
     if (progress.value == 1) {
         [self.playerView.player seekToTime:kCMTimeZero];
@@ -144,20 +162,10 @@
 }
 
 
-//- (void)requestListDetail:(NSString *)ID {
+//- (void)palyVideo {
 //    
-//    LiveRequest *request = [[LiveRequest alloc] init];
-//    [request liveDetailRequestWithParameter:@{@"id":ID} success:^(NSDictionary *dic) {
-//        
-//        LiveModel *liveModel = [LiveModel new];
-//        [liveModel setValuesForKeysWithDictionary:dic[@"data"]];
-//        
-//        
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"error = %@",error);
-//        
-//    }];
+//    [self.playerView.playerLayer removeFromSuperlayer];
+//    
 //    
 //}
 
@@ -181,6 +189,91 @@
     }
     i++;
 }
+
+- (void)addView {
+    
+    self.tabedSlideView = [[DLTabedSlideView alloc] initWithFrame:CGRectMake(0, 260, WindownWidth, WindowHeight-270)];
+    [self.view addSubview:_tabedSlideView];
+    
+    self.tabedSlideView.delegate = self;
+    self.tabedSlideView.baseViewController = self;
+    
+    self.tabedSlideView.tabItemSelectedColor = [UIColor colorWithRed:15.0/255.0 green:186.0/255.0 blue:255.0/255.0 alpha:1];
+    self.tabedSlideView.tabbarTrackColor = [UIColor blackColor];
+    self.tabedSlideView.tabItemNormalColor = [UIColor whiteColor];
+    self.tabedSlideView.tabbarBackgroundImage = [UIImage imageWithColor:[UIColor blackColor]];
+    
+    DLTabedbarItem *item1 = [DLTabedbarItem itemWithTitle:@"简介" image: [UIImage imageNamed:@"ic_broadcastroom_chat_default"] selectedImage: [UIImage imageNamed:@"ic_broadcastroom_chat_pressed"]];
+    DLTabedbarItem *item2 = [DLTabedbarItem itemWithTitle:@"聊天" image:[UIImage imageNamed:@"ic_broadcastroom_intro_default"]  selectedImage:[UIImage imageNamed:@"ic_broadcastroom_intro_pressed"] ];
+    DLTabedbarItem *item3 = [DLTabedbarItem itemWithTitle:@"视频" image:[UIImage imageNamed:@"ic_broadcastroom_video_default"]  selectedImage:[UIImage imageNamed:@"ic_broadcastroom_video_pressed"] ];
+    
+    self.tabedSlideView.tabbarItems = @[item1,item2,item3];
+    [self.tabedSlideView buildTabbar];
+    self.tabedSlideView.tabbarBottomSpacing = 1.0;
+    self.tabedSlideView.selectedIndex = 1;
+    
+//    NSArray *array = @[@"简介",@"聊天",@"视频"];
+//    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:array];
+//    self.segmentedControl.frame = CGRectMake(0, 270, WindownWidth, 20);
+//    self.segmentedControl.backgroundColor = [UIColor blackColor];
+//    self.segmentedControl.tintColor = [UIColor blueColor];
+//    [self.segmentedControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
+//    
+//    UIView *briefView = [[UIView alloc] initWithFrame:CGRectMake(0, 290, WindownWidth, WindowHeight-290)];
+    
+    
+}
+
+// DLTabedSlideViewDelegate代理方法
+- (NSInteger)numberOfTabsInDLTabedSlideView:(DLTabedSlideView *)sender{
+    return 3;
+}
+- (UIViewController *)DLTabedSlideView:(DLTabedSlideView *)sender controllerAt:(NSInteger)index{
+    
+    switch (index) {
+        case 0:{
+            self.briefVC = [[BriefViewController alloc] init];
+            [self requestListDetail:self.liveModel.liveID];
+            return _briefVC;
+        }
+        case 1:{
+            UIViewController *chatVC = [[UIViewController alloc] init];
+            self.view.backgroundColor = [UIColor whiteColor];
+            return chatVC;
+        }
+        case 2:{
+            _historyVideoVC = [[HistoryVideoViewController alloc] init];
+            _historyVideoVC.uID = self.liveModel.uid;
+            return _historyVideoVC;
+        }
+        default:
+            return nil;
+    }
+}
+
+// 请求直播间简介
+- (void)requestListDetail:(NSString *)ID {
+    
+    LiveRequest *request = [[LiveRequest alloc] init];
+    [request liveDetailRequestWithParameter:@{@"id":ID} success:^(NSDictionary *dic) {
+        
+        VideoModel *videoModel = [VideoModel new];
+        [videoModel setValuesForKeysWithDictionary:dic[@"data"]];
+        self.briefVC.videoModel = videoModel;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.briefVC.briefTableView reloadData];
+        });
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"error = %@",error);
+        
+    }];
+    
+}
+
+
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

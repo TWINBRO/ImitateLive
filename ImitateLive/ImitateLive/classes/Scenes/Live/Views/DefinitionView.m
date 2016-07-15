@@ -26,27 +26,36 @@
 {
     self.superDefinition = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(0, 0, 120, 90) action:@selector(superDefinitionClick:) superView:self corner:NO];
     self.superDefinition.center = CGPointMake(110, Width);
-    self.highDefinition = [self buttonWithImage:@"btn_gq_pressed@2x" frame:CGRectMake(Height / 2.0, Width,  120, 90) action:@selector(highDefinitionClick:) superView:self corner:NO];
+    self.highDefinition = [self buttonWithImage:@"btn_gq_normal@2x" frame:CGRectMake(Height / 2.0, Width,  120, 90) action:@selector(highDefinitionClick:) superView:self corner:NO];
     self.highDefinition.center = CGPointMake(Height / 2.0, Width);
-    self.standardDefinition = [self buttonWithImage:@"btn_bq_pressed@2x" frame:CGRectMake(350, Width,  120, 90) action:@selector(standardDefinitionClick:) superView:self corner:NO];
+    self.standardDefinition = [self buttonWithImage:@"btn_bq_normal@2x" frame:CGRectMake(350, Width,  120, 90) action:@selector(standardDefinitionClick:) superView:self corner:NO];
     self.standardDefinition.center = CGPointMake(Height - 110, Width);
 }
 - (void)superDefinitionClick:(UIButton *)btn
 {
     if (_delegate) {
-        [_delegate superDefinitionAction:btn];
+        [self.superDefinition setImage:[UIImage imageNamed:@"btn_cq_pressed@2x"] forState:UIControlStateNormal];
+        [self.highDefinition setImage:[UIImage imageNamed:@"btn_gq_normal@2x"] forState:UIControlStateNormal];
+        [self.standardDefinition setImage:[UIImage imageNamed:@"btn_bq_normal@2x"] forState:UIControlStateNormal];
+        [_delegate adjustDefinitionAction:btn definition:superDefinition];
     }
 }
 - (void)highDefinitionClick:(UIButton *)btn
 {
     if (_delegate) {
-        [_delegate highDefinitionAction:btn];
+        [self.superDefinition setImage:[UIImage imageNamed:@"btn_cq_normal@2x"] forState:UIControlStateNormal];
+        [self.highDefinition setImage:[UIImage imageNamed:@"btn_gq_pressed@2x"] forState:UIControlStateNormal];
+        [self.standardDefinition setImage:[UIImage imageNamed:@"btn_bq_normal@2x"] forState:UIControlStateNormal];
+        [_delegate adjustDefinitionAction:btn definition:highDefinition];
     }
 }
 - (void)standardDefinitionClick:(UIButton *)btn
 {
     if (_delegate) {
-        [_delegate standardDefinition:btn];
+        [self.superDefinition setImage:[UIImage imageNamed:@"btn_cq_normal@2x"] forState:UIControlStateNormal];
+        [self.highDefinition setImage:[UIImage imageNamed:@"btn_gq_normal@2x"] forState:UIControlStateNormal];
+        [self.standardDefinition setImage:[UIImage imageNamed:@"btn_bq_pressed@2x"] forState:UIControlStateNormal];
+        [_delegate adjustDefinitionAction:btn definition:standardDefinition];
     }
 }
 
@@ -55,7 +64,7 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor whiteColor];
+//    button.backgroundColor = [UIColor whiteColor];
     if (corner) {
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = frame.size.width / 2.0;
