@@ -28,4 +28,12 @@
 // 直播页面请求Url
 #define LiveRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/live.hots/20-%@.json?os=1&ver=3.1.4",ID]
 
+// 登录接口
+#define LoginRequest_Url @"http://162.211.125.85/douban/user.php/DLogin"
+// 注册接口
+#define RegisterRequest_Url @"http://162.211.125.85/douban/user.php/DRegister"
+
+//头像根路径
+#define USER_AVATAR_LOCAL_URL @"http://162.211.125.85"
+
 #endif /* RequestUrl_h */

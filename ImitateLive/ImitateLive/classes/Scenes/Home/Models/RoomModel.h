@@ -1,32 +1,14 @@
 //
-//  WheelImageModel.h
-//  zhanqi
+//  RoomModel.h
+//  ImitateLive
 //
-//  Created by lanou3g on 16/7/12.
-//  Copyright © 2016年 guo. All rights reserved.
+//  Created by lanou3g on 16/7/15.
+//  Copyright © 2016年 SJH. All rights reserved.
 //
 
 #import "BaseModel.h"
-#import "RoomModel.h"
-@interface WheelImageModel : BaseModel
-// 轮播图
-// data下的属性
-@property (nonatomic,copy) NSString *wheelID;//(id)
-@property (nonatomic,copy) NSString *position;//
-@property (nonatomic,copy) NSString *chnId;//
-@property (nonatomic,copy) NSString *roomId;
-@property (nonatomic,copy) NSString *gameId;
-@property (nonatomic,copy) NSString *spic;
-@property (nonatomic,copy) NSString *bpic;// 轮播的图片
-@property (nonatomic,copy) NSString *title;
-@property (nonatomic,copy) NSString *url;
-@property (nonatomic,copy) NSString *contents;
-@property (nonatomic,copy) NSString *startTime;
-@property (nonatomic,copy) NSString *endTime;
-@property (nonatomic,copy) NSString *weight;
-@property (nonatomic,copy) NSString *positionType;
-@property (nonatomic,copy) NSDictionary *room;
-//@property (nonatomic, strong) RoomModel *roommodel;
+
+@interface RoomModel : BaseModel
 // room下的属性
 @property (nonatomic,copy) NSString *roomID;// (id)
 @property (nonatomic,copy) NSString *uid;//
@@ -69,10 +51,4 @@
 @property (nonatomic,copy) NSString *follows;
 @property (nonatomic,copy) NSString *fans;
 @property (nonatomic,copy) NSDictionary *isStar;
-// isStar 的属性
-@property (nonatomic,copy) NSString *isWeek;
-@property (nonatomic,copy) NSString *isMonth;
-@property (nonatomic,assign) BOOL bonus;// 数据是false
-
-
 @end

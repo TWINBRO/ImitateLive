@@ -23,6 +23,7 @@
     if (self) {
         _duration = 2.0;
         _timer = [NSTimer new];
+
     }
     return self;
 }
@@ -122,5 +123,6 @@ NSInteger number;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:_duration target:self selector:@selector(handleMovePage) userInfo:nil repeats:YES];
 
 }
+
 
 @end

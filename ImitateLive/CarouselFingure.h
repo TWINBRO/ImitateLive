@@ -17,4 +17,6 @@
 @property (strong,nonatomic) UIPageControl *pageControl;
 @property (strong,nonatomic) NSTimer *timer;
 
++ (UIView *)addNetScrollViewWithFrame:(CGRect)frame imageArr:(NSArray *)imageArr;
+
 @end

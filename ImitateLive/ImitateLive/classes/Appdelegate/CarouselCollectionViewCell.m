@@ -10,10 +10,14 @@
 #import "WheelImageModel.h"
 #import "HomeRequest.h"
 #import "WTImageScroll.h"
+#import "HomeViewController.h"
+#import "RoomModel.h"
+
 @implementation CarouselCollectionViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,6 +41,7 @@
 // 请求轮播图数据
 - (void)requestCarouselData {
     self.carousels = [NSMutableArray array];
+    self.roomArr = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     HomeRequest *home = [[HomeRequest alloc] init];
     [home carouselRequestWithParameter:nil success:^(NSDictionary *dic) {
@@ -45,7 +50,16 @@
         for (NSDictionary *tempDic in data) {
             WheelImageModel *model = [[WheelImageModel alloc] init];
             [model setValuesForKeysWithDictionary:tempDic];
-            [weakSelf.carousels addObject:model.bpic];
+            [weakSelf.carousels addObject:model.spic];
+            
+            
+            LiveModel *live = [LiveModel new];
+            NSLog(@"***************%@",model.room);
+            [live setValuesForKeysWithDictionary:model.room];
+            [weakSelf.roomArr addObject:live];
+            
+            
+            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,10 +76,17 @@
     
     UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, 200) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
         NSLog(@"点击的图片--%@",@(tagValue));
+
+        if (_carouselDelegate != nil && [_carouselDelegate respondsToSelector:@selector(changeController:)]) {
+            [_carouselDelegate changeController:self.roomArr[tagValue]];
+        }
+        
+        
     }];
-    imageScorll.backgroundColor = [UIColor redColor];
+    imageScorll.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lun"]];
     [self.contentView addSubview:imageScorll];
 }
+
 
 
 

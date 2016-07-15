@@ -16,7 +16,8 @@
 #import "LiveCollectionViewCell.h"
 #import "HeaderView.h"
 #import "CarouselCollectionViewCell.h"
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+#import "LiveDetailViewController.h"
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CarouselDelegate>
 //@property (strong, nonatomic) NSMutableArray *carousels;
 @property (strong, nonatomic) UIImageView *imgView;
 @property (strong, nonatomic) UIImage *img;
@@ -155,7 +156,7 @@ static NSString * const headID = @"head";
     if (indexPath.section == 0) {
         CarouselCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CarouselCollectionViewCell_Identifier forIndexPath:indexPath];
         
-
+        cell.carouselDelegate = self;
         return cell;
     }
     else{
@@ -187,8 +188,6 @@ static NSString * const headID = @"head";
             _header.homeModel = self.homeDataArr[indexPath.section-1];
         }
         
-        
-        
         reusableView = _header;
     }
         return reusableView;
@@ -198,6 +197,31 @@ static NSString * const headID = @"head";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(WindownWidth, 30);
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 0) {
+        LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+        liveDetailVC.liveModel = (LiveModel *)self.roomModel;
+        [self presentViewController:liveDetailVC animated:YES completion:nil];
+        
+    }else{
+    LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+    HomeModel *model = self.homeDataArr[indexPath.section-1];
+    liveDetailVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
+    //    [self.navigationController pushViewController:liveDetailVC animated:YES];
+    [self presentViewController:liveDetailVC animated:YES completion:nil];
+    }
+}
+
+- (void)changeController:(LiveModel *)model {
+
+    LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+    liveDetailVC.liveModel = model;
+    [self presentViewController:liveDetailVC animated:YES completion:nil];
+    
+}
+
 /*
 #pragma mark - Navigation
 
