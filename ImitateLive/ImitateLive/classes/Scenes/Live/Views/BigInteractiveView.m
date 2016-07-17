@@ -47,6 +47,11 @@
     self.onlineImage.backgroundColor = YD_COLOR(115, 115, 115, 0.75);
     self.onlineImage.image = [UIImage imageNamed:@"ic_account@2x"];
     [self addSubview:self.onlineImage];
+    
+    self.volumnImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    self.volumnImage.center = CGPointMake(kWidth / 2.0, kHeight / 2.0);
+    [self addSubview:self.volumnImage];
+    
 }
 
 - (void)addLiveControl
@@ -57,6 +62,7 @@
     self.definitionBtn = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(kWidth - 105, 10, 40, 40) action:@selector(definitionAction:) superView:self.topBackgroundView corner:NO];
     self.isBarrage = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 100, 0, 37, 37) action:@selector(isBarrageAction:) superView:self.bottomBackgroundView corner:NO];
     self.sendBtn = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 150, 0, 50, 37) action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
+    
     self.barrageTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, kWidth - 60 - 150, 37)];
     self.barrageTextField.backgroundColor = [UIColor greenColor];
     self.barrageTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -78,6 +84,7 @@
     // 快进快退label
     self.horizontalLabel = [self labelWithTitle:@"" color:YD_COLOR(115, 115, 115, 0.5) textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(kWidth / 2, kHeight / 2, 100, 50) superView:self];
     self.horizontalLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ZFPlayer_management_mask"]];
+    
 }
 
 // 创建按钮

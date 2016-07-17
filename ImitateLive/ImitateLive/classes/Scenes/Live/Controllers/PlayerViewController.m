@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 
 @property (strong, nonatomic) DefinitionView *definitionView;// 清晰度视图
 @property (strong, nonatomic) SettingView *settingView;// 设置视图
-
+@property (assign, nonatomic) BOOL isBarrage;// 是否打开弹幕
 
 /** 定义一个实例变量，保存枚举值 */
 @property (nonatomic, assign) PanDirection        panDirection;
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (nonatomic, assign) NSInteger            seekTime;
 /** 是否在调节音量*/
 @property (nonatomic, assign) BOOL                isVolume;
-/** 滑杆 */
+/** 音量滑杆 */
 @property (nonatomic, strong) UISlider            *volumeViewSlider;
 @end
 
@@ -92,19 +92,21 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.definitionView = [[DefinitionView alloc] initWithFrame:CGRectMake(0, self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.size.height)];
     self.definitionView.delegate = self;
     [self.view addSubview:self.definitionView];
-    
+    self.definitionView.hidden = YES;// 隐藏清晰度视图
     // 设置按钮视图
     self.settingView = [[SettingView alloc] initWithFrame:CGRectMake(self.playerView.frame.size.height, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height)];
     self.settingView.delegate = self;
     [self.view addSubview:self.settingView];
+    self.settingView.hidden = YES;// 隐藏设置按钮视图
     
-    // 滑动手势
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDirection:)];
-    pan.delegate = self;
-    [self.view addGestureRecognizer:pan];
+    [self addGestureRecognizer];
+    
+    // 获取系统音量
+    [self continuePlaying];
     
     [self timerBegin];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -139,9 +141,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 // 全屏按钮
 - (void)fullScreenAction:(UIButton *)button
 {
-    
+    self.continuePlaying(self.playerView);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-// 分享按钮
+//TODO: 分享按钮
 - (void)shareVideoAction:(UIButton *)button
 {
     
@@ -149,13 +152,17 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 // 播放按钮
 - (void)playOrPauseAction:(UIButton *)buttton
 {
+    [self playOrPause:buttton];
+}
+- (void)playOrPause:(UIButton *)button
+{
     if (self.isPlaying) {
         [self.playerView.player pause];
-        [buttton setImage:[UIImage imageNamed:@"movie_playsmall@2x"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"movie_playsmall@2x"] forState:UIControlStateNormal];
         self.isPlaying = NO;
     }else{
         [self.playerView.player play];
-        [buttton setImage:[UIImage imageNamed:@"movie_pausesmall@2x"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"movie_pausesmall@2x"] forState:UIControlStateNormal];
         self.isPlaying = YES;
     }
 }
@@ -180,12 +187,14 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }
     
 }
+
 // 设置按钮
 - (void)settingAction:(UIButton *)button
 {
     self.settingView.frame = CGRectMake(self.view.frame.size.width /2.0, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height);
     [self.timer invalidate];
     self.interactiveView.hidden = YES;
+    self.settingView.hidden = NO;
 }
 // 清晰度按钮
 - (void)definitionAction:(UIButton *)button
@@ -193,8 +202,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.definitionView.frame = self.view.frame;
     [self.timer invalidate];
     self.interactiveView.hidden = YES;
+    self.definitionView.hidden = NO;
 }
-// 是否打开弹幕
+//TODO: 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
     
@@ -223,7 +233,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 {
     self.definitionView.frame = CGRectMake(0, self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.size.height);
     
-    // 记录切换分辨率的时刻
+    //TODO: 记录切换分辨率的时刻
 //    NSInteger currentTime = (NSInteger)CMTimeGetSeconds([self.playerView.player currentTime]);
     
 //    NSString *videoStr = self.videoURLArray[button.tag-200];
@@ -261,9 +271,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 - (void)timeSleepSwitchAction:(UISwitch *)timeSwitch
 {
     if (timeSwitch.isOn) {
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-    }else{
         [UIApplication sharedApplication].idleTimerDisabled = NO;
+    }else{
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
     }
 }
 /**
@@ -287,6 +297,27 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     i++;
 }
 #pragma mark -- UIPanGestureRecognizer
+#pragma mark -- 添加手势
+- (void)addGestureRecognizer
+{
+    // 滑动手势
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDirection:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+    // 添加轻拍手势
+    // 单击
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
+    
+    // 双击(播放/暂停)
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapAction:)];
+    [doubleTap setNumberOfTapsRequired:2];
+    [self.view addGestureRecognizer:doubleTap];
+    
+    [tap requireGestureRecognizerToFail:doubleTap];
+}
+
 /**
  *  pan拖动手势事件
  *
@@ -317,6 +348,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                 // 暂停timer
                 [self.timer invalidate];
             }else if (x < y){ // 垂直移动
+                self.interactiveView.volumnImage.hidden = NO;
                 self.panDirection = PanDirectionVerticalMoved;
                 // 开始滑动的时候，状态改为正在控制音量
                 if (locationPoint.x > self.view.bounds.size.width / 2) {
@@ -362,6 +394,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                     // 垂直移动结束后，把状态改为不再控制音量
                     self.isVolume = NO;
                     self.interactiveView.horizontalLabel.hidden = YES;
+                    self.interactiveView.volumnImage.hidden = YES;
                     break;
                 }
                 default:
@@ -463,7 +496,18 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
  */
 - (void)verticalMoved:(CGFloat)value
 {
-    self.isVolume ? (self.volumeViewSlider.value -= value / 10000) : ([UIScreen mainScreen].brightness -= value / 10000);
+    
+    if (self.isVolume) {
+        self.volumeViewSlider.value -= value / 10000;
+        NSInteger volumeNumber = (NSInteger)(self.volumeViewSlider.value * 3);
+//        NSLog(@"%f",self.volumeViewSlider.value);
+        self.interactiveView.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"volume_%ld@2x",volumeNumber]];
+    }else{
+        [UIScreen mainScreen].brightness -= value / 10000;
+        NSInteger brightNumber = (NSInteger)([UIScreen mainScreen].brightness * 4);
+//        NSLog(@"%f",[UIScreen mainScreen].brightness);
+        self.interactiveView.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"brightness_%ld@2x",(long)brightNumber]];
+    }
 }
 /**
  *  获取系统音量
@@ -505,43 +549,44 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
             // 耳机插入
             break;
-            
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
-        {
             // 耳机拔掉
             // 拔掉耳机继续播放
             [self.playerView.player play];
-        }
             break;
-            
         case AVAudioSessionRouteChangeReasonCategoryChange:
             // called at start - also when other audio wants to play
             NSLog(@"AVAudioSessionRouteChangeReasonCategoryChange");
             break;
     }
 }
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)tapAction:(UITapGestureRecognizer *)gesture
 {
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self.view];
-    
-    if (point.x < self.view.frame.size.width / 2.0) {
+    CGPoint point = [gesture locationInView:self.view];
+    UIView *hitView = [self.view hitTest:point withEvent:nil];
+    if (point.x < self.view.frame.size.width / 2.0 && hitView != self.settingView) {
+        self.settingView.hidden = YES;
         self.settingView.frame = CGRectMake(self.playerView.frame.size.height, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height);
-    }
-    [self.timer invalidate];
-    self.interactiveView.hidden = NO;
-    if (self.isLockingScreen) {
-        self.interactiveView.topBackgroundView.hidden = YES;
-        self.interactiveView.bottomBackgroundView.hidden = YES;
-        self.interactiveView.shareBtn.hidden = YES;
+        [self.timer invalidate];
+        self.interactiveView.hidden = NO;
+        if (self.isLockingScreen) {
+            self.interactiveView.topBackgroundView.hidden = YES;
+            self.interactiveView.bottomBackgroundView.hidden = YES;
+            self.interactiveView.shareBtn.hidden = YES;
+        }else{
+            self.interactiveView.topBackgroundView.hidden = NO;
+            self.interactiveView.bottomBackgroundView.hidden = NO;
+            self.interactiveView.shareBtn.hidden = NO;
+        }
+        [self timerBegin];
     }else{
-        self.interactiveView.topBackgroundView.hidden = NO;
-        self.interactiveView.bottomBackgroundView.hidden = NO;
-        self.interactiveView.shareBtn.hidden = NO;
+        
     }
-    [self timerBegin];
     
+}
+- (void)doubleTapAction:(UITapGestureRecognizer *)gesture
+{
+    [self playOrPause:self.interactiveView.playOrPauseBtn];
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation

@@ -94,7 +94,7 @@
 @property (nonatomic, strong) UILabel *horizontalLabel;
 /** 系统菊花 */
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
-
+@property (strong, nonatomic) UIImageView *volumnImage;
 // 是否是历史视频
 @property (assign, nonatomic) BOOL isHistory;
 

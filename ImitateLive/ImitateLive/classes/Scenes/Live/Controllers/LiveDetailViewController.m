@@ -56,6 +56,7 @@
     NSMutableString * filePath = [[NSMutableString alloc]initWithString:  [NSString stringWithFormat:@"%@%@.m3u8",HLS_URL,self.liveModel.videoId]];
     filePath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
+    
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
     
@@ -123,10 +124,7 @@
 
 - (void)shareVideoAction:(UIButton *)button
 {
-
-    // 添加通知观测是否确定播放历史视频
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideo) name:@"PLAYVIDEO" object:nil];
-
+    
     
 }
 - (void)playOrPauseAction:(UIButton *)buttton
