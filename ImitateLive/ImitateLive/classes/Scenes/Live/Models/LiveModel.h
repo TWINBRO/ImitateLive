@@ -7,13 +7,13 @@
 //
 
 #import "BaseModel.h"
-
-@interface LiveModel : BaseModel
+#import <UIKit/UIKit.h>
+@interface LiveModel : BaseModel <NSCoding>
 
 // 直播界面
 // data下的属性
-@property (nonatomic,copy) NSString *cnt;// 可能是数字
-@property (nonatomic,copy) NSArray *rooms;
+//@property (nonatomic,copy) NSString *cnt;// 可能是数字
+//@property (nonatomic,copy) NSArray *rooms;
 // rooms的属性
 @property (nonatomic,copy) NSString *liveID;// (id)
 @property (nonatomic,copy) NSString *uid;

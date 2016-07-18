@@ -17,9 +17,6 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon60x60.png" translatesAutoresizingMaskIntoConstraints="NO" id="G22-cF-bir">
                         <rect key="frame" x="8" y="15" width="60" height="60"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="sVz-XO-WJa"/>
-                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPb-rW-PHv">
                         <rect key="frame" x="76" y="22" width="182" height="21"/>
@@ -92,34 +89,38 @@
                         <state key="normal" title="订阅">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="collectButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vbZ-bZ-o5d"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="snO-jq-ltj" secondAttribute="trailing" constant="75" id="024-Fh-hFh"/>
-                    <constraint firstItem="G22-cF-bir" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="2tr-nF-sqi"/>
                     <constraint firstItem="CQ3-QU-ZRC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="54H-ZF-n2B"/>
                     <constraint firstItem="qsG-Pi-O7U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="56h-ld-cuL"/>
                     <constraint firstItem="snO-jq-ltj" firstAttribute="top" secondItem="qsG-Pi-O7U" secondAttribute="bottom" constant="8" id="7kR-fD-Ke3"/>
+                    <constraint firstItem="uUN-yP-qfY" firstAttribute="leading" secondItem="G22-cF-bir" secondAttribute="trailing" constant="8" symbolic="YES" id="8fS-jl-s94"/>
+                    <constraint firstItem="QPb-rW-PHv" firstAttribute="leading" secondItem="G22-cF-bir" secondAttribute="trailing" constant="8" symbolic="YES" id="94B-pw-kno"/>
                     <constraint firstItem="C73-WS-z3T" firstAttribute="top" secondItem="QPb-rW-PHv" secondAttribute="bottom" constant="8" id="9Q6-Tf-h0u"/>
                     <constraint firstItem="qsG-Pi-O7U" firstAttribute="top" secondItem="uUN-yP-qfY" secondAttribute="bottom" constant="17" id="Eb1-6K-0Lx"/>
                     <constraint firstItem="B28-Pr-qsO" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="J3I-4u-s5z"/>
                     <constraint firstItem="qsG-Pi-O7U" firstAttribute="top" secondItem="CQ3-QU-ZRC" secondAttribute="bottom" constant="29" id="KaQ-c7-4gB"/>
                     <constraint firstItem="QPb-rW-PHv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="14" id="MDh-0V-Sjy"/>
+                    <constraint firstItem="G22-cF-bir" firstAttribute="leading" secondItem="fLY-2y-pCr" secondAttribute="leading" id="Rhf-wb-nEq"/>
                     <constraint firstItem="fLY-2y-pCr" firstAttribute="top" secondItem="qsG-Pi-O7U" secondAttribute="bottom" constant="8" id="TFw-PP-25D"/>
                     <constraint firstItem="qsG-Pi-O7U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="81" id="aqv-5i-now"/>
                     <constraint firstItem="fLY-2y-pCr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dy6-Ij-keZ"/>
-                    <constraint firstItem="uUN-yP-qfY" firstAttribute="leading" secondItem="G22-cF-bir" secondAttribute="trailing" constant="8" id="eZ7-E2-ogA"/>
                     <constraint firstItem="B28-Pr-qsO" firstAttribute="top" secondItem="qsG-Pi-O7U" secondAttribute="bottom" constant="8" id="fqS-3d-eQQ"/>
-                    <constraint firstItem="G22-cF-bir" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="gGu-3w-cV9"/>
                     <constraint firstItem="uUN-yP-qfY" firstAttribute="top" secondItem="QPb-rW-PHv" secondAttribute="bottom" constant="8" id="gHV-dZ-ZN9"/>
                     <constraint firstItem="C73-WS-z3T" firstAttribute="leading" secondItem="uUN-yP-qfY" secondAttribute="trailing" constant="14" id="guB-zH-Dyy"/>
                     <constraint firstItem="qsG-Pi-O7U" firstAttribute="top" secondItem="C73-WS-z3T" secondAttribute="bottom" constant="17" id="jAb-6E-HvL"/>
                     <constraint firstAttribute="trailing" secondItem="CQ3-QU-ZRC" secondAttribute="trailing" constant="15" id="p0I-PS-i8R"/>
-                    <constraint firstItem="QPb-rW-PHv" firstAttribute="leading" secondItem="G22-cF-bir" secondAttribute="trailing" constant="8" id="rFP-zw-qcx"/>
+                    <constraint firstItem="G22-cF-bir" firstAttribute="centerY" secondItem="CQ3-QU-ZRC" secondAttribute="centerY" id="v2U-Xz-ELQ"/>
                     <constraint firstAttribute="trailing" secondItem="qsG-Pi-O7U" secondAttribute="trailing" id="vYF-zP-bZS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="collectButton" destination="CQ3-QU-ZRC" id="5my-zQ-kOW"/>
                 <outlet property="gameNameLabel" destination="fLY-2y-pCr" id="kjq-0Y-ywK"/>
                 <outlet property="levelLabel" destination="uUN-yP-qfY" id="o6e-13-v09"/>
                 <outlet property="nicknameLabel" destination="C73-WS-z3T" id="R48-a7-L3M"/>

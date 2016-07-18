@@ -9,10 +9,14 @@
 #import "BaseViewController.h"
 #import "VideoModel.h"
 
+#import "LiveModel.h"
+
 @interface BriefViewController : BaseViewController
 
 @property (strong, nonatomic) UITableView *briefTableView;
 
 @property (strong, nonatomic) VideoModel *videoModel;
+
+@property (strong, nonatomic) LiveModel *liveModel;
 
 @end

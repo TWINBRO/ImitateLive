@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (weak, nonatomic) id<UIApplicationDelegate>delegate;
 
 @end
 

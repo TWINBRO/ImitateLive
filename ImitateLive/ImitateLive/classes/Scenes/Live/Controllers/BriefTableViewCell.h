@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "VideoModel.h"
 
+#import "LiveModel.h"
+
 @interface BriefTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *collectButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -21,8 +24,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *onlineNumberLabel;
 
-
+@property (assign, nonatomic) BOOL isCollect;
 
 @property (strong, nonatomic) VideoModel *videoModel;
+
+@property (strong, nonatomic) LiveModel *liveModel;
 
 @end

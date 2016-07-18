@@ -95,7 +95,22 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"观看视频将退出直播" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (_delegate && [_delegate respondsToSelector:@selector(returnVideoRelationModel:)]) {
+            [_delegate returnVideoRelationModel:self.historyVideos[indexPath.row]];
+        }
+    }];
     
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+//    if (_delegate && [_delegate respondsToSelector:@selector(returnVideoRelationModel:)]) {
+//        [_delegate returnVideoRelationModel:self.historyVideos[indexPath.row]];
+//    }
     
 }
 

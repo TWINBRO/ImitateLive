@@ -52,7 +52,18 @@
     
 }
 
-
+//// 单个历史视频（url为请求到的model中的url）
+//- (void)singleHistoryVideoWithUrl:(NSString *)url success:(SuccessResponse)success failure:(FailureResponse)failure {
+//    
+//    NetworkRequest *request = [[NetworkRequest alloc] init];
+//    
+//    [request requestWithUrl:SingleHistoryVideo_Url(url) parameters:nil successResponse:^(NSDictionary *dic) {
+//        success(dic);
+//    } failureResponse:^(NSError *error) {
+//        failure(error);
+//    }];
+//    
+//}
 
 
 @end

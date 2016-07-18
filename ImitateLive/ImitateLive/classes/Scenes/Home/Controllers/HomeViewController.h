@@ -13,5 +13,5 @@
 @interface HomeViewController : BaseViewController
 @property (strong, nonatomic) WheelImageModel *carouselModel;
 @property (strong, nonatomic) RoomModel *roomModel;
-@property (strong, nonatomic) LiveModel *livemodel;
+//@property (strong, nonatomic) LiveModel *livemodel;
 @end
