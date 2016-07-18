@@ -60,6 +60,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (nonatomic, assign) BOOL                isVolume;
 /** 音量滑杆 */
 @property (nonatomic, strong) UISlider            *volumeViewSlider;
+
 @end
 
 @implementation PlayerViewController

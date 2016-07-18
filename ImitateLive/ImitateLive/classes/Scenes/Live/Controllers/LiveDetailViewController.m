@@ -118,7 +118,9 @@
         weakSelf.playerView.frame = CGRectMake(0, 20, 414, 250);
         weakSelf.playerView.playerLayer.frame = weakSelf.playerView.frame;
         [weakSelf.view.layer addSublayer:weakSelf.playerView.playerLayer];
+//        [weakSelf.view addSubview:weakSelf.littleView];
     };
+    [self.littleView removeFromSuperview];
     [self presentViewController:playerVC animated:YES completion:nil];
 }
 
