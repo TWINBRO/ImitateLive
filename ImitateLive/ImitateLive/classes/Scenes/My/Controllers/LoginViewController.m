@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RegistrViewController.h"
 #import "LoginRequest.h"
+#import "FileDataHandle.h"
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
@@ -66,12 +67,29 @@
         LoginRequest *request = [[LoginRequest alloc]init];
         [request loginRequestWithUsername:self.userNameTextField.text password:self.passwordTextField.text success:^(NSDictionary *dic) {
             NSLog(@"login success = %@",dic);
+            
+            
+            User *user = nil;
+            
+            
             long code = [[dic objectForKey:@"code"] longValue];
             //        NSString *code = [[dic objectForKey:@"code"] stringValue];
-            if (code == 1103) {
+            if ((code == 1103) && ([dic[@"success"] intValue] == 1)) {
+                
+                
+                user = [[User alloc] init];
+                [user setValuesForKeysWithDictionary:dic[@"data"]];
+                user.userName = _userNameTextField.text;
+                user.password = _passwordTextField.text;
+                [[FileDataHandle shareInstance] setUsername:_userNameTextField.text];
+                [[FileDataHandle shareInstance] setPassword:_passwordTextField.text];
+                [[FileDataHandle shareInstance] setUserId:user.userId];
+                [[FileDataHandle shareInstance] setAvatar:user.avatar];
+                [[FileDataHandle shareInstance] setLoginState:YES];
+                
+                
                 
                 _isLogin = YES;
-                
                 NSString *login = [NSString stringWithFormat:@"%d",_isLogin];
                 NSString *avatar = [[dic objectForKey:@"data"] objectForKey:@"avatar"];
                 NSString *userId = [[dic objectForKey:@"data"]objectForKey:@"userId"];
@@ -81,7 +99,6 @@
                 [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"isLogin"];
                 [[NSUserDefaults standardUserDefaults]setObject:self.userNameTextField.text forKey:userId];
                 [[NSUserDefaults standardUserDefaults]setObject:self.userNameTextField.text forKey:@"userName"];
-                
                 // 立即保存
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -91,6 +108,9 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 
             }
+            
+            
+            
             
         } failure:^(NSError *error) {
             NSLog(@"login failure = %@",error);

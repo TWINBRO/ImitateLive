@@ -105,10 +105,15 @@ static NSString * const headID = @"head";
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             for (NSDictionary *dictory in dataDetail) {
                 
-                ListModel *listModel = [[ListModel alloc]init];
-                [listModel setValuesForKeysWithDictionary:dictory];
-                [weakSelf.homeDataDetail addObject:listModel];
-                [array addObject:listModel];
+//                ListModel *listModel = [[ListModel alloc]init];
+//                [listModel setValuesForKeysWithDictionary:dictory];
+//                [weakSelf.homeDataDetail addObject:listModel];
+//                [array addObject:listModel];
+                
+                LiveModel *liveModel = [LiveModel new];
+                [liveModel setValuesForKeysWithDictionary:dictory];
+                [weakSelf.homeDataDetail addObject:liveModel];
+                [array addObject:liveModel];
             }
             [weakSelf.sectionDic setObject:array forKey:homeModel.title];
             

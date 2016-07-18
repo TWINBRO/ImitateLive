@@ -104,6 +104,12 @@
         case 0:{
             self.briefVC = [[BriefViewController alloc] init];
             [self requestListDetail:self.liveModel.liveID];
+            
+            
+            self.briefVC.liveModel = self.liveModel;
+            
+            
+            
             return _briefVC;
         }
         case 1:{

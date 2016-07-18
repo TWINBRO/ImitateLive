@@ -24,6 +24,7 @@
 @property (nonatomic,copy) NSString *spic;//
 @property (nonatomic,copy) NSString *bpic;
 @property (nonatomic,copy) NSString *online;// 在线人数
+@property (nonatomic,copy) NSString *status;
 @property (nonatomic,copy) NSString *level;
 @property (nonatomic,copy) NSString *liceTime;
 @property (nonatomic,copy) NSString *hotsLevel;

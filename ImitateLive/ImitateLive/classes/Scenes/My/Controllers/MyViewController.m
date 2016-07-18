@@ -11,6 +11,9 @@
 #import "MyTableViewCell.h"
 #import "LoginViewController.h"
 #import "RegisterRequest.h"
+#import "CollectListViewController.h"
+#import "FileDataHandle.h"
+
 @interface MyViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UITableView *MyTableView;
 @property (strong, nonatomic) NSArray *array;
@@ -137,6 +140,10 @@
         LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
         [self.navigationController pushViewController:loginVC animated:YES];
     }
+    if (indexPath.section == 1) {
+        CollectListViewController *collectVC = [CollectListViewController new];
+        [self.navigationController pushViewController:collectVC animated:YES];
+    }
     if (indexPath.section == 2) {
         [self removeCache];
         [self.MyTableView reloadData];
@@ -144,6 +151,17 @@
     if (indexPath.section == 3) {
 //        NSString *lastUserID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 //        [[NSUserDefaults standardUserDefaults] setObject:lastUserID forKey:@"lastUserID"];
+        
+        
+        //注销
+        [[FileDataHandle shareInstance] setUsername:nil];
+        [[FileDataHandle shareInstance] setPassword:nil];
+        [[FileDataHandle shareInstance] setUserId:nil];
+        [[FileDataHandle shareInstance] setAvatar:nil];
+        [[FileDataHandle shareInstance] setLoginState:NO];
+        
+        
+        
         [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:@"isLogin"];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"avatar"];
         [[NSUserDefaults standardUserDefaults] setObject:@"未登录" forKey:@"userName"];
@@ -165,9 +183,12 @@
     
     //缓存路径
     
-    NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES);
+//    NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES);
     
-    NSString *cacheDir = [cachePaths objectAtIndex:0];
+//    NSString *cacheDir = [cachePaths objectAtIndex:0];
+    
+    NSString *cacheDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/Image"];
+    
     
     NSArray *cacheFileList;
     
@@ -197,10 +218,13 @@
 // 清除缓存
 - (void)removeCache {
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+//    
+//    NSString *path = [paths lastObject];
     
-    NSString *path = [paths lastObject];
-    NSString *str = [NSString stringWithFormat:@"缓存已清除%.1fK", [self getFilePath]];
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/Image"];
+    
+    NSString *str = [NSString stringWithFormat:@"缓存已清除%.1fM", [self getFilePath]];
     NSLog(@"%@",str);
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"缓存已清除" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alertView show];

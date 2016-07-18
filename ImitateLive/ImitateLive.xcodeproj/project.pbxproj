@@ -459,6 +459,11 @@
 		D6A7E7DC1D351214006649CC /* CarouselFingure.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7DB1D351214006649CC /* CarouselFingure.m */; };
 		D6A7E7DE1D351962006649CC /* lunbo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E7DD1D351962006649CC /* lunbo.png */; };
 		D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7E01D35384F006649CC /* WTImageScroll.m */; };
+		D6BB79851D3A021C00386DF8 /* FileDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB79801D3A021C00386DF8 /* FileDataHandle.m */; };
+		D6BB79861D3A021C00386DF8 /* DataBaseHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB79821D3A021C00386DF8 /* DataBaseHandle.m */; };
+		D6BB79871D3A021C00386DF8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB79841D3A021C00386DF8 /* User.m */; };
+		D6BB79891D3A16FF00386DF8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BB79881D3A16FF00386DF8 /* libsqlite3.0.tbd */; };
+		D6BB798C1D3A4C0300386DF8 /* CollectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB798B1D3A4C0300386DF8 /* CollectListViewController.m */; };
 		D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57251D34FE4700E5C4BE /* RootViewController.m */; };
 		D6CA57361D34FE7700E5C4BE /* CustomTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57351D34FE7700E5C4BE /* CustomTabbar.m */; };
 		D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA57381D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m */; };
@@ -1020,6 +1025,15 @@
 		D6A7E7DD1D351962006649CC /* lunbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunbo.png; sourceTree = "<group>"; };
 		D6A7E7DF1D35384F006649CC /* WTImageScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTImageScroll.h; sourceTree = SOURCE_ROOT; };
 		D6A7E7E01D35384F006649CC /* WTImageScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTImageScroll.m; sourceTree = SOURCE_ROOT; };
+		D6BB797F1D3A021C00386DF8 /* FileDataHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDataHandle.h; sourceTree = "<group>"; };
+		D6BB79801D3A021C00386DF8 /* FileDataHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDataHandle.m; sourceTree = "<group>"; };
+		D6BB79811D3A021C00386DF8 /* DataBaseHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseHandle.h; sourceTree = "<group>"; };
+		D6BB79821D3A021C00386DF8 /* DataBaseHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseHandle.m; sourceTree = "<group>"; };
+		D6BB79831D3A021C00386DF8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D6BB79841D3A021C00386DF8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D6BB79881D3A16FF00386DF8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		D6BB798A1D3A4C0300386DF8 /* CollectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectListViewController.h; sourceTree = "<group>"; };
+		D6BB798B1D3A4C0300386DF8 /* CollectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectListViewController.m; sourceTree = "<group>"; };
 		D6CA57241D34FE4700E5C4BE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D6CA57251D34FE4700E5C4BE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D6CA57341D34FE7700E5C4BE /* CustomTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabbar.h; sourceTree = "<group>"; };
@@ -1070,6 +1084,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6BB79891D3A16FF00386DF8 /* libsqlite3.0.tbd in Frameworks */,
 				201D9FAEF462A07B84B9AF31 /* libPods-ImitateLive.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1094,6 +1109,7 @@
 		49C7FB3F20A080097D2087F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6BB79881D3A16FF00386DF8 /* libsqlite3.0.tbd */,
 				A518E293D608BFBC0924BDD3 /* libPods-ImitateLive.a */,
 			);
 			name = Frameworks;
@@ -1348,6 +1364,8 @@
 			children = (
 				D65E20891D35068000BA0BF0 /* MyViewController.h */,
 				D65E208A1D35068000BA0BF0 /* MyViewController.m */,
+				D6BB798A1D3A4C0300386DF8 /* CollectListViewController.h */,
+				D6BB798B1D3A4C0300386DF8 /* CollectListViewController.m */,
 				D6F864C31D3741C600A3EBA4 /* LoginViewController.h */,
 				D6F864C41D3741C600A3EBA4 /* LoginViewController.m */,
 				D6F864D21D3788E000A3EBA4 /* RegistrViewController.h */,
@@ -1897,6 +1915,12 @@
 		D6A7E7A91D34E119006649CC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D6BB797F1D3A021C00386DF8 /* FileDataHandle.h */,
+				D6BB79801D3A021C00386DF8 /* FileDataHandle.m */,
+				D6BB79811D3A021C00386DF8 /* DataBaseHandle.h */,
+				D6BB79821D3A021C00386DF8 /* DataBaseHandle.m */,
+				D6BB79831D3A021C00386DF8 /* User.h */,
+				D6BB79841D3A021C00386DF8 /* User.m */,
 				D60D85F91D3679F500D08387 /* DLSlideView */,
 				D6CA57371D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.h */,
 				D6CA57381D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m */,
@@ -2601,12 +2625,14 @@
 				D6F334C01D38CA08004B7A6B /* LiveRequest.m in Sources */,
 				D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */,
 				D60D860C1D3679F500D08387 /* DLLRUCache.m in Sources */,
+				D6BB79861D3A021C00386DF8 /* DataBaseHandle.m in Sources */,
 				D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */,
 				D6F864EA1D37AB3000A3EBA4 /* RegisterRequest.m in Sources */,
 				D6F864C51D3741C600A3EBA4 /* LoginViewController.m in Sources */,
 				D6F864E91D37AB3000A3EBA4 /* LoginRequest.m in Sources */,
 				D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */,
 				D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */,
+				D6BB79851D3A021C00386DF8 /* FileDataHandle.m in Sources */,
 				D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */,
 				D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */,
 				D65E23A61D3507DA00BA0BF0 /* BaseModel.m in Sources */,
@@ -2620,10 +2646,12 @@
 				D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */,
 				D60D860F1D3679F500D08387 /* DLFixedTabbarView.m in Sources */,
 				D67B01871D376B260072967A /* ChatViewController.m in Sources */,
+				D6BB79871D3A021C00386DF8 /* User.m in Sources */,
 				D60D860D1D3679F500D08387 /* DLCustomSlideView.m in Sources */,
 				D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */,
 				D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */,
 				D65E23A91D35081300BA0BF0 /* HomeModel.m in Sources */,
+				D6BB798C1D3A4C0300386DF8 /* CollectListViewController.m in Sources */,
 				D65E23B21D35091F00BA0BF0 /* LiveModel.m in Sources */,
 				D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */,
 				D67B01911D376CA80072967A /* BriefTableViewCell.m in Sources */,
@@ -2797,6 +2825,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImitateLive",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2828,6 +2860,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImitateLive",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
