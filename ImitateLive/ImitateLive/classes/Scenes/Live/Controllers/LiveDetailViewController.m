@@ -321,7 +321,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     
     [self.playerView.playerLayer removeFromSuperlayer];
-    
+    [self.littleView removeFromSuperview];
 }
 
 
@@ -332,8 +332,12 @@
     filePath=[filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
+    self.littleView = [[LittleInteractiveView alloc] initWithFrame:self.playerView.frame];
+    [self isHistoryVideo];
+    self.littleView.delegate = self;
     
     [self.view.layer addSublayer:self.playerView.playerLayer];
+    [self.view addSubview:self.littleView];
     
 }
 
