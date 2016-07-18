@@ -94,7 +94,7 @@ static NSString * const headID = @"head";
     __weak typeof(self) weakSelf = self;
     HomeRequest *homerequest = [[HomeRequest alloc] init];
     [homerequest homeRequestWithParameter:nil success:^(NSDictionary *dic) {
-        NSLog(@"home data success = %@",dic);
+//        NSLog(@"home data success = %@",dic);
         NSArray *dataArr = [dic objectForKey:@"data"];
         for (NSDictionary *tempDic in dataArr) {
             HomeModel *homeModel = [[HomeModel alloc] init];

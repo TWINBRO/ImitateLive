@@ -8,6 +8,11 @@
 
 #import "PlayerView.h"
 
+@interface PlayerView ()
+
+@end
+
+
 @implementation PlayerView
 
 /*
@@ -40,8 +45,9 @@
             [_player play];
         }
     }
-    
 }
+
+
 
 - (void)dealloc {
     [_player removeObserver:self forKeyPath:@"status" context:nil];

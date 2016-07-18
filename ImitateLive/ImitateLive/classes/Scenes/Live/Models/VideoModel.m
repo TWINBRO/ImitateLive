@@ -15,7 +15,7 @@
     if ([key isEqualToString:@"id"]) {
         _videoID = value;
     }
-    NSLog(@"%@",value);
+    
 }
 
 @end

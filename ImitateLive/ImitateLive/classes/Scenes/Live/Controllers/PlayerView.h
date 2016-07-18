@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) AVPlayer *player;
 
+@property (strong, nonatomic) UIView *interactiveView;// 添加控件的页面
+
 - (id)initWithUrl:(NSString *)url frame:(CGRect)frame;
 
 @end

@@ -75,7 +75,7 @@
         //    request registerWithName: password:<#(NSString *)#> avator:[UIImage imageNamed:@"person.png"] success:<#^(NSDictionary *dic)success#> failure:<#^(NSError *error)failure#>
         
         [request registerWithName:self.usernameTextField.text password:self.passwordTextField.text avator:self.avatarImageView.image success:^(NSDictionary *dic) {
-            NSLog(@"register success = %@",dic);
+//            NSLog(@"register success = %@",dic);
             
             NSString *code = [[dic objectForKey:@"code"] stringValue];
             if ([code isEqualToString:@"1005"]) {

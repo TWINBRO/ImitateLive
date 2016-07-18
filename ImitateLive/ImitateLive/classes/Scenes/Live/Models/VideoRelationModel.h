@@ -26,9 +26,9 @@
 @property (nonatomic,copy) NSString *playUrl;
 @property (nonatomic,copy) NSString *spic;// 截图图片
 @property (nonatomic,copy) NSString *bpic;
-@property (nonatomic,copy) NSString *playCnt;
+@property (nonatomic,copy) NSString *playCnt;// 播放数
 @property (nonatomic,copy) NSString *realOnline;
-@property (nonatomic,copy) NSString *duration;
+@property (nonatomic,copy) NSString *duration;// 视频总时长
 @property (nonatomic,copy) NSString *tags;
 @property (nonatomic,copy) NSString *docTag;
 @property (nonatomic,copy) NSString *videoDesc;
