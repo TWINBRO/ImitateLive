@@ -22,9 +22,9 @@
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 
 
-@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate>
+@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate,littleInteractiveViewDelegate>
 
-@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,littleInteractiveViewDelegate>
+
 
 @property (strong, nonatomic) VideoRelationModel *videoRelationModel;
 
