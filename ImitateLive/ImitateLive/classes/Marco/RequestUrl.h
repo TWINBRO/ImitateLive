@@ -21,7 +21,10 @@
 
 // 所有栏目请求Url
 #define AllColumnRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lists/18-%@.json?ver=2.7.1&os=3&time1468331065160",ID]
-//
+
+// 单个历史频频请求url
+#define SingleHistoryVideo_Url(url) [NSString stringWithFormat:@"http://www.zhanqi.tv%@",url]
+
 // 栏目详情请求Url
 #define ColumnDetailRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lives/%@.json?ver=2.7.1&os=3&time1468306552272",ID]
 

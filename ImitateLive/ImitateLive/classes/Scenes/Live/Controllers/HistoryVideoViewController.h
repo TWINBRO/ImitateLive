@@ -7,6 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "VideoRelationModel.h"
+
+@protocol HistoryVideoDelegate <NSObject>
+
+- (void)returnVideoRelationModel:(VideoRelationModel *)model;
+
+@end
 
 @interface HistoryVideoViewController : BaseViewController
 
@@ -15,5 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *historyVideos;
 
 @property (strong, nonatomic) NSString *uID;
+
+@property (weak, nonatomic) id<HistoryVideoDelegate>delegate;
 
 @end
