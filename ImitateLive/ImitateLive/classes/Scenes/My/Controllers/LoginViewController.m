@@ -65,7 +65,7 @@
     }else{
         LoginRequest *request = [[LoginRequest alloc]init];
         [request loginRequestWithUsername:self.userNameTextField.text password:self.passwordTextField.text success:^(NSDictionary *dic) {
-            NSLog(@"login success = %@",dic);
+//            NSLog(@"login success = %@",dic);
             long code = [[dic objectForKey:@"code"] longValue];
             //        NSString *code = [[dic objectForKey:@"code"] stringValue];
             if (code == 1103) {

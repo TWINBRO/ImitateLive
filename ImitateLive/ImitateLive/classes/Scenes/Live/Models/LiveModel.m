@@ -15,7 +15,7 @@
     if ([key isEqualToString:@"id"]) {
         _liveID = value;
     }
-    NSLog(@"%@",value);
+    
 }
 
 @end

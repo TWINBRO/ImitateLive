@@ -54,7 +54,7 @@
             
             
             LiveModel *live = [LiveModel new];
-            NSLog(@"***************%@",model.room);
+//            NSLog(@"***************%@",model.room);
             [live setValuesForKeysWithDictionary:model.room];
             [weakSelf.roomArr addObject:live];
             
@@ -75,7 +75,7 @@
 - (void)addCarousel {
     
     UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, 200) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
-        NSLog(@"点击的图片--%@",@(tagValue));
+//        NSLog(@"点击的图片--%@",@(tagValue));
 
         if (_carouselDelegate != nil && [_carouselDelegate respondsToSelector:@selector(changeController:)]) {
             [_carouselDelegate changeController:self.roomArr[tagValue]];

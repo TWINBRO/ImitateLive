@@ -55,7 +55,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSLog(@"%lu",(unsigned long)_historyVideos.count);
+//    NSLog(@"%lu",(unsigned long)_historyVideos.count);
     return self.historyVideos.count;
     
 }

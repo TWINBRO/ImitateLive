@@ -21,13 +21,21 @@
 		D60D8CC41D35E91E001B6BCE /* Img_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC11D35E91E001B6BCE /* Img_orange.png */; };
 		D60D8CC51D35E91E001B6BCE /* Img_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC21D35E91E001B6BCE /* Img_orange@2x.png */; };
 		D60D8CC61D35E91E001B6BCE /* Img_orange@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CC31D35E91E001B6BCE /* Img_orange@3x.png */; };
-		D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */; };
 		D60D8CCF1D367017001B6BCE /* MyHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CCD1D367017001B6BCE /* MyHeaderTableViewCell.m */; };
 		D60D8CD01D367017001B6BCE /* MyHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CCE1D367017001B6BCE /* MyHeaderTableViewCell.xib */; };
 		D60D8CD21D36745C001B6BCE /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD11D36745C001B6BCE /* avatar.png */; };
 		D60D8CD41D367508001B6BCE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD31D367508001B6BCE /* background.png */; };
-		D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */; };
 		D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */; };
+		D610B2021D366D8100B5E6E2 /* LittleInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */; };
+		D610B2051D366DD100B5E6E2 /* BigInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */; };
+		D63103B51D3873E800FC2636 /* DefinitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63103B41D3873E800FC2636 /* DefinitionView.m */; };
+		D63103B81D3873FD00FC2636 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63103B71D3873FD00FC2636 /* SettingView.m */; };
+		D63103B91D38CEB100FC2636 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
+		D63103BA1D38CEDC00FC2636 /* ColumnDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */; };
+		D63103BB1D38CF5A00FC2636 /* ColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C51D3515FB00BA0BF0 /* ColumnCollectionViewCell.m */; };
+		D63103BC1D38CF6300FC2636 /* CarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D60D8CC81D3638E6001B6BCE /* CarouselCollectionViewCell.m */; };
+		D656D34B1D376CA90032A72A /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D656D34A1D376CA90032A72A /* PlayerViewController.m */; };
+		D656D34E1D37CC590032A72A /* NSString+timeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D656D34D1D37CC590032A72A /* NSString+timeFormatter.m */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
 		D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208D1D35068900BA0BF0 /* LiveViewController.m */; };
 		D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E20901D35069400BA0BF0 /* HomeViewController.m */; };
@@ -431,9 +439,7 @@
 		D65E23B51D3509D000BA0BF0 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B41D3509D000BA0BF0 /* VideoModel.m */; };
 		D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23B71D3509FC00BA0BF0 /* VideoRelationModel.m */; };
 		D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BA1D350DD000BA0BF0 /* ListModel.m */; };
-		D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
 		D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */; };
-		D65E23C71D3515FB00BA0BF0 /* ColumnCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C51D3515FB00BA0BF0 /* ColumnCollectionViewCell.m */; };
 		D65E23C81D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */; };
 		D65E23CE1D35358A00BA0BF0 /* ColumnDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */; };
 		D67B01821D376B150072967A /* BriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D67B01801D376B150072967A /* BriefViewController.m */; };
@@ -548,6 +554,18 @@
 		D610B1FB1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnDetailCollectionViewCell.xib; sourceTree = "<group>"; };
+		D610B2001D366D8100B5E6E2 /* LittleInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LittleInteractiveView.h; sourceTree = "<group>"; };
+		D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LittleInteractiveView.m; sourceTree = "<group>"; };
+		D610B2031D366DD100B5E6E2 /* BigInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigInteractiveView.h; sourceTree = "<group>"; };
+		D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigInteractiveView.m; sourceTree = "<group>"; };
+		D63103B31D3873E800FC2636 /* DefinitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinitionView.h; sourceTree = "<group>"; };
+		D63103B41D3873E800FC2636 /* DefinitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinitionView.m; sourceTree = "<group>"; };
+		D63103B61D3873FD00FC2636 /* SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingView.h; sourceTree = "<group>"; };
+		D63103B71D3873FD00FC2636 /* SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingView.m; sourceTree = "<group>"; };
+		D656D3491D376CA90032A72A /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		D656D34A1D376CA90032A72A /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		D656D34C1D37CC590032A72A /* NSString+timeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+timeFormatter.h"; sourceTree = "<group>"; };
+		D656D34D1D37CC590032A72A /* NSString+timeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+timeFormatter.m"; sourceTree = "<group>"; };
 		D65E20891D35068000BA0BF0 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		D65E208A1D35068000BA0BF0 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		D65E208C1D35068900BA0BF0 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
@@ -1291,6 +1309,8 @@
 				D65E208D1D35068900BA0BF0 /* LiveViewController.m */,
 				D6CA5D6E1D3534C600E5C4BE /* LiveDetailViewController.h */,
 				D6CA5D6F1D3534C600E5C4BE /* LiveDetailViewController.m */,
+				D656D3491D376CA90032A72A /* PlayerViewController.h */,
+				D656D34A1D376CA90032A72A /* PlayerViewController.m */,
 				D67B017F1D376B150072967A /* BriefViewController.h */,
 				D67B01801D376B150072967A /* BriefViewController.m */,
 				D67B01841D376B260072967A /* ChatViewController.h */,
@@ -1328,6 +1348,14 @@
 				D67B01951D3799160072967A /* HistoryVideoViewCell.xib */,
 				D60D85DC1D35D3F800D08387 /* PlayerView.h */,
 				D60D85DD1D35D3F800D08387 /* PlayerView.m */,
+				D610B2001D366D8100B5E6E2 /* LittleInteractiveView.h */,
+				D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */,
+				D610B2031D366DD100B5E6E2 /* BigInteractiveView.h */,
+				D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */,
+				D63103B31D3873E800FC2636 /* DefinitionView.h */,
+				D63103B41D3873E800FC2636 /* DefinitionView.m */,
+				D63103B61D3873FD00FC2636 /* SettingView.h */,
+				D63103B71D3873FD00FC2636 /* SettingView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1900,6 +1928,8 @@
 				D60D85F91D3679F500D08387 /* DLSlideView */,
 				D6CA57371D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.h */,
 				D6CA57381D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m */,
+				D656D34C1D37CC590032A72A /* NSString+timeFormatter.h */,
+				D656D34D1D37CC590032A72A /* NSString+timeFormatter.m */,
 				D6A7E7C91D34FA1E006649CC /* Request */,
 				D6A7E7C51D34F1A4006649CC /* ColumnRequest */,
 				D6A7E7C41D34EE74006649CC /* LiveRequest */,
@@ -2598,6 +2628,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63103BC1D38CF6300FC2636 /* CarouselCollectionViewCell.m in Sources */,
+				D63103BB1D38CF5A00FC2636 /* ColumnCollectionViewCell.m in Sources */,
+				D63103BA1D38CEDC00FC2636 /* ColumnDetailCollectionViewCell.m in Sources */,
+				D63103B91D38CEB100FC2636 /* GameModel.m in Sources */,
 				D6F334C01D38CA08004B7A6B /* LiveRequest.m in Sources */,
 				D6A7E7C81D34F213006649CC /* ColumnRequest.m in Sources */,
 				D60D860C1D3679F500D08387 /* DLLRUCache.m in Sources */,
@@ -2608,13 +2642,17 @@
 				D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */,
 				D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */,
 				D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */,
+				D610B2051D366DD100B5E6E2 /* BigInteractiveView.m in Sources */,
+				D656D34B1D376CA90032A72A /* PlayerViewController.m in Sources */,
 				D65E23BB1D350DD000BA0BF0 /* ListModel.m in Sources */,
 				D65E23A61D3507DA00BA0BF0 /* BaseModel.m in Sources */,
 				D60D86101D3679F500D08387 /* DLScrollTabbarView.m in Sources */,
 				D6CA57361D34FE7700E5C4BE /* CustomTabbar.m in Sources */,
 				D6A7E7D21D34FB45006649CC /* AppDelegate.m in Sources */,
 				D6A7E7BA1D34E4AB006649CC /* BaseViewController.m in Sources */,
+				D63103B51D3873E800FC2636 /* DefinitionView.m in Sources */,
 				D6A7E7DC1D351214006649CC /* CarouselFingure.m in Sources */,
+				D610B2021D366D8100B5E6E2 /* LittleInteractiveView.m in Sources */,
 				D60D86121D3679F500D08387 /* DLUtility.m in Sources */,
 				D60D8CBF1D35E865001B6BCE /* HeaderView.m in Sources */,
 				D6CA57261D34FE4700E5C4BE /* RootViewController.m in Sources */,
@@ -2622,13 +2660,13 @@
 				D67B01871D376B260072967A /* ChatViewController.m in Sources */,
 				D60D860D1D3679F500D08387 /* DLCustomSlideView.m in Sources */,
 				D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */,
-				D610B1FE1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m in Sources */,
 				D65E23A91D35081300BA0BF0 /* HomeModel.m in Sources */,
 				D65E23B21D35091F00BA0BF0 /* LiveModel.m in Sources */,
 				D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */,
 				D67B01911D376CA80072967A /* BriefTableViewCell.m in Sources */,
 				D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */,
 				D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */,
+				D63103B81D3873FD00FC2636 /* SettingView.m in Sources */,
 				D65E23CE1D35358A00BA0BF0 /* ColumnDetailViewController.m in Sources */,
 				D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */,
 				D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */,
@@ -2643,10 +2681,8 @@
 				D65E23AC1D3508AB00BA0BF0 /* ColumnModel.m in Sources */,
 				D65E23AF1D3508F900BA0BF0 /* ColumnDetailModel.m in Sources */,
 				D6CA57391D34FE8C00E5C4BE /* UIImage+ImageContentWithColor.m in Sources */,
+				D656D34E1D37CC590032A72A /* NSString+timeFormatter.m in Sources */,
 				D6F864AF1D37321C00A3EBA4 /* MyTableViewCell.m in Sources */,
-				D65E23BE1D350E3800BA0BF0 /* GameModel.m in Sources */,
-				D60D8CCA1D3638E6001B6BCE /* CarouselCollectionViewCell.m in Sources */,
-				D65E23C71D3515FB00BA0BF0 /* ColumnCollectionViewCell.m in Sources */,
 				D67B01821D376B150072967A /* BriefViewController.m in Sources */,
 				D65E20941D35069B00BA0BF0 /* ColumnViewController.m in Sources */,
 				D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */,

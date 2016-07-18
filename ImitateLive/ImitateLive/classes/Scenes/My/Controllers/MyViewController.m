@@ -201,7 +201,7 @@
     
     NSString *path = [paths lastObject];
     NSString *str = [NSString stringWithFormat:@"缓存已清除%.1fK", [self getFilePath]];
-    NSLog(@"%@",str);
+//    NSLog(@"%@",str);
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"缓存已清除" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alertView show];
     [self.view addSubview:alertView];
