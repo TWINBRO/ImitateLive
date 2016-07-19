@@ -17,7 +17,7 @@
 @interface MyViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UITableView *MyTableView;
 @property (strong, nonatomic) NSArray *array;
-
+@property (strong, nonatomic) UIButton *btn;
 @end
 
 @implementation MyViewController
@@ -42,12 +42,16 @@
 - (void)addRightNavigationItem {
     
     // 自定义rightBarButton
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"登录" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(0, 0, 40, 30);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    [btn addTarget:self action:@selector(rightBarItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
+        [_btn setTitle:@"切换账号" forState:UIControlStateNormal];
+    }else {
+        [_btn setTitle:@"登录" forState:UIControlStateNormal];
+    }
+    [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _btn.frame = CGRectMake(0, 0, 80, 30);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btn];
+    [_btn addTarget:self action:@selector(rightBarItemClicked:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -101,18 +105,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         MyHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHeaderTableViewCell_Identify];
+        NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+        
+        NSString *avatarUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
-            NSString *avatarUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
-            if (avatarUrl) {
-                [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",USER_AVATAR_LOCAL_URL,avatarUrl]]];
-            }else {
             
+            if (avatarUrl) {
+                [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",avatarUrl]]];
+                
+                NSLog(@"%@",avatarUrl);
+                
+            }else {
+                
                 cell.avatarImgView.image = [UIImage imageNamed:@"avatar.png"];
             }
             
-            cell.nameLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+            if (currentUsername) {
+                cell.nameLabel.text = currentUsername;
+            }else {
+            
+                cell.nameLabel.text = @"未登录";
+            }
+            
         }
+        
         return cell;
     }else {
     
@@ -149,22 +166,19 @@
         [self.MyTableView reloadData];
     }
     if (indexPath.section == 3) {
-//        NSString *lastUserID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-//        [[NSUserDefaults standardUserDefaults] setObject:lastUserID forKey:@"lastUserID"];
-        
-        
+
+        [self.btn setTitle:@"登录" forState:UIControlStateNormal];
         //注销
         [[FileDataHandle shareInstance] setUsername:nil];
         [[FileDataHandle shareInstance] setPassword:nil];
-        [[FileDataHandle shareInstance] setUserId:nil];
-        [[FileDataHandle shareInstance] setAvatar:nil];
         [[FileDataHandle shareInstance] setLoginState:NO];
         
-        
+        [AVUser logOut];  //清除缓存用户对象
+        AVUser *currentUser = [AVUser currentUser]; // 现在的currentUser是nil了
         
         [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:@"isLogin"];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"avatar"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"未登录" forKey:@"userName"];
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已退出登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
         [self.view addSubview:alertView];
@@ -218,20 +232,9 @@
 // 清除缓存
 - (void)removeCache {
     
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-//    
-//    NSString *path = [paths lastObject];
-    
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/Image"];
-    
-
     NSString *str = [NSString stringWithFormat:@"缓存已清除%.1fM", [self getFilePath]];
     NSLog(@"%@",str);
-
-//    NSString *path = [paths lastObject];
-//    NSString *str = [NSString stringWithFormat:@"缓存已清除%.1fK", [self getFilePath]];
-//    NSLog(@"%@",str);
-
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"缓存已清除" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alertView show];
     [self.view addSubview:alertView];

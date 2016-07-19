@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker; // 图片选择器
+
+
 @end
 
 @implementation RegistrViewController
@@ -19,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"注册";
+    
+    
     
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
@@ -71,30 +75,41 @@
         
     }else{
         
-        RegisterRequest *request = [[RegisterRequest alloc]init];
-        //    request registerWithName: password:<#(NSString *)#> avator:[UIImage imageNamed:@"person.png"] success:<#^(NSDictionary *dic)success#> failure:<#^(NSError *error)failure#>
+        AVUser *user = [AVUser user];// 新建 AVUser 对象实例
+        user.username = self.usernameTextField.text;// 设置用户名
+        user.password =  self.passwordTextField.text;// 设置密码
+//        user.email = @"tom@leancloud.cn";// 设置邮箱
+//        user.email = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
         
-        [request registerWithName:self.usernameTextField.text password:self.passwordTextField.text avator:self.avatarImageView.image success:^(NSDictionary *dic) {
-//            NSLog(@"register success = %@",dic);
-            
-            NSString *code = [[dic objectForKey:@"code"] stringValue];
-            if ([code isEqualToString:@"1005"]) {
-                NSString *avatar = [[dic objectForKey:@"data"] objectForKey:@"avatar"];
-                NSString *userId = [[dic objectForKey:@"data"]objectForKey:@"userId"];
-                // 保存头像和id到本地
-                [[NSUserDefaults standardUserDefaults]setObject:avatar forKey:@"avatar"];
-                [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"userId"];
-                // 立即保存
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alertView show];
-                [self.view addSubview:alertView];
+        AVObject *todoFolder = [[AVObject alloc] initWithClassName:@"TodoFolder"];// 构建对象
+        [todoFolder setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:self.usernameTextField.text];// 设置名称
+        [todoFolder saveInBackground];// 保存到云端
+        [todoFolder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // 存储成功
+                NSLog(@"%@",todoFolder.objectId);// 保存成功之后，objectId 会自动从云端加载到本地
+//                [[NSUserDefaults standardUserDefaults] setObject:todoFolder.objectId forKey:self.usernameTextField.text];
+                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:self.usernameTextField.text];
+            } else {
+                // 失败的话，请检查网络环境以及 SDK 配置是否正确
+            }
+        }];
+        
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // 注册成功
+                
+                
+                
                 // 界面消失
                 [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                
+            } else {
+                // 失败的原因可能有多种，常见的是用户名已经存在。
+                NSLog(@"register error = %@",error);
+                
             }
-            
-        } failure:^(NSError *error) {
-            NSLog(@"register failure = %@",error);
         }];
     }
 }
@@ -104,6 +119,22 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     // 显示头像
     self.avatarImageView.image = image;
+    
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    AVFile *file = [AVFile fileWithName:@"avatar.png" data:data];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"%@",file.url);//返回一个唯一的 Url 地址
+
+        // 保存头像到本地
+        [[NSUserDefaults standardUserDefaults]setObject:file.url forKey:@"avatar"];
+        // 立即保存
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }];
+    
+    
+    
+    
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(saveImage), nil);
     }

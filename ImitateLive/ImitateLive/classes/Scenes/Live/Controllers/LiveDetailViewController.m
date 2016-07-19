@@ -74,7 +74,6 @@
     [self.view.layer addSublayer:self.playerView.playerLayer];
     
     [self beginTimer];
-
     
     self.isHistory = NO;
 }
