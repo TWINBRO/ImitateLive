@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import <UMSocial.h>
+#import <UMSocialQQHandler.h>
+#import <UMSocialSinaSSOHandler.h>
+#import <UMSocialWechatHandler.h>
 
 @interface AppDelegate ()
 
@@ -23,7 +27,34 @@
     _window.rootViewController = rootVC;
     [_window makeKeyAndVisible];
     
+    [UMSocialData setAppKey:@"578c804167e58e5c90000c6b"];
+    
+    //设置微信AppId，设置分享url，默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:@"wxdc1e388c3822c80b" appSecret:@"a393c1527aaccb95f3a4c88d6d1455f6" url:@"http://www.umeng.com/social"];
+    
+    
+    // 打开新浪微博的SSO开关
+    // 将在新浪微博注册的应用appkey、redirectURL替换下面参数，并在info.plist的URL Scheme中相应添加wb+appkey，如"wb3921700954"，详情请参考官方文档。
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1496764867"
+                                              secret:@"2126a9472152c416c59a2b7e8a271535"
+                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    //    //设置分享到QQ空间的应用Id，和分享url 链接
+    [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
+    //设置支持没有客户端情况下使用SSO授权
+    [UMSocialQQHandler setSupportWebView:YES];
+
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
