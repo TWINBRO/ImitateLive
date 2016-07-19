@@ -90,15 +90,18 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.interactiveView.titleLabel.text = self.liveModel.title;
     
     // 清晰度调整视图
-    self.definitionView = [[DefinitionView alloc] initWithFrame:CGRectMake(0, self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.size.height)];
+    self.definitionView = [[DefinitionView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.height, self.view.frame.size.width)];
     self.definitionView.delegate = self;
     [self.view addSubview:self.definitionView];
     self.definitionView.hidden = YES;// 隐藏清晰度视图
+    
     // 设置按钮视图
     self.settingView = [[SettingView alloc] initWithFrame:CGRectMake(self.playerView.frame.size.height, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height)];
     self.settingView.delegate = self;
     [self.view addSubview:self.settingView];
     self.settingView.hidden = YES;// 隐藏设置按钮视图
+    
+    self.isBarrage = NO;// 是否打开弹幕
     
     [self addGestureRecognizer];
     
@@ -173,14 +176,14 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     if (!self.isLockingScreen) {
         self.isLockingScreen = YES;
         
-        [button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"movie_lock@2x"] forState:UIControlStateNormal];
         [button setTitle:@"锁屏" forState:UIControlStateNormal];
         self.interactiveView.topBackgroundView.hidden = YES;
         self.interactiveView.bottomBackgroundView.hidden = YES;
         self.interactiveView.shareBtn.hidden = YES;
     }else{
         self.isLockingScreen = NO;
-        [button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"movie_unlock@2x"] forState:UIControlStateNormal];
         [button setTitle:@"解锁" forState:UIControlStateNormal];
         self.interactiveView.topBackgroundView.hidden = NO;
         self.interactiveView.bottomBackgroundView.hidden = NO;
@@ -208,7 +211,13 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 //TODO: 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
-    
+    if (self.isBarrage) {
+        [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_off@2x"] forState:UIControlStateNormal];
+        self.isBarrage = NO;
+    }else{
+        [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_on@2x"] forState:UIControlStateNormal];
+        self.isBarrage = YES;
+    }
 }
 // 拖动进度条
 - (void)progressSLiderValueChangedAction:(UISlider *)progress
@@ -565,7 +574,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 {
     CGPoint point = [gesture locationInView:self.view];
     UIView *hitView = [self.view hitTest:point withEvent:nil];
-    if (point.x < self.view.frame.size.width / 2.0 && hitView != self.settingView) {
+    if (point.x < self.view.frame.size.width / 2.0 || hitView != self.settingView) {
         self.settingView.hidden = YES;
         self.settingView.frame = CGRectMake(self.playerView.frame.size.height, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height);
         [self.timer invalidate];

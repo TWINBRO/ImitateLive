@@ -30,12 +30,13 @@
 }
 - (void)addButton
 {
-    self.backBtn = [self buttonWithImage:@"ocr_back" frame:CGRectMake(10, 30, 37, 37) action:@selector(backAction:) superView:self corner:YES];
-    self.fullScreenBtn = [self buttonWithImage:@"" frame:CGRectMake(self.frame.size.width - 47, self.frame.size.height - 47, 37, 37) action:@selector(fullScreenAction:) superView:self corner:YES];
-    self.shareBtn = [self buttonWithImage:@"" frame:CGRectMake(self.frame.size.width - 47, self.frame.size.height / 2.0, 37, 37) action:@selector(shareAction:) superView:self corner:YES];
-    
+    self.backBtn = [self buttonWithImage:@"movie_back@2x" frame:CGRectMake(10, 20, 25, 25) backGroundColor:YD_COLOR(0, 0, 0, 0.5) action:@selector(backAction:) superView:self corner:YES];
+    self.fullScreenBtn = [self buttonWithImage:@"movie_fullscreen@2x" frame:CGRectMake(self.frame.size.width - 36, self.frame.size.height - 47, 25, 25) backGroundColor:YD_COLOR(0, 0, 0, 0.5) action:@selector(fullScreenAction:) superView:self corner:YES];
+    self.shareBtn = [self buttonWithImage:@"分享" frame:CGRectMake(self.frame.size.width - 36, self.frame.size.height / 2.0, 25, 25) backGroundColor:YD_COLOR(0, 0, 0, 0.5) action:@selector(shareAction:) superView:self corner:NO];
+    self.shareBtn.layer.masksToBounds = YES;
+    self.shareBtn.layer.cornerRadius = 5;
     self.bottonView = [self viewWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50) backgroundColor:[UIColor whiteColor] superView:self];
-    self.playOrPauseBtn = [self buttonWithImage:@"movie_pausesmall@2x" frame:CGRectMake(10, 3, 37, 37) action:@selector(playOrPauseAction:) superView:self.bottonView corner:NO];
+    self.playOrPauseBtn = [self buttonWithImage:@"movie_pausesmall@2x" frame:CGRectMake(10, 3, 37, 37) backGroundColor:YD_COLOR(115, 115, 115, 0.5) action:@selector(playOrPauseAction:) superView:self.bottonView corner:NO];
     self.nowTimeLabel = [self labelWithTitle:@"00:00:00" color:[UIColor whiteColor] frame:CGRectMake(50, 35, 100, 15) superView:self.bottonView];
     self.longTimeLabel = [self labelWithTitle:@"" color:[UIColor whiteColor] frame:CGRectMake(self.frame.size.width - 150, 35, 100, 15) superView:self.bottonView];
     self.progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 6, self.frame.size.width - 97, 20)];
@@ -47,11 +48,11 @@
     [self.bottonView addSubview:self.progressSlider];
 }
 // 创建按钮
-- (UIButton *)buttonWithImage:(NSString *)image frame:(CGRect)frame action:(SEL)action superView:(UIView *)view corner:(BOOL)corner
+- (UIButton *)buttonWithImage:(NSString *)image frame:(CGRect)frame backGroundColor:(UIColor *)backColor action:(SEL)action superView:(UIView *)view corner:(BOOL)corner
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor whiteColor];
+    button.backgroundColor = backColor;
     if (corner) {
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = frame.size.width / 2.0;

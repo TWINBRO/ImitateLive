@@ -10,6 +10,10 @@
 
 #define kWidth self.frame.size.width
 #define kHeight self.frame.size.height
+#define kTopBackViewWidth self.topBackgroundView.frame.size.width
+#define kTopBackViewHeight self.topBackgroundView.frame.size.height
+#define kBottomBackViewWidth self.bottomBackgroundView.frame.size.width
+#define kBottomBackViewHeight self.bottomBackgroundView.frame.size.height
 
 @interface BigInteractiveView ()
 
@@ -35,16 +39,16 @@
 
 - (void)addAlwaysControl
 {
-    self.topBackgroundView = [self viewWithFrame:CGRectMake(0, 0, kWidth, 50) backgroundColor:YD_COLOR(115, 115, 115, 0.5) superView:self];
-    self.bottomBackgroundView = [self viewWithFrame:CGRectMake(0, kHeight - 50, kWidth, 50) backgroundColor:YD_COLOR(115, 115, 115, 0.5) superView:self];
-    self.backBtn = [self buttonWithImage:@"Movie_back_s@2x" frame:CGRectMake(10, 10, 48, 48) action:@selector(backAction:) superView:self.topBackgroundView corner:YES];
-    self.playOrPauseBtn = [self buttonWithImage:@"" frame:CGRectMake(10, 0, 48, 48) action:@selector(playOrPauseAction:) superView:self.bottomBackgroundView corner:YES];
-    self.lockScreenBtn = [self buttonWithImage:@"" frame:CGRectMake(10, kHeight / 2.0 - 30, 40, 40) action:@selector(lockScreenAction:)  superView:self corner:YES];
-    self.fullScreenBtn = [self buttonWithImage:@"" frame: CGRectMake(kWidth - 47, 0, 37, 37) action:@selector(fullScreenAction:)  superView:self.bottomBackgroundView corner:YES];
-    self.titleLabel = [self labelWithTitle:@"" color:[UIColor clearColor] textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(60, 10, 300, 30) superView:self.topBackgroundView];
-    self.onlineLabel = [self labelWithTitle:@"" color:YD_COLOR(115, 115, 115, 0.75) textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(kWidth - 84, 100, 70, 36) superView:self];
+    self.topBackgroundView = [self viewWithFrame:CGRectMake(0, 0, kWidth, 50) backgroundColor:YD_COLOR(0, 0, 0, 0.5) superView:self];
+    self.bottomBackgroundView = [self viewWithFrame:CGRectMake(0, kHeight - 50, kWidth, 50) backgroundColor:YD_COLOR(0, 0, 0, 0.5) superView:self];
+    self.backBtn = [self buttonWithImage:@"Movie_back@2x" frame:CGRectMake(6, 6, 40, 40) center:CGPointMake(26, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(backAction:) superView:self.topBackgroundView corner:YES];
+    self.playOrPauseBtn = [self buttonWithImage:@"movie_pausesmall@2x" frame:CGRectMake(4, 0, 40, 40) center:CGPointMake(26, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(playOrPauseAction:) superView:self.bottomBackgroundView corner:YES];
+    self.lockScreenBtn = [self buttonWithImage:@"movie_unlock@2x" frame:CGRectMake(10, kHeight / 2.0 - 30, 40, 40) center:CGPointMake(26, kHeight / 2.0) backgroundColor:YD_COLOR(0, 0, 0, 0.5) action:@selector(lockScreenAction:)  superView:self corner:YES];
+    self.fullScreenBtn = [self buttonWithImage:@"movie_mini@2x" frame: CGRectMake(kWidth - 47, 0, 40, 40) center:CGPointMake(kWidth - 24, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(fullScreenAction:)  superView:self.bottomBackgroundView corner:YES];
+    self.titleLabel = [self labelWithTitle:@"" color:[UIColor clearColor] textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(40, 10, 300, 30) superView:self.topBackgroundView];
+    self.onlineLabel = [self labelWithTitle:@"" color:YD_COLOR(0, 0, 0, 0.75) textColor:[UIColor whiteColor] fontSize:15.0 frame:CGRectMake(kWidth - 84, 100, 70, 36) superView:self];
     self.onlineImage = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth - 120, 100, 36, 36)];
-    self.onlineImage.backgroundColor = YD_COLOR(115, 115, 115, 0.75);
+    self.onlineImage.backgroundColor = YD_COLOR(0, 0, 0, 0.75);
     self.onlineImage.image = [UIImage imageNamed:@"ic_account@2x"];
     [self addSubview:self.onlineImage];
     
@@ -56,14 +60,15 @@
 
 - (void)addLiveControl
 {
-    self.shareBtn = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 48, kHeight / 2.0, 40, 40) action:@selector(shareAction:) superView:self corner:YES];
+    self.shareBtn = [self buttonWithImage:@"分享" frame:CGRectMake(kWidth - 48, kHeight / 2.0, 38, 38) center:CGPointMake(kWidth - 26, kHeight / 2.0) backgroundColor:YD_COLOR(0, 0, 0, 0.5) action:@selector(shareAction:) superView:self corner:NO];
+    self.shareBtn.layer.masksToBounds = YES;
+    self.shareBtn.layer.cornerRadius = 4;
+    self.settingBtn = [self buttonWithImage:@"movie_setting@2x" frame:CGRectMake(kWidth - 55, 5, 40, 40) center:CGPointMake(kWidth - 22, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(settingAction:) superView:self.topBackgroundView corner:YES];
+    self.definitionBtn = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(kWidth - 105, 10, 50, 40) center:CGPointMake(kWidth - 70, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(definitionAction:) superView:self.topBackgroundView corner:NO];
+    self.isBarrage = [self buttonWithImage:@"movie_subtitle_off@2x" frame:CGRectMake(kWidth - 100, 0, 40, 40) center:CGPointMake(kWidth - 62, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(isBarrageAction:)  superView:self.bottomBackgroundView corner:NO];
+    self.sendBtn = [self buttonWithImage:@"发送弹幕" frame:CGRectMake(kWidth - 150, 0, 50, 37) center:CGPointMake(kWidth - 108, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
     
-    self.settingBtn = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 55, 10, 48, 48) action:@selector(settingAction:) superView:self.topBackgroundView corner:YES];
-    self.definitionBtn = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(kWidth - 105, 10, 40, 40) action:@selector(definitionAction:) superView:self.topBackgroundView corner:NO];
-    self.isBarrage = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 100, 0, 37, 37) action:@selector(isBarrageAction:) superView:self.bottomBackgroundView corner:NO];
-    self.sendBtn = [self buttonWithImage:@"" frame:CGRectMake(kWidth - 150, 0, 50, 37) action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
-    
-    self.barrageTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 0, kWidth - 60 - 150, 37)];
+    self.barrageTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 10, kWidth - 240, 37)];
     self.barrageTextField.backgroundColor = [UIColor greenColor];
     self.barrageTextField.borderStyle = UITextBorderStyleRoundedRect;
     [self.bottomBackgroundView addSubview:self.barrageTextField];
@@ -88,17 +93,17 @@
 }
 
 // 创建按钮
-- (UIButton *)buttonWithImage:(NSString *)image frame:(CGRect)frame action:(SEL)action superView:(UIView *)view corner:(BOOL)corner
+- (UIButton *)buttonWithImage:(NSString *)image frame:(CGRect)frame center:(CGPoint)center backgroundColor:(UIColor *)backColor action:(SEL)action superView:(UIView *)view corner:(BOOL)corner
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor whiteColor];
+    button.backgroundColor = backColor;
     if (corner) {
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = frame.size.width / 2.0;
     }
-    
     button.frame = frame;
+    button.center = center;
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     return button;
@@ -118,7 +123,7 @@
     label.text = title;
     label.font = [UIFont systemFontOfSize:fontSize];
     label.textColor = textColor;
-    label.textAlignment = NSTextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentLeft;
     label.backgroundColor = color;
     [view addSubview:label];
     return label;
