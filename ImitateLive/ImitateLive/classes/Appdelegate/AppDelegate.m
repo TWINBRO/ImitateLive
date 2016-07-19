@@ -12,6 +12,9 @@
 #import <UMSocialQQHandler.h>
 #import <UMSocialSinaSSOHandler.h>
 #import <UMSocialWechatHandler.h>
+#import <AVOSCloud/AVOSCloud.h>
+// 如果使用了实时通信模块，请添加以下导入语句：
+#import <AVOSCloudIM/AVOSCloudIM.h>
 
 @interface AppDelegate ()
 
@@ -43,6 +46,20 @@
     [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
     //设置支持没有客户端情况下使用SSO授权
     [UMSocialQQHandler setSupportWebView:YES];
+    
+    // applicationId 即 App Id，clientKey 是 App Key。
+    [AVOSCloud setApplicationId:@"6mWOSYT7cb09MjJJpJevf6yr-gzGzoHsz"
+                      clientKey:@"fA6JQf3CaBdAIyyWnT3pD5Th"];
+
+    
+    // 测试leancloud的SDK
+//    AVObject *post = [AVObject objectWithClassName:@"TestObject"];
+//    [post setObject:@"Hello World!" forKey:@"words"];
+//    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            // 保存成功了！
+//        }
+//    }];
 
     
     return YES;
@@ -63,12 +80,13 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+   
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+   
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

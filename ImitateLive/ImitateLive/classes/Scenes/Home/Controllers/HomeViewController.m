@@ -48,6 +48,8 @@ static NSString * const headID = @"head";
     self.homeDataDetail = [NSMutableArray array];
     self.sectionDic = [NSMutableDictionary dictionary];
     
+    
+    
     [self requestHomeData];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -77,8 +79,6 @@ static NSString * const headID = @"head";
         [self requestHomeData];
     }];
     
-    
-
 }
 
 

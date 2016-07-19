@@ -10,9 +10,13 @@
 #import "LiveCollectionViewCell.h"
 #import "LiveDetailViewController.h"
 #import "DataBaseHandle.h"
+#import "LiveRequest.h"
+#import "VideoModel.h"
 @interface CollectListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UICollectionView *collectCollectionView;
 @property (strong, nonatomic) NSMutableArray *allLivesArray;
+//@property (strong, nonatomic) NSMutableArray *allIDArr;
+//@property (strong, nonatomic) NSMutableArray *presentLivesArr;
 
 @end
 #define LiveCollectionViewCell_Identify @"LiveCollectionViewCell_Identify"
@@ -21,13 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订阅列表";
+
     
     self.allLivesArray = [NSMutableArray array];
+    
+    
+//    self.allIDArr = [NSMutableArray array];
+//    self.presentLivesArr = [NSMutableArray array];
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(self.view.bounds.size.width/2.0, 174);
     layout.minimumInteritemSpacing = 0.0;
     layout.minimumLineSpacing = 0.0;
-    [self getAllLives];
+    
     
     self.collectCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 105) collectionViewLayout:layout];
     self.collectCollectionView.backgroundColor = [UIColor whiteColor];
@@ -36,6 +46,8 @@
     [self.collectCollectionView registerNib:[UINib nibWithNibName:@"LiveCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:LiveCollectionViewCell_Identify];
     
     [self.view addSubview:self.collectCollectionView];
+    [self getAllLives];
+    
 }
 
 //获取当前用户收藏过的活动
@@ -46,6 +58,23 @@
     if (_allLivesArray.count == 0) {
         NSLog(@"暂无收藏！");
     }
+    
+//    for (int i = 0; i < self.allLivesArray.count; i ++) {
+//        LiveModel *model = [LiveModel new];
+//        model = self.allLivesArray[i];
+//        
+//        NSLog(@"===========%@",model.title);
+//        [self.allIDArr addObject:model.liveID];
+////        [self requestListDetail:model.liveID];
+//    }
+//    
+//        for (int i = self.allIDArr.count-1; i >= 0; i --) {
+//            [self requestListDetail:self.allIDArr[i]];
+//    
+//        }
+    
+    
+    
     
 }
 
@@ -60,12 +89,47 @@
     
 }
 
+// 请求直播间简介
+//- (void)requestListDetail:(NSString *)ID {
+//    
+//    __weak typeof(self) weakSelf = self;
+//    LiveRequest *request = [[LiveRequest alloc] init];
+//    [request liveDetailRequestWithParameter:@{@"id":ID} success:^(NSDictionary *dic) {
+//        
+//        VideoModel *model = [VideoModel new];
+//        [model setValuesForKeysWithDictionary:dic[@"data"]];
+//        [weakSelf.presentLivesArr addObject:model.status];
+//        
+//        NSLog(@"=======&&&%@",self.presentLivesArr);
+//        
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf.collectCollectionView reloadData];
+//        });
+//        
+//    } failure:^(NSError *error) {
+//        
+//        NSLog(@"error = %@",error);
+//        
+//    }];
+//    
+//}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LiveCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LiveCollectionViewCell_Identify forIndexPath:indexPath];
     
+    
     cell.liveModel = self.allLivesArray[indexPath.row];
     
+    
+//    cell.isLive = self.presentLivesArr[indexPath.row];
+
+//    if (self.presentLivesArr[indexPath.row] == 0) {
+//        cell.backgroundImageView.image = [UIImage imageNamed:@"avatar.png"];
+//    }
+    
+
     return cell;
     
 }

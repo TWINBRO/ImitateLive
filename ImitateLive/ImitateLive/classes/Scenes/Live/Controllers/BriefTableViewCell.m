@@ -41,41 +41,39 @@
 }
 - (IBAction)collectButtonClicked:(id)sender {
     
-//    if (_isCollect) {
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"取消订阅" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//        [alert show];
-//        [self.contentView addSubview:alert];
-//        [self.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
-//        self.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
-//        _isCollect = NO;
-//        
-//    }else {
-//        [self.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
-//        self.collectButton.backgroundColor = [UIColor lightGrayColor];
-//        _isCollect = YES;
-//    }
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
+        
+        if (_alertDelegate != nil && [_alertDelegate respondsToSelector:@selector(addAlertController)]) {
+            [_alertDelegate addAlertController];
+        }
+        
+    }else {
     
-    // 判断是否已经收藏
-    BOOL isFavorite = [[DataBaseHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
-    
-    // 是否已经收藏
-    if (YES == isFavorite) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"取消订阅" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-        [self.contentView addSubview:alert];
-        [self.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
-        self.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
-        [[DataBaseHandle shareInstance] deleteLiveModel:_liveModel];
-        return;
+        // 判断是否已经收藏
+        BOOL isFavorite = [[DataBaseHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
+        
+        // 是否已经收藏
+        if (YES == isFavorite) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"取消订阅" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            [self.contentView addSubview:alert];
+            [self.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
+            self.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
+            [[DataBaseHandle shareInstance] deleteLiveModel:_liveModel];
+            return;
+        }
+        
+        //操作数据库，收藏活动
+        [[DataBaseHandle shareInstance] insertNewLiveModel:_liveModel];
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"订阅成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
+        [self.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
+        self.collectButton.backgroundColor = [UIColor lightGrayColor];
+        
     }
     
-    //操作数据库，收藏活动
-    [[DataBaseHandle shareInstance] insertNewLiveModel:_liveModel];
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-    [alertView show];
-    [self.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
-    self.collectButton.backgroundColor = [UIColor lightGrayColor];
     
     
 }

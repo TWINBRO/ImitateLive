@@ -74,7 +74,7 @@
 // 获取图片并且添加轮播图
 - (void)addCarousel {
     
-    UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, 200) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
+    UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, 230) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
 //        NSLog(@"点击的图片--%@",@(tagValue));
 
         if (_carouselDelegate != nil && [_carouselDelegate respondsToSelector:@selector(changeController:)]) {

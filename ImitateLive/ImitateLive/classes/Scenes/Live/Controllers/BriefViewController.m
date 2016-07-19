@@ -9,8 +9,8 @@
 #import "BriefViewController.h"
 #import "BriefTableViewCell.h"
 #import "DataBaseHandle.h"
-
-@interface BriefViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "LoginViewController.h"
+@interface BriefViewController ()<UITableViewDataSource,UITableViewDelegate,AddAlertControllerDelegate>
 
 @end
 
@@ -55,6 +55,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.alertDelegate = self;
     
     // 判断是否已经收藏
     BOOL isFavorite = [[DataBaseHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
@@ -73,6 +74,24 @@
     cell.liveModel = self.liveModel;
     
     return cell;
+    
+}
+
+- (void)addAlertController {
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能关注" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:loginVC animated:YES completion:nil];
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    // 添加按钮
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 

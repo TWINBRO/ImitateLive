@@ -10,6 +10,7 @@
 #import "RegistrViewController.h"
 #import "LoginRequest.h"
 #import "FileDataHandle.h"
+#import "MyViewController.h"
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
@@ -64,61 +65,50 @@
         [self.view addSubview:alertView];
         
     }else{
-        LoginRequest *request = [[LoginRequest alloc]init];
-        [request loginRequestWithUsername:self.userNameTextField.text password:self.passwordTextField.text success:^(NSDictionary *dic) {
 
-            NSLog(@"login success = %@",dic);
-            
-            
-            User *user = nil;
-            
-            
-
-//            NSLog(@"login success = %@",dic);
-
-            long code = [[dic objectForKey:@"code"] longValue];
-            //        NSString *code = [[dic objectForKey:@"code"] stringValue];
-            if ((code == 1103) && ([dic[@"success"] intValue] == 1)) {
+        
+        [AVUser logInWithUsernameInBackground:self.userNameTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
+            if (user != nil) {
+                NSLog(@"登陆成功");
+                _isLogin = YES;
                 
                 
+                User *user = nil;
+
                 user = [[User alloc] init];
-                [user setValuesForKeysWithDictionary:dic[@"data"]];
                 user.userName = _userNameTextField.text;
                 user.password = _passwordTextField.text;
+                
+                
+                
+                
                 [[FileDataHandle shareInstance] setUsername:_userNameTextField.text];
                 [[FileDataHandle shareInstance] setPassword:_passwordTextField.text];
-                [[FileDataHandle shareInstance] setUserId:user.userId];
-                [[FileDataHandle shareInstance] setAvatar:user.avatar];
                 [[FileDataHandle shareInstance] setLoginState:YES];
+
                 
-                
-                
-                _isLogin = YES;
                 NSString *login = [NSString stringWithFormat:@"%d",_isLogin];
-                NSString *avatar = [[dic objectForKey:@"data"] objectForKey:@"avatar"];
-                NSString *userId = [[dic objectForKey:@"data"]objectForKey:@"userId"];
-                // 保存头像和id以及是否登录到本地
-                [[NSUserDefaults standardUserDefaults]setObject:avatar forKey:@"avatar"];
-                [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"userId"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.userNameTextField.text forKey:@"userName"];
+                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:self.userNameTextField.text] forKey:@"avatar"];
+                
+
                 [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"isLogin"];
-                [[NSUserDefaults standardUserDefaults]setObject:self.userNameTextField.text forKey:userId];
-                [[NSUserDefaults standardUserDefaults]setObject:self.userNameTextField.text forKey:@"userName"];
                 // 立即保存
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alertView show];
-                [self.view addSubview:alertView];
                 // 登录成功之后消失
                 [self.navigationController popToRootViewControllerAnimated:YES];
+
+                [self dismissViewControllerAnimated:YES completion:nil];
+
+            } else {
+
                 
             }
-            
-            
-            
-            
-        } failure:^(NSError *error) {
-            NSLog(@"login failure = %@",error);
         }];
+        
+        
+        
+    
     }
 }
 

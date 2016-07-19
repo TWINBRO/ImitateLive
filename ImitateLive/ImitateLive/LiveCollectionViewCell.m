@@ -17,7 +17,10 @@
 - (void)setLiveModel:(LiveModel *)liveModel {
     
     _liveModel = liveModel;
-    [_backgroundImageView setImageWithURL:[NSURL URLWithString:liveModel.spic]];
+    if ([_isLive isEqualToString:@"0"]) {
+        _backgroundImageView.image = [UIImage imageNamed:@"avatar"];
+    }else{
+        [_backgroundImageView setImageWithURL:[NSURL URLWithString:liveModel.spic]];}
     _liveNameLabel.text = liveModel.title;
     _authorNameLabel.text = liveModel.nickname;
     _onlineNumberLabel.text = [NSString stringWithFormat:@"%@",[self number]];
