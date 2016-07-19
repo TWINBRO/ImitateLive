@@ -74,6 +74,9 @@
 
             long code = [[dic objectForKey:@"code"] longValue];
             //        NSString *code = [[dic objectForKey:@"code"] stringValue];
+            
+
+            
             if ((code == 1103) && ([dic[@"success"] intValue] == 1)) {
                 
                 user = [[User alloc] init];

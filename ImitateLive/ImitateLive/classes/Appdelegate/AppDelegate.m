@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
-#import "EMSDK.h"
+
 @interface AppDelegate ()
 
 @end
@@ -23,13 +23,6 @@
     _window.rootViewController = rootVC;
     [_window makeKeyAndVisible];
     
-    
-    //AppKey:注册的AppKey，详细见下面注释。
-    //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
-    EMOptions *options = [EMOptions optionsWithAppkey:@"sjh#imitatelive"];
-    options.apnsCertName = @"0309DevPush";
-    [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
     return YES;
 }
 
@@ -40,12 +33,12 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     
-    [[EMClient sharedClient] applicationDidEnterBackground:application];
+   
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     
-    [[EMClient sharedClient] applicationWillEnterForeground:application];
+   
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
