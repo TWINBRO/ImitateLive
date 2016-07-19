@@ -8,8 +8,8 @@
 
 #import "DefinitionView.h"
 
-#define Width self.frame.size.width / 2.0
-#define Height self.frame.size.height
+#define KWidth self.frame.size.width
+#define KHeight self.frame.size.height
 
 @implementation DefinitionView
 
@@ -25,11 +25,11 @@
 - (void)creatButton
 {
     self.superDefinition = [self buttonWithImage:@"btn_cq_normal@2x" frame:CGRectMake(0, 0, 120, 90) action:@selector(superDefinitionClick:) superView:self corner:NO];
-    self.superDefinition.center = CGPointMake(110, Width);
-    self.highDefinition = [self buttonWithImage:@"btn_gq_pressed@2x" frame:CGRectMake(Height / 2.0, Width,  120, 90) action:@selector(highDefinitionClick:) superView:self corner:NO];
-    self.highDefinition.center = CGPointMake(Height / 2.0, Width);
-    self.standardDefinition = [self buttonWithImage:@"btn_bq_normal@2x" frame:CGRectMake(350, Width,  120, 90) action:@selector(standardDefinitionClick:) superView:self corner:NO];
-    self.standardDefinition.center = CGPointMake(Height - 110, Width);
+    self.superDefinition.center = CGPointMake(110, KHeight / 2.0);
+    self.highDefinition = [self buttonWithImage:@"btn_gq_pressed@2x" frame:CGRectMake(0, 0, 120, 90) action:@selector(highDefinitionClick:) superView:self corner:NO];
+    self.highDefinition.center = CGPointMake(KWidth / 2.0, KHeight / 2.0);
+    self.standardDefinition = [self buttonWithImage:@"btn_bq_normal@2x" frame:CGRectMake(350, 0,  120, 90) action:@selector(standardDefinitionClick:) superView:self corner:NO];
+    self.standardDefinition.center = CGPointMake(KWidth - 110, KHeight / 2.0);
 }
 - (void)superDefinitionClick:(UIButton *)btn
 {

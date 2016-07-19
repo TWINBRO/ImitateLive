@@ -219,7 +219,7 @@
     self.littleView.nowTimeLabel.text = [NSString getStringFormatByTime:f];
     self.littleView.progressSlider.value = f / CMTimeGetSeconds(self.playerView.playerItem.duration);
     static int i = 1;
-    if (i % 5 == 0) {
+    if (i % 7 == 0) {
         self.littleView.hidden = YES;
     }
     i++;
