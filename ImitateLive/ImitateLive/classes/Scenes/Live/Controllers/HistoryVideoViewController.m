@@ -17,6 +17,7 @@
 
 #define HistoryVideoViewCell_Identify @"HistoryVideoViewCell_Identify"
 
+
 @implementation HistoryVideoViewController
 
 - (void)viewDidLoad {
@@ -24,7 +25,9 @@
     
     self.historyVideos = [NSMutableArray array];
     
-    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, WindownWidth, 20)];
+    label.text = @"相关视频";
+    [self.view addSubview:label];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -32,12 +35,14 @@
     layout.minimumInteritemSpacing = 0.0;
     layout.minimumLineSpacing = 0.0;
     
-    self.videoCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -2, WindownWidth, WindowHeight-280) collectionViewLayout:layout];
+    self.videoCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 25, WindownWidth, WindowHeight-280) collectionViewLayout:layout];
     
     self.videoCollectionView.delegate = self;
     self.videoCollectionView.dataSource = self;
     
     [self.videoCollectionView registerNib:[UINib nibWithNibName:@"HistoryVideoViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:HistoryVideoViewCell_Identify];
+    
+    
     
     self.videoCollectionView.backgroundColor = [UIColor whiteColor];
     [self requestHistotyVideo];
@@ -92,6 +97,8 @@
     }];
     
 }
+
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     

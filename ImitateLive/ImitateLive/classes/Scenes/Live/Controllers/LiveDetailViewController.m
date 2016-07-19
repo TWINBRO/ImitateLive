@@ -18,11 +18,13 @@
 #import "BriefViewController.h"
 #import "VideoModel.h"
 #import "HistoryVideoViewController.h"
+#import <UMSocialSnsService.h>
+#import <UMSocial.h>
 
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 
 
-@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate,littleInteractiveViewDelegate>
+@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate,littleInteractiveViewDelegate,UMSocialUIDelegate>
 
 
 
@@ -65,10 +67,10 @@
     NSMutableString * filePath = [[NSMutableString alloc]initWithString:  [NSString stringWithFormat:@"%@%@.m3u8",HLS_URL,self.liveModel.videoId]];
     filePath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
     
+
     if (!self.playerView.isPlaying) {
     
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
@@ -86,20 +88,14 @@
         
     }
 
+
     [self addView];
     
     
-
-   
-
-
     [self beginTimer];
-
     
     self.isHistory = NO;
 }
-
-
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,6 +112,34 @@
     [super viewWillDisappear:animated];
     [self.playerView.player pause];
 }
+
+// 分享按钮点击方法
+- (void)shareVideoAction:(UIButton *)button {
+    
+    [UMSocialData defaultData].extConfig.title = @"转发到微博";
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.liveModel.spic];
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c804167e58e5c90000c6b"
+                                      shareText:[NSString stringWithFormat:@"我正在#战旗TV#观看大神%@的现场直播：【%@】，精彩炫酷，大家速速来围观！http://www.zhanqi.tv%@（分享自@战旗TV直播平台）",self.liveModel.nickname,self.liveModel.title,self.liveModel.url] // 分享的内容
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,UMShareToSina]
+                                       delegate:self];
+
+}
+
+// 实现回调方法
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response {
+    
+    // 根据responseCode得到发送的结果
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        NSLog(@"分享成功");
+    }else {
+        NSLog(@"%d",response.responseCode);
+    }
+    
+}
+
 #pragma mark -- 根据是否是历史视频更改UI
 - (void)isHistoryVideo
 {
@@ -151,15 +175,12 @@
         weakSelf.playerView.frame = CGRectMake(0, 20, 414, 250);
         weakSelf.playerView.playerLayer.frame = weakSelf.playerView.frame;
         [weakSelf.view.layer addSublayer:weakSelf.playerView.playerLayer];
+//        [weakSelf.view addSubview:weakSelf.littleView];
     };
+    [self.littleView removeFromSuperview];
     [self presentViewController:playerVC animated:YES completion:nil];
 }
 
-- (void)shareVideoAction:(UIButton *)button
-{
-    
-    
-}
 - (void)playOrPauseAction:(UIButton *)buttton
 {
     if (self.isPlaying) {
@@ -216,7 +237,7 @@
     self.littleView.nowTimeLabel.text = [NSString getStringFormatByTime:f];
     self.littleView.progressSlider.value = f / CMTimeGetSeconds(self.playerView.playerItem.duration);
     static int i = 1;
-    if (i % 5 == 0) {
+    if (i % 7 == 0) {
         self.littleView.hidden = YES;
     }
     i++;
@@ -334,7 +355,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     
     [self.playerView.playerLayer removeFromSuperlayer];
-    
+    [self.littleView removeFromSuperview];
 }
 
 
@@ -345,8 +366,12 @@
     filePath=[filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
+    self.littleView = [[LittleInteractiveView alloc] initWithFrame:self.playerView.frame];
+    [self isHistoryVideo];
+    self.littleView.delegate = self;
     
     [self.view.layer addSublayer:self.playerView.playerLayer];
+    [self.view addSubview:self.littleView];
     
 }
 

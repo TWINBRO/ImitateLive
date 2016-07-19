@@ -14,17 +14,30 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+
   - HyphenateFullSDK (3.1.4)
+
+  - AVOSCloud (3.3.5)
+  - AVOSCloudIM (3.3.5):
+    - AVOSCloud
+
   - MJRefresh (3.1.10)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - UMengSocialCOM (5.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+
   - HyphenateFullSDK (from `https://github.com/easemob/hyphenate-full-cocoapods.git`)
+
+  - AVOSCloud
+  - AVOSCloudIM
+
   - MJRefresh (~> 3.1.9)
   - SDWebImage (~> 3.8.1)
+  - UMengSocialCOM (~> 5.2.1)
 
 EXTERNAL SOURCES:
   HyphenateFullSDK:
@@ -37,10 +50,20 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+
   HyphenateFullSDK: 0640f9710da83da7a08928f074da718ed3368277
+
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
+  AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
+
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
+
 
 PODFILE CHECKSUM: 0daa112993fad072f53354c135a213515f16320f
+
+PODFILE CHECKSUM: c18bcc133e15efbab7f4f28017b7a3a57164e9c6
+
 
 COCOAPODS: 1.0.1

@@ -41,6 +41,7 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+
 			<string>Copyright (c) 2016 Hyphenate Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63,6 +64,19 @@ SOFTWARE.
 </string>
 			<key>Title</key>
 			<string>HyphenateFullSDK</string>
+
+			<string>Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html</string>
+			<key>Title</key>
+			<string>AVOSCloud</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html</string>
+			<key>Title</key>
+			<string>AVOSCloudIM</string>
+
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -118,6 +132,15 @@ THE SOFTWARE.
 </string>
 			<key>Title</key>
 			<string>SDWebImage</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2011 - 2016 UMeng.com. All rights reserved.
+</string>
+			<key>Title</key>
+			<string>UMengSocialCOM</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

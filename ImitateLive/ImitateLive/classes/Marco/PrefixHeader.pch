@@ -18,7 +18,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CommonString.h"
 #import <MJRefresh/MJRefresh.h>
-
+#import <AVOSCloud/AVOSCloud.h>
+// 如果使用了实时通信模块，请添加以下导入语句：
+#import <AVOSCloudIM/AVOSCloudIM.h>
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
