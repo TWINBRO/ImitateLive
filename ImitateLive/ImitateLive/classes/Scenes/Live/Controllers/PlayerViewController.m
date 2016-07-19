@@ -12,6 +12,8 @@
 #import "DefinitionView.h"
 #import "SettingView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <UMSocialSnsService.h>
+#import <UMSocial.h>
 
 // 枚举值，包含水平移动方向和垂直移动方向
 typedef NS_ENUM(NSInteger, PanDirection){
@@ -32,7 +34,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     BigInteractiveViewDelegate,
     DefinitionViewDelegate,
     settingViewDelegate,
-    UIGestureRecognizerDelegate
+    UIGestureRecognizerDelegate,
+    UMSocialUIDelegate
 >
 
 @property (assign, nonatomic) CATransform3D myTransform;// 旋转屏幕
@@ -148,10 +151,18 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.continuePlaying(self.playerView);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-//TODO: 分享按钮
+// 分享按钮
 - (void)shareVideoAction:(UIButton *)button
 {
-    
+    [UMSocialData defaultData].extConfig.title = @"转发到微博";
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.liveModel.spic];
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c804167e58e5c90000c6b"
+                                      shareText:[NSString stringWithFormat:@"我正在#战旗TV#观看大神%@的现场直播：【%@】，精彩炫酷，大家速速来围观！http://www.zhanqi.tv%@（分享自@战旗TV直播平台）",self.liveModel.nickname,self.liveModel.title,self.liveModel.url] // 分享的内容
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,UMShareToSina]
+                                       delegate:self];
 }
 // 播放按钮
 - (void)playOrPauseAction:(UIButton *)buttton
