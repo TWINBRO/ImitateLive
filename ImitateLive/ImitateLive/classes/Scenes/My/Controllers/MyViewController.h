@@ -10,4 +10,6 @@
 
 @interface MyViewController : BaseViewController
 
+@property (strong, nonatomic) UIButton *btn;
+
 @end

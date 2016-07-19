@@ -77,8 +77,6 @@ static NSString * const headID = @"head";
         [self requestHomeData];
     }];
     
-    
-
 }
 
 

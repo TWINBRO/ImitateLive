@@ -10,6 +10,7 @@
 #import "RegistrViewController.h"
 #import "LoginRequest.h"
 #import "FileDataHandle.h"
+#import "MyViewController.h"
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
@@ -68,18 +69,12 @@
         [request loginRequestWithUsername:self.userNameTextField.text password:self.passwordTextField.text success:^(NSDictionary *dic) {
 
             NSLog(@"login success = %@",dic);
-            
-            
-            User *user = nil;
-            
-            
 
-//            NSLog(@"login success = %@",dic);
+            User *user = nil;
 
             long code = [[dic objectForKey:@"code"] longValue];
             //        NSString *code = [[dic objectForKey:@"code"] stringValue];
             if ((code == 1103) && ([dic[@"success"] intValue] == 1)) {
-                
                 
                 user = [[User alloc] init];
                 [user setValuesForKeysWithDictionary:dic[@"data"]];
@@ -90,9 +85,7 @@
                 [[FileDataHandle shareInstance] setUserId:user.userId];
                 [[FileDataHandle shareInstance] setAvatar:user.avatar];
                 [[FileDataHandle shareInstance] setLoginState:YES];
-                
-                
-                
+
                 _isLogin = YES;
                 NSString *login = [NSString stringWithFormat:@"%d",_isLogin];
                 NSString *avatar = [[dic objectForKey:@"data"] objectForKey:@"avatar"];
@@ -110,11 +103,9 @@
                 [self.view addSubview:alertView];
                 // 登录成功之后消失
                 [self.navigationController popToRootViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
             }
-            
-            
-            
             
         } failure:^(NSError *error) {
             NSLog(@"login failure = %@",error);

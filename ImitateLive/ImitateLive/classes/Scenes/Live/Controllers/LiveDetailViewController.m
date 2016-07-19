@@ -69,10 +69,25 @@
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
     
+    if (!self.playerView.isPlaying) {
     
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
+        imgView.image = [UIImage imageNamed:@"load"];
+        
+        
+        [self.view addSubview:imgView];
+        
+        
+        [self.view.layer addSublayer:self.playerView.playerLayer];
     
+    }else{
+    
+        [self.view.layer addSublayer:self.playerView.playerLayer];
+        
+    }
+
     [self addView];
-    [self.view.layer addSublayer:self.playerView.playerLayer];
+    
     
 
    

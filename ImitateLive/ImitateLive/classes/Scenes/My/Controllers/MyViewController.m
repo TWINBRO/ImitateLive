@@ -42,12 +42,17 @@
 - (void)addRightNavigationItem {
     
     // 自定义rightBarButton
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"登录" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(0, 0, 40, 30);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    [btn addTarget:self action:@selector(rightBarItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
+        [_btn setTitle:@"切换账号" forState:UIControlStateNormal];
+    }else {
+        [_btn setTitle:@"登录" forState:UIControlStateNormal];
+    }
+    
+    [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _btn.frame = CGRectMake(0, 0, 80, 30);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btn];
+    [_btn addTarget:self action:@selector(rightBarItemClicked:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -99,6 +104,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self addRightNavigationItem];
+    
     if (indexPath.section == 0) {
         MyHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHeaderTableViewCell_Identify];
         
@@ -128,9 +136,6 @@
         return cell;
     }
     
-    
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -151,7 +156,7 @@
     if (indexPath.section == 3) {
 //        NSString *lastUserID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 //        [[NSUserDefaults standardUserDefaults] setObject:lastUserID forKey:@"lastUserID"];
-        
+        [self.btn setTitle:@"登录" forState:UIControlStateNormal];
         
         //注销
         [[FileDataHandle shareInstance] setUsername:nil];
@@ -159,7 +164,6 @@
         [[FileDataHandle shareInstance] setUserId:nil];
         [[FileDataHandle shareInstance] setAvatar:nil];
         [[FileDataHandle shareInstance] setLoginState:NO];
-        
         
         
         [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:@"isLogin"];

@@ -22,4 +22,6 @@
 
 - (id)initWithUrl:(NSString *)url frame:(CGRect)frame;
 
+@property (assign, nonatomic) BOOL isPlaying;
+
 @end

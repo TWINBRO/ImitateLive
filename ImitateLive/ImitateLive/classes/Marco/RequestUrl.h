@@ -17,7 +17,7 @@
 #define LiveDetailRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/live.roomid/%@.json?os=1&sid=&ver=3.1.4",ID]
 
 // 直播间主播历史视频请求url
-#define AuthorHistoryVideoRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/video.anchor_hots/%@-20-1.json?os=1&ver=3.1.4 ",ID]
+#define AuthorHistoryVideoRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/video.anchor_hots/%@-20-1.json?os=1&ver=3.1.4",ID]
 
 // 所有栏目请求Url
 #define AllColumnRequest_Url(ID) [NSString stringWithFormat:@"http://www.zhanqi.tv/api/static/game.lists/18-%@.json?ver=2.7.1&os=3&time1468331065160",ID]

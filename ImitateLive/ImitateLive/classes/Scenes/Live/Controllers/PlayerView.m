@@ -32,7 +32,7 @@
         _player = [AVPlayer playerWithPlayerItem:_playerItem];
         _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
         _playerLayer.frame = frame;
-        
+//        _isPlaying = YES;
         [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
@@ -43,6 +43,9 @@
     if ([keyPath isEqualToString:@"status"]) {
         if (_player.status == AVPlayerStatusReadyToPlay) {
             [_player play];
+            _isPlaying = YES;
+        }else if (_player.status == AVPlayerStatusFailed){
+            _isPlaying = NO;
         }
     }
 }

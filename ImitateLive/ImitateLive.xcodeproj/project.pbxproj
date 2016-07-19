@@ -449,6 +449,7 @@
 		D67B01921D376CA80072967A /* BriefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D67B01901D376CA80072967A /* BriefTableViewCell.xib */; };
 		D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D67B01941D3799160072967A /* HistoryVideoViewCell.m */; };
 		D67B01971D3799160072967A /* HistoryVideoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D67B01951D3799160072967A /* HistoryVideoViewCell.xib */; };
+		D689EC151D3DD98E00FAB068 /* load.png in Resources */ = {isa = PBXBuildFile; fileRef = D689EC141D3DD98E00FAB068 /* load.png */; };
 		D6A7E7751D34DF96006649CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7741D34DF96006649CC /* main.m */; };
 		D6A7E77B1D34DF96006649CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E77A1D34DF96006649CC /* ViewController.m */; };
 		D6A7E77E1D34DF96006649CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A7E77C1D34DF96006649CC /* Main.storyboard */; };
@@ -1007,6 +1008,7 @@
 		D67B01931D3799160072967A /* HistoryVideoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryVideoViewCell.h; path = ImitateLive/classes/Scenes/Live/Controllers/HistoryVideoViewCell.h; sourceTree = SOURCE_ROOT; };
 		D67B01941D3799160072967A /* HistoryVideoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryVideoViewCell.m; path = ImitateLive/classes/Scenes/Live/Controllers/HistoryVideoViewCell.m; sourceTree = SOURCE_ROOT; };
 		D67B01951D3799160072967A /* HistoryVideoViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryVideoViewCell.xib; path = ImitateLive/classes/Scenes/Live/Controllers/HistoryVideoViewCell.xib; sourceTree = SOURCE_ROOT; };
+		D689EC141D3DD98E00FAB068 /* load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load.png; sourceTree = "<group>"; };
 		D6A7E7701D34DF96006649CC /* ImitateLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImitateLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A7E7741D34DF96006649CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6A7E7791D34DF96006649CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1425,6 +1427,7 @@
 		D65E20951D35074100BA0BF0 /* 战旗资源 */ = {
 			isa = PBXGroup;
 			children = (
+				D689EC141D3DD98E00FAB068 /* load.png */,
 				D6F864EB1D37C1F900A3EBA4 /* crash@3x.png */,
 				D6F334BB1D38856A004B7A6B /* lun.png */,
 				D6F864EC1D37C1F900A3EBA4 /* crash@2x.png */,
@@ -2190,6 +2193,7 @@
 				D65E223C1D35074200BA0BF0 /* bg_sleeptimer@2x.png in Resources */,
 				D6A7E7831D34DF96006649CC /* LaunchScreen.storyboard in Resources */,
 				D65E22C21D35074200BA0BF0 /* ic_level_by_03_no@2x.png in Resources */,
+				D689EC151D3DD98E00FAB068 /* load.png in Resources */,
 				D65E22901D35074200BA0BF0 /* ic_bb_rank@2x.png in Resources */,
 				D65E22B21D35074200BA0BF0 /* ic_letter@2x.png in Resources */,
 				D65E22481D35074200BA0BF0 /* btn_column_normal.png in Resources */,

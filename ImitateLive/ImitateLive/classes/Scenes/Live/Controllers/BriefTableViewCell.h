@@ -11,6 +11,12 @@
 
 #import "LiveModel.h"
 
+@protocol AddAlertControllerDelegate <NSObject>
+
+- (void)addAlertController;
+
+@end
+
 @interface BriefTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 
@@ -29,5 +35,7 @@
 @property (strong, nonatomic) VideoModel *videoModel;
 
 @property (strong, nonatomic) LiveModel *liveModel;
+
+@property (weak, nonatomic) id<AddAlertControllerDelegate> alertDelegate;
 
 @end

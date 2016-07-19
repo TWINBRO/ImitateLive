@@ -24,4 +24,6 @@
 
 @property (strong, nonatomic) LiveModel *liveModel;
 
+@property (strong, nonatomic) NSString *isLive;
+
 @end
