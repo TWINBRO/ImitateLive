@@ -54,6 +54,7 @@
 		D60D8CD01D367017001B6BCE /* MyHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CCE1D367017001B6BCE /* MyHeaderTableViewCell.xib */; };
 		D60D8CD21D36745C001B6BCE /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD11D36745C001B6BCE /* avatar.png */; };
 		D60D8CD41D367508001B6BCE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D8CD31D367508001B6BCE /* background.png */; };
+		D60E79381D3F0AD20055970B /* SeverHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = D60E79371D3F0AD20055970B /* SeverHandle.m */; };
 		D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */; };
 		D610B2021D366D8100B5E6E2 /* LittleInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */; };
 		D610B2051D366DD100B5E6E2 /* BigInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */; };
@@ -615,6 +616,8 @@
 		D60D8CCE1D367017001B6BCE /* MyHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyHeaderTableViewCell.xib; path = ImitateLive/classes/Appdelegate/MyHeaderTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		D60D8CD11D36745C001B6BCE /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		D60D8CD31D367508001B6BCE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		D60E79361D3F0AD20055970B /* SeverHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeverHandle.h; sourceTree = "<group>"; };
+		D60E79371D3F0AD20055970B /* SeverHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeverHandle.m; sourceTree = "<group>"; };
 		D610B1FB1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		D610B1FC1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnDetailCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2064,6 +2067,8 @@
 				D6BB79801D3A021C00386DF8 /* FileDataHandle.m */,
 				D6BB79811D3A021C00386DF8 /* DataBaseHandle.h */,
 				D6BB79821D3A021C00386DF8 /* DataBaseHandle.m */,
+				D60E79361D3F0AD20055970B /* SeverHandle.h */,
+				D60E79371D3F0AD20055970B /* SeverHandle.m */,
 				D6BB79831D3A021C00386DF8 /* User.h */,
 				D6BB79841D3A021C00386DF8 /* User.m */,
 				D60D85F91D3679F500D08387 /* DLSlideView */,
@@ -2812,6 +2817,7 @@
 				D6F864C51D3741C600A3EBA4 /* LoginViewController.m in Sources */,
 				D6F864E91D37AB3000A3EBA4 /* LoginRequest.m in Sources */,
 				D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */,
+				D60E79381D3F0AD20055970B /* SeverHandle.m in Sources */,
 				D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */,
 				D6BB79851D3A021C00386DF8 /* FileDataHandle.m in Sources */,
 				D6A7E7E11D35384F006649CC /* WTImageScroll.m in Sources */,

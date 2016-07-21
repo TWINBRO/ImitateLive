@@ -47,6 +47,7 @@
     UIStoryboard *mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RegistrViewController *registerVC = [mainsb instantiateViewControllerWithIdentifier:@"RegistrViewController"];
     [self.navigationController pushViewController:registerVC animated:YES];
+    [self presentViewController:registerVC animated:YES completion:nil];
 //    self.hidesBottomBarWhenPushed = NO;
 }
 
@@ -70,11 +71,12 @@
             if (user != nil) {
                 NSLog(@"登陆成功");
                 _isLogin = YES;
-                
+
                 User *user = nil;
                 user = [[User alloc] init];
                 user.userName = _userNameTextField.text;
                 user.password = _passwordTextField.text;
+
                 
                 [[FileDataHandle shareInstance] setUsername:_userNameTextField.text];
                 [[FileDataHandle shareInstance] setPassword:_passwordTextField.text];
@@ -84,10 +86,14 @@
 //                if (_delegate&&[_delegate respondsToSelector:@selector(createClientID:)]) {
 //                    [_delegate createClientID:user.userName];
 //                }
+
+         
+                
+
                 
                 NSString *login = [NSString stringWithFormat:@"%d",_isLogin];
                 [[NSUserDefaults standardUserDefaults] setObject:self.userNameTextField.text forKey:@"userName"];
-                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:self.userNameTextField.text] forKey:@"avatar"];
+//                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:self.userNameTextField.text] forKey:@"avatar"];
                 
                 [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"isLogin"];
                 // 立即保存
@@ -102,10 +108,7 @@
                 
             }
         }];
-        
-        
-        
-    
+  
     }
 }
 
