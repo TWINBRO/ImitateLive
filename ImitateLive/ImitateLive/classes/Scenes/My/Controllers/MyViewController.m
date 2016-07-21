@@ -111,31 +111,55 @@
     
     if (indexPath.section == 0) {
         MyHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHeaderTableViewCell_Identify];
-        NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
-        
-        NSString *avatarUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
-        
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
-            
-            if (avatarUrl) {
-                [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",avatarUrl]]];
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
+            NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+            if (currentUsername) {
                 
-                NSLog(@"%@",avatarUrl);
+                NSString *cql = [NSString stringWithFormat:@"select avatar from %@ where currentUsername = '%@'", @"TodoFolder",currentUsername];
+                [AVQuery doCloudQueryInBackgroundWithCQL:cql callback:^(AVCloudQueryResult *result, NSError *error)
+                 {
+                     NSLog(@"results:%@", result.results);
+                     NSLog(@"error %@",error);
+                     
+                     NSDictionary *selectResult = [result.results[0] objectForKey:@"localData"];// 读取 title
+                     
+                     NSString *avatarUrl = [selectResult objectForKey:@"avatar"];
+                     
+                     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
+                         
+                         if (avatarUrl) {
+                             [cell.avatarImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",avatarUrl]]];
+                             
+                             NSLog(@"%@",avatarUrl);
+                             
+                         }else {
+                             
+                             cell.avatarImgView.image = [UIImage imageNamed:@"avatar.png"];
+                         }
+                         
+                         if (currentUsername) {
+                             cell.nameLabel.text = currentUsername;
+                         }else {
+                             
+                             cell.nameLabel.text = @"未登录";
+                         }
+                         
+                     }
+                     
+                 }];
                 
             }else {
                 
                 cell.avatarImgView.image = [UIImage imageNamed:@"avatar.png"];
-            }
-            
-            if (currentUsername) {
-                cell.nameLabel.text = currentUsername;
-            }else {
-            
                 cell.nameLabel.text = @"未登录";
             }
             
-        }
+        }else {
         
+            cell.avatarImgView.image = [UIImage imageNamed:@"avatar.png"];
+            cell.nameLabel.text = @"未登录";
+            
+        }
         return cell;
     }else {
     

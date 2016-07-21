@@ -110,7 +110,7 @@ static NSString * const headID = @"head";
 //                [weakSelf.homeDataDetail addObject:listModel];
 //                [array addObject:listModel];
                 
-                LiveModel *liveModel = [LiveModel new];
+                LiveModel *liveModel = [[LiveModel alloc]init];
                 [liveModel setValuesForKeysWithDictionary:dictory];
                 [weakSelf.homeDataDetail addObject:liveModel];
                 [array addObject:liveModel];

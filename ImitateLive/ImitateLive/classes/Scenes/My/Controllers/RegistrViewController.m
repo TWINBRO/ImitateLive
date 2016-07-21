@@ -8,6 +8,7 @@
 
 #import "RegistrViewController.h"
 #import "RegisterRequest.h"
+#import "LoginViewController.h"
 @interface RegistrViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -78,18 +79,18 @@
         AVUser *user = [AVUser user];// 新建 AVUser 对象实例
         user.username = self.usernameTextField.text;// 设置用户名
         user.password =  self.passwordTextField.text;// 设置密码
-//        user.email = @"tom@leancloud.cn";// 设置邮箱
-//        user.email = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
         
         AVObject *todoFolder = [[AVObject alloc] initWithClassName:@"TodoFolder"];// 构建对象
-        [todoFolder setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:self.usernameTextField.text];// 设置名称
+        [todoFolder setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:@"avatar"];// 设置名称
+        [todoFolder setObject:self.usernameTextField.text forKey:@"currentUsername"];
         [todoFolder saveInBackground];// 保存到云端
+        
         [todoFolder saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // 存储成功
                 NSLog(@"%@",todoFolder.objectId);// 保存成功之后，objectId 会自动从云端加载到本地
 //                [[NSUserDefaults standardUserDefaults] setObject:todoFolder.objectId forKey:self.usernameTextField.text];
-                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:self.usernameTextField.text];
+//                [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"] forKey:self.usernameTextField.text];
             } else {
                 // 失败的话，请检查网络环境以及 SDK 配置是否正确
             }
@@ -98,11 +99,12 @@
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // 注册成功
-                
 
                 // 界面消失
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                LoginViewController *loginVC = (LoginViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+                [self.navigationController popToViewController:loginVC animated:YES];
                 
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
             } else {
                 // 失败的原因可能有多种，常见的是用户名已经存在。
