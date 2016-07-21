@@ -66,32 +66,29 @@
         
     }else{
 
-        
         [AVUser logInWithUsernameInBackground:self.userNameTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
             if (user != nil) {
                 NSLog(@"登陆成功");
                 _isLogin = YES;
                 
-                
                 User *user = nil;
-
                 user = [[User alloc] init];
                 user.userName = _userNameTextField.text;
                 user.password = _passwordTextField.text;
                 
-                
-                
-                
                 [[FileDataHandle shareInstance] setUsername:_userNameTextField.text];
                 [[FileDataHandle shareInstance] setPassword:_passwordTextField.text];
                 [[FileDataHandle shareInstance] setLoginState:YES];
-
+                
+                // 代理回调创建clientID
+//                if (_delegate&&[_delegate respondsToSelector:@selector(createClientID:)]) {
+//                    [_delegate createClientID:user.userName];
+//                }
                 
                 NSString *login = [NSString stringWithFormat:@"%d",_isLogin];
                 [[NSUserDefaults standardUserDefaults] setObject:self.userNameTextField.text forKey:@"userName"];
                 [[NSUserDefaults standardUserDefaults] setObject:[[NSUserDefaults standardUserDefaults] objectForKey:self.userNameTextField.text] forKey:@"avatar"];
                 
-
                 [[NSUserDefaults standardUserDefaults]setObject:login forKey:@"isLogin"];
                 // 立即保存
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -99,7 +96,7 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
 
                 [self dismissViewControllerAnimated:YES completion:nil];
-
+                
             } else {
 
                 
