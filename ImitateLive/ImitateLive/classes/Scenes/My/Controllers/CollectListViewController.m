@@ -9,29 +9,28 @@
 #import "CollectListViewController.h"
 #import "LiveCollectionViewCell.h"
 #import "LiveDetailViewController.h"
-#import "DataBaseHandle.h"
+//#import "DataBaseHandle.h"
+#import "SeverHandle.h"
 #import "LiveRequest.h"
 #import "VideoModel.h"
+#import "FileDataHandle.h"
 @interface CollectListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UICollectionView *collectCollectionView;
 @property (strong, nonatomic) NSMutableArray *allLivesArray;
 //@property (strong, nonatomic) NSMutableArray *allIDArr;
 //@property (strong, nonatomic) NSMutableArray *presentLivesArr;
-
+@property (strong, nonatomic) NSMutableArray * LiveModelArray;
 @end
+
+#define kLiveModelArchiverKey @"LiveModel"
+
 #define LiveCollectionViewCell_Identify @"LiveCollectionViewCell_Identify"
 @implementation CollectListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订阅列表";
-
-    
     self.allLivesArray = [NSMutableArray array];
-    
-    
-//    self.allIDArr = [NSMutableArray array];
-//    self.presentLivesArr = [NSMutableArray array];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(self.view.bounds.size.width/2.0, 174);
@@ -46,37 +45,74 @@
     [self.collectCollectionView registerNib:[UINib nibWithNibName:@"LiveCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:LiveCollectionViewCell_Identify];
     
     [self.view addSubview:self.collectCollectionView];
-    [self getAllLives];
+    [self selectAllLiveModel];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"NOTIFICATION" object:nil];
+}
+
+- (void)refreshView{
+    
+    [self selectAllLiveModel];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NOTIFICATION" object:nil];
     
 }
 
-//获取当前用户收藏过的活动
-- (void)getAllLives
+#pragma mark 获取所有活动
+- (void)selectAllLiveModel
 {
-    // 从数据库中读取活动对象数据
-    self.allLivesArray = [[DataBaseHandle shareInstance] selectAllLiveModel];
-    if (_allLivesArray.count == 0) {
-        NSLog(@"暂无收藏！");
-    }
-    
-//    for (int i = 0; i < self.allLivesArray.count; i ++) {
-//        LiveModel *model = [LiveModel new];
-//        model = self.allLivesArray[i];
-//        
-//        NSLog(@"===========%@",model.title);
-//        [self.allIDArr addObject:model.liveID];
-////        [self requestListDetail:model.liveID];
-//    }
-//    
-//        for (int i = self.allIDArr.count-1; i >= 0; i --) {
-//            [self requestListDetail:self.allIDArr[i]];
-//    
-//        }
-    
-    
-    
+    NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+    _LiveModelArray = [NSMutableArray array];
+    NSString *cql = [NSString stringWithFormat:@"select ID,data from %@ where userName = '%@'", @"CollectList",currentUsername];
+    [AVQuery doCloudQueryInBackgroundWithCQL:cql callback:^(AVCloudQueryResult *result, NSError *error)
+     {
+         NSLog(@"seleteLiveAll result = %@",result.results);
+         NSLog(@"selectLiveAll error = %@",error);
+         
+         if (result.results) {
+             LiveModel *livemodel = nil;
+             NSMutableArray *mutArray = [NSMutableArray array];
+             for (int i = 0; i < result.results.count; i++) {
+                 NSDictionary *selectResult = [result.results[i] objectForKey:@"localData"];
+                 NSString *ID = [selectResult objectForKey:@"ID"];
+                 NSLog(@"%@",ID);
+                 NSData * data = [selectResult objectForKey:@"data"];
+                 NSString * archiverKey = [NSString stringWithFormat:@"%@%@",kLiveModelArchiverKey,ID];
+                 livemodel = [[FileDataHandle shareInstance] unarchiverObject:data forKey:archiverKey];
+                 [mutArray addObject:livemodel];
+             }
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 _LiveModelArray = mutArray;
+                 NSLog(@"%@",_LiveModelArray);
+                 self.allLivesArray = mutArray;
+                 [self.collectCollectionView reloadData];
+             });
+         }
+         
+         
+         
+     }];
+    //    return _LiveModelArray;
     
 }
+
+
+
+//获取当前用户收藏过的活动
+//- (void)getAllLives
+//{
+//    // 从数据库中读取活动对象数据
+//    [[SeverHandle shareInstance] selectAllLiveModel];
+//    self.allLivesArray = [SeverHandle shareInstance] allLives:
+//    NSLog(@"allLivesArray%@",_allLivesArray);
+//    if (_allLivesArray.count == 0) {
+//        NSLog(@"暂无收藏！");
+//    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.collectCollectionView reloadData];
+//    });
+//
+//}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
@@ -88,32 +124,6 @@
     return _allLivesArray.count;
     
 }
-
-// 请求直播间简介
-//- (void)requestListDetail:(NSString *)ID {
-//    
-//    __weak typeof(self) weakSelf = self;
-//    LiveRequest *request = [[LiveRequest alloc] init];
-//    [request liveDetailRequestWithParameter:@{@"id":ID} success:^(NSDictionary *dic) {
-//        
-//        VideoModel *model = [VideoModel new];
-//        [model setValuesForKeysWithDictionary:dic[@"data"]];
-//        [weakSelf.presentLivesArr addObject:model.status];
-//        
-//        NSLog(@"=======&&&%@",self.presentLivesArr);
-//        
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [weakSelf.collectCollectionView reloadData];
-//        });
-//        
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"error = %@",error);
-//        
-//    }];
-//    
-//}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -8,7 +8,8 @@
 
 #import "BriefViewController.h"
 #import "BriefTableViewCell.h"
-#import "DataBaseHandle.h"
+//#import "DataBaseHandle.h"
+#import "SeverHandle.h"
 #import "LoginViewController.h"
 @interface BriefViewController ()<UITableViewDataSource,UITableViewDelegate,AddAlertControllerDelegate>
 
@@ -58,7 +59,7 @@
     cell.alertDelegate = self;
     
     // 判断是否已经收藏
-    BOOL isFavorite = [[DataBaseHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
+    BOOL isFavorite = [[SeverHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
     
         if (isFavorite) {
             [cell.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
@@ -79,7 +80,7 @@
 
 - (void)addAlertController {
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能关注" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能订阅" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

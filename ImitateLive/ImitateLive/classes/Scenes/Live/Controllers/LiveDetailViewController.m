@@ -18,20 +18,13 @@
 #import "BriefViewController.h"
 #import "VideoModel.h"
 #import "HistoryVideoViewController.h"
+#import "ChatViewController.h"
 #import <UMSocialSnsService.h>
 #import <UMSocial.h>
 
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 
-
-@interface LiveDetailViewController ()
-<
-    DLTabedSlideViewDelegate,
-    HistoryVideoDelegate,
-    UIApplicationDelegate,
-    littleInteractiveViewDelegate,
-    UMSocialUIDelegate
->
+@interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate,littleInteractiveViewDelegate,UMSocialUIDelegate,DanMuDelegate>
 
 
 
@@ -53,6 +46,7 @@
 
 @property (strong, nonatomic) HistoryVideoViewController *historyVideoVC;
 
+@property (strong, nonatomic) ChatViewController *chatVC;
 
 @property (strong, nonatomic) UIApplication *application;
 
@@ -61,6 +55,9 @@
 @property (assign, nonatomic) BOOL isPlaying;
 // 是否是历史视频
 @property (assign, nonatomic) BOOL isHistory;
+
+
+@property (strong, nonatomic) NSMutableArray *danMuArr;
 
 @end
 
@@ -71,21 +68,20 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    _danMuArr = [NSMutableArray array];
+    
+    
     NSMutableString * filePath = [[NSMutableString alloc]initWithString:  [NSString stringWithFormat:@"%@%@.m3u8",HLS_URL,self.liveModel.videoId]];
     filePath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
     //NSURL *videoUrl = [NSURL URLWithString: filePath ];
     self.playerView = [[PlayerView alloc]initWithUrl:filePath frame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
-    
-
     if (!self.playerView.isPlaying) {
     
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 250)];
         imgView.image = [UIImage imageNamed:@"load"];
         
-        
         [self.view addSubview:imgView];
-        
         
         [self.view.layer addSublayer:self.playerView.playerLayer];
     
@@ -94,14 +90,81 @@
         [self.view.layer addSublayer:self.playerView.playerLayer];
         
     }
-
-
     [self addView];
-    
-    
     [self beginTimer];
-    
     self.isHistory = NO;
+}
+
+- (void)sendDanMuWithArray:(NSMutableArray *)array {
+
+    
+    self.danMuArr = array;
+    
+//    for (int i = 0; i < self.danMuArr.count; i ++) {
+        AVIMTextMessage *message = self.danMuArr[self.danMuArr.count-1];
+        [self createLabelWithTitle:message.text];
+//    }
+    
+}
+
+/**
+ *  创建界面上显示的弹幕Label
+ *
+ *  @param titleString 显示的字幕
+ */
+- (void)createLabelWithTitle:(NSString *)titleString {
+    
+    NSString *waitDisplayString = titleString;
+    if (!(titleString && titleString.length != 0)) {
+        u_int32_t index = arc4random_uniform((u_int32_t)self.danMuArr.count);
+        waitDisplayString = self.danMuArr[index];
+    }
+    
+    // y 坐标
+    int yPoint = arc4random_uniform(CGRectGetHeight([UIScreen mainScreen].bounds)-45-25)+45;
+    // 当期弹幕Label的长度
+    float labelLength = waitDisplayString.length*17;
+    
+    UILabel *waitDisplayLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds), yPoint, labelLength, 25)];
+    waitDisplayLabel.text = waitDisplayString;
+    waitDisplayLabel.backgroundColor = [UIColor clearColor];
+    waitDisplayLabel.textColor = [self randomColor];
+    
+    // 若弹幕为自己发送的，将Label的边框显示为白色并且宽带为1
+    if (titleString && titleString.length != 0) {
+        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        waitDisplayLabel.layer.borderWidth = 1.0f;
+    }
+    
+    [self.view addSubview:waitDisplayLabel];
+    
+    // 给当前弹幕Label增加向左移动的动画
+    [self moveAnimation:waitDisplayLabel];
+}
+
+/**
+ *  产生随意的Label颜色
+ *
+ *  @return 对应的Label颜色
+ */
+- (UIColor *)randomColor {
+    UIColor *randomColorSend = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
+    return randomColorSend;
+}
+
+/**
+ *  弹幕Label向左滚动动作
+ *
+ *  @param waitMoveLabel 待滚动的Label的距离
+ */
+- (void)moveAnimation:(UILabel *)waitMoveLabel {
+    [UIView animateWithDuration:4 animations:^{
+        waitMoveLabel.center = CGPointMake(waitMoveLabel.center.x-CGRectGetMaxX(waitMoveLabel.frame), waitMoveLabel.center.y);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [waitMoveLabel removeFromSuperview];
+        }
+    }];
 }
 
 
@@ -294,18 +357,14 @@
         case 0:{
             self.briefVC = [[BriefViewController alloc] init];
             [self requestListDetail:self.liveModel.liveID];
-            
-            
             self.briefVC.liveModel = self.liveModel;
-            
-            
-            
             return _briefVC;
         }
         case 1:{
-            UIViewController *chatVC = [[UIViewController alloc] init];
-            self.view.backgroundColor = [UIColor whiteColor];
-            return chatVC;
+            self.chatVC = [[ChatViewController alloc] init];
+            self.chatVC.liveModel = self.liveModel;
+            self.chatVC.danmuDelegate = self;
+            return self.chatVC;
         }
         case 2:{
             _historyVideoVC = [[HistoryVideoViewController alloc] init];
