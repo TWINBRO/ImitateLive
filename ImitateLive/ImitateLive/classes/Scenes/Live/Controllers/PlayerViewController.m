@@ -14,6 +14,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <UMSocialSnsService.h>
 #import <UMSocial.h>
+#import "SendBarrageView.h"
 
 // 枚举值，包含水平移动方向和垂直移动方向
 typedef NS_ENUM(NSInteger, PanDirection){
@@ -35,7 +36,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     DefinitionViewDelegate,
     settingViewDelegate,
     UIGestureRecognizerDelegate,
-    UMSocialUIDelegate
+    UMSocialUIDelegate,
+    sendBarrageViewDelegate
 >
 
 @property (assign, nonatomic) CATransform3D myTransform;// 旋转屏幕
@@ -64,6 +66,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 /** 音量滑杆 */
 @property (nonatomic, strong) UISlider            *volumeViewSlider;
 
+@property (strong, nonatomic) SendBarrageView *sendView;// 写弹幕的视图
+@property (strong, nonatomic) NSMutableArray *danMuArr;
 @end
 
 @implementation PlayerViewController
@@ -112,6 +116,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [self continuePlaying];
     
     [self timerBegin];
+    
+    // 写弹幕的视图
+    self.sendView = [[SendBarrageView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
+    self.sendView.delegate = self;
+    [self.view addSubview:self.sendView];
+    self.sendView.hidden = YES;
 }
 
 
@@ -219,6 +229,67 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.interactiveView.hidden = YES;
     self.definitionView.hidden = NO;
 }
+#pragma mark -- 弹幕视图
+/**
+ *  创建界面上显示的弹幕Label
+ *
+ *  @param titleString 显示的字幕
+ */
+- (void)createLabelWithTitle:(NSString *)titleString {
+    
+    NSString *waitDisplayString = titleString;
+    if (!(titleString && titleString.length != 0)) {
+        u_int32_t index = arc4random_uniform((u_int32_t)self.danMuArr.count);
+        waitDisplayString = self.danMuArr[index];
+    }
+    
+    // y 坐标
+    int yPoint = arc4random_uniform(CGRectGetHeight([UIScreen mainScreen].bounds)-45-25)+45;
+    // 当期弹幕Label的长度
+    float labelLength = waitDisplayString.length*17;
+    
+    UILabel *waitDisplayLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds), yPoint, labelLength, 25)];
+    waitDisplayLabel.text = waitDisplayString;
+    waitDisplayLabel.backgroundColor = [UIColor clearColor];
+    waitDisplayLabel.textColor = [self randomColor];
+    
+    // 若弹幕为自己发送的，将Label的边框显示为白色并且宽带为1
+    if (titleString && titleString.length != 0) {
+        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        waitDisplayLabel.layer.borderWidth = 1.0f;
+    }
+    
+    [self.view addSubview:waitDisplayLabel];
+    
+    // 给当前弹幕Label增加向左移动的动画
+    [self moveAnimation:waitDisplayLabel];
+}
+
+/**
+ *  产生随意的Label颜色
+ *
+ *  @return 对应的Label颜色
+ */
+- (UIColor *)randomColor {
+    UIColor *randomColorSend = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
+    return randomColorSend;
+}
+
+/**
+ *  弹幕Label向左滚动动作
+ *
+ *  @param waitMoveLabel 待滚动的Label的距离
+ */
+- (void)moveAnimation:(UILabel *)waitMoveLabel {
+    [UIView animateWithDuration:4 animations:^{
+        waitMoveLabel.center = CGPointMake(waitMoveLabel.center.x-CGRectGetMaxX(waitMoveLabel.frame), waitMoveLabel.center.y);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [waitMoveLabel removeFromSuperview];
+        }
+    }];
+}
+
 //TODO: 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
@@ -229,6 +300,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_on@2x"] forState:UIControlStateNormal];
         self.isBarrage = YES;
     }
+}
+- (void)sendBarrageAction:(UIButton *)button
+{
+    self.sendView.hidden = NO;
 }
 // 拖动进度条
 - (void)progressSLiderValueChangedAction:(UISlider *)progress
@@ -248,6 +323,11 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         //        [self.player pause];
     }
     [self timerBegin];
+}
+#pragma mark -- 发送弹幕代理
+- (void)sendBarrageClickAction:(UIButton *)button
+{
+    
 }
 #pragma mark --清晰度代理方法
 - (void)adjustDefinitionAction:(UIButton *)button definition:(Definition)definition

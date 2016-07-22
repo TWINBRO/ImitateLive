@@ -63,6 +63,12 @@
  *  @param progress 进度条
  */
 - (void)progressSLiderValueChangedAction:(UISlider *)progress;
+/**
+ *  点击发送弹幕方法
+ *
+ *  @param button 按钮
+ */
+- (void)sendBarrageAction:(UIButton *)button;
 @end
 
 @interface BigInteractiveView : UIView
@@ -81,9 +87,9 @@
 @property (strong, nonatomic) UIButton *lineBtn;// 主线按钮
 @property (strong, nonatomic) UIButton *definitionBtn;// 清晰度按钮
 @property (strong, nonatomic) UIButton *settingBtn;// 设置按钮
-@property (strong, nonatomic) UIButton *sendBtn;// 发送弹幕按钮
+@property (strong, nonatomic) UIButton *sendBtn;
 @property (strong, nonatomic) UIButton *isBarrage;// 是否打开弹幕按钮
-@property (strong, nonatomic) UITextField *barrageTextField;// 写弹幕
+
 
 // 历史视屏
 @property (strong, nonatomic) UISlider *progressSlider;// 进度条

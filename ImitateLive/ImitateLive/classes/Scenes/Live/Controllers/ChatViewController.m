@@ -241,13 +241,14 @@
     // 获取tableview的最后一行
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messageArr.count - 1 inSection:0];
     
+    
+    // 滑到tableview最后一行的最小面
+    [self.chatTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
     if (_danmuDelegate != nil && [_danmuDelegate respondsToSelector:@selector(sendDanMuWithArray:)]) {
         [_danmuDelegate sendDanMuWithArray:self.messageArr];
     }
     
-    
-    // 滑到tableview最后一行的最小面
-    [self.chatTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
