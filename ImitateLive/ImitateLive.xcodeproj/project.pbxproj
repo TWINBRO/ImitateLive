@@ -68,6 +68,9 @@
 		D656D34E1D37CC590032A72A /* NSString+timeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D656D34D1D37CC590032A72A /* NSString+timeFormatter.m */; };
 		D65D541D1D41BE97004A2377 /* backg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D65D541C1D41BE97004A2377 /* backg.jpg */; };
 		D65D54231D41BF6C004A2377 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = D65D54221D41BF6C004A2377 /* close.png */; };
+		D65D54281D421DFE004A2377 /* TalentShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D54271D421DFE004A2377 /* TalentShowViewController.m */; };
+		D65D542A1D421E6F004A2377 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = D65D54291D421E6F004A2377 /* heart.png */; };
+		D65D542C1D421F1B004A2377 /* heartB.png in Resources */ = {isa = PBXBuildFile; fileRef = D65D542B1D421F1B004A2377 /* heartB.png */; };
 		D65E208B1D35068000BA0BF0 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208A1D35068000BA0BF0 /* MyViewController.m */; };
 		D65E208E1D35068900BA0BF0 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E208D1D35068900BA0BF0 /* LiveViewController.m */; };
 		D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E20901D35069400BA0BF0 /* HomeViewController.m */; };
@@ -641,6 +644,10 @@
 		D656D34D1D37CC590032A72A /* NSString+timeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+timeFormatter.m"; sourceTree = "<group>"; };
 		D65D541C1D41BE97004A2377 /* backg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backg.jpg; sourceTree = "<group>"; };
 		D65D54221D41BF6C004A2377 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		D65D54261D421DFE004A2377 /* TalentShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TalentShowViewController.h; path = ../../Live/Controllers/TalentShowViewController.h; sourceTree = "<group>"; };
+		D65D54271D421DFE004A2377 /* TalentShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TalentShowViewController.m; path = ../../Live/Controllers/TalentShowViewController.m; sourceTree = "<group>"; };
+		D65D54291D421E6F004A2377 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		D65D542B1D421F1B004A2377 /* heartB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heartB.png; sourceTree = "<group>"; };
 		D65E20891D35068000BA0BF0 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		D65E208A1D35068000BA0BF0 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		D65E208C1D35068900BA0BF0 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
@@ -1253,6 +1260,8 @@
 		D606CBFA1D3C78D9006B41C7 /* 发送弹幕 */ = {
 			isa = PBXGroup;
 			children = (
+				D65D54291D421E6F004A2377 /* heart.png */,
+				D65D542B1D421F1B004A2377 /* heartB.png */,
 				D606CBFB1D3C78D9006B41C7 /* 发送弹幕(1).png */,
 				D606CBFC1D3C78D9006B41C7 /* 发送弹幕(2).png */,
 				D606CBFD1D3C78D9006B41C7 /* 发送弹幕(3).png */,
@@ -1408,6 +1417,8 @@
 		D65E207E1D3505F800BA0BF0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D65D54261D421DFE004A2377 /* TalentShowViewController.h */,
+				D65D54271D421DFE004A2377 /* TalentShowViewController.m */,
 				D65E208F1D35069400BA0BF0 /* HomeViewController.h */,
 				D65E20901D35069400BA0BF0 /* HomeViewController.m */,
 			);
@@ -2382,6 +2393,8 @@
 				D65E23961D35074200BA0BF0 /* tabbar_game@2x.png in Resources */,
 				D65E22951D35074200BA0BF0 /* ic_bjk_slevel_3@2x.png in Resources */,
 				D65E22DE1D35074200BA0BF0 /* ic_level_qt_01@2x.png in Resources */,
+				D65D542A1D421E6F004A2377 /* heart.png in Resources */,
+				D65D542C1D421F1B004A2377 /* heartB.png in Resources */,
 				D65E22561D35074200BA0BF0 /* btn_gq_normal@2x.png in Resources */,
 				D65E222D1D35074200BA0BF0 /* AppIcon76x76@2x~ipad.png in Resources */,
 				D606CBF91D3C746A006B41C7 /* 分享.png in Resources */,
@@ -2874,6 +2887,7 @@
 				D65E23B21D35091F00BA0BF0 /* LiveModel.m in Sources */,
 				D65E23B81D3509FC00BA0BF0 /* VideoRelationModel.m in Sources */,
 				D67B01911D376CA80072967A /* BriefTableViewCell.m in Sources */,
+				D65D54281D421DFE004A2377 /* TalentShowViewController.m in Sources */,
 				D6A7E7CF1D34FA2F006649CC /* NetworkRequest.m in Sources */,
 				D65E20911D35069400BA0BF0 /* HomeViewController.m in Sources */,
 				D63103B81D3873FD00FC2636 /* SettingView.m in Sources */,
