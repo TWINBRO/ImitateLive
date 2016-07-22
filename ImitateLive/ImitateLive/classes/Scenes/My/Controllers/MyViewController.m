@@ -65,7 +65,8 @@
     // 跳转到登录页面
     UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController pushViewController:loginVC animated:YES];
+//    [self.navigationController pushViewController:loginVC animated:YES];
+    [self presentViewController:loginVC animated:YES completion:nil];
     self.hidesBottomBarWhenPushed = NO;
 }
 

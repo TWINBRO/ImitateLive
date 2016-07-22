@@ -100,7 +100,7 @@ static NSString * const headID = @"head";
             HomeModel *homeModel = [[HomeModel alloc] init];
             [homeModel setValuesForKeysWithDictionary:tempDic];
             [weakSelf.homeDataArr addObject:homeModel];
-     
+            
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             
@@ -116,10 +116,20 @@ static NSString * const headID = @"head";
                     [liveModel setValuesForKeysWithDictionary:dictory];
                     [weakSelf.homeDataDetail addObject:liveModel];
                     [array addObject:liveModel];
+
+                
+
+
+                    
+                    
+                    [weakSelf.sectionDic setObject:array forKey:homeModel.title];
                 }
+                
+                
+                
 
             }
-            [weakSelf.sectionDic setObject:array forKey:homeModel.title];
+            
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{

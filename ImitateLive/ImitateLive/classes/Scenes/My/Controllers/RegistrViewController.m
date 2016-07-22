@@ -101,8 +101,8 @@
                 // 注册成功
 
                 // 界面消失
-                LoginViewController *loginVC = (LoginViewController *)[self.navigationController.viewControllers objectAtIndex:1];
-                [self.navigationController popToViewController:loginVC animated:YES];
+//                LoginViewController *loginVC = (LoginViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+//                [self.navigationController popToViewController:loginVC animated:YES];
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
@@ -114,6 +114,12 @@
         }];
     }
 }
+
+- (IBAction)closeButtonClicked:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
