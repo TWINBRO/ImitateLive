@@ -53,6 +53,13 @@
     tap1.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap1];
     
+    
+
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
     //添加键盘的监听事件
     //注册通知,监听键盘弹出事件
     [[NSNotificationCenter
@@ -60,10 +67,8 @@
     //注册通知,监听键盘消失事件
     [[NSNotificationCenter
       defaultCenter] addObserver:self selector:@selector(keyboardDidHidden) name:UIKeyboardDidHideNotification object:nil];
-
     
 }
-
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
@@ -137,21 +142,22 @@
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40)];
     self.msgTextView = textView;
-    self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+//    self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.msgTextView.backgroundColor = [UIColor whiteColor];
     self.msgTextView.delegate = self;
     self.msgTextView.text = @"发点弹幕吧！";
     self.msgTextView.textColor = [UIColor grayColor];
     self.msgTextView.layer.borderWidth = 1.0;
-    self.msgTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.msgTextView.layer.borderColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1].CGColor;
     self.msgTextView.layer.cornerRadius = 5.0;
     self.msgTextView.delegate = self;
     [self.view addSubview:self.msgTextView];
     self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.sendBtn.backgroundColor = [UIColor colorWithRed:210.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.sendBtn.backgroundColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
     self.sendBtn.layer.cornerRadius = 5.0;
     [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-    self.sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 337, 70, 40 );
-    [self.sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.sendBtn.frame = CGRectMake(WindownWidth - 74, WindowHeight - 337, 70, 40 );
+    [self.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.sendBtn addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.sendBtn];
     
@@ -380,6 +386,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewDidDisappear:(BOOL)paramAnimated {
+    
+    [super viewDidDisappear:paramAnimated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 /*
