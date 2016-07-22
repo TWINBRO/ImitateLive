@@ -92,7 +92,7 @@ static NSString * const headID = @"head";
 #pragma mark 首页其他数据
 - (void)requestHomeData {
     
-    [self p_setupProgressHud];
+    
 
     __weak typeof(self) weakSelf = self;
     HomeRequest *homerequest = [[HomeRequest alloc] init];
@@ -130,7 +130,7 @@ static NSString * const headID = @"head";
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.homeCollectionView.mj_header endRefreshing];
             [weakSelf.homeCollectionView reloadData];
-            [GiFHUD dismiss];
+            
         });
         
     } failure:^(NSError *error) {
@@ -139,13 +139,6 @@ static NSString * const headID = @"head";
     
 }
 
-#pragma mark - 添加loading信息
-- (void)p_setupProgressHud
-{
-    [GiFHUD setGifWithImageName:@"pika.gif"];
-    [GiFHUD show];
-    
-}
 
 //分区个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

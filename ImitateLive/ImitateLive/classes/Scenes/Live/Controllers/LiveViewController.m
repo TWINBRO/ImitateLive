@@ -82,18 +82,12 @@
     
 }
 
-#pragma mark - 添加loading信息
-- (void)p_setupProgressHud
-{
-    [GiFHUD setGifWithImageName:@"loading.gif"];
-    [GiFHUD show];
-    
-}
+
 
 // 获取直播界面
 - (void)requestAllLives:(NSString *)ID {
     
-    [self p_setupProgressHud];
+    
     
     __weak typeof(self) weakSelf = self;
     LiveRequest *request = [[LiveRequest alloc] init];
@@ -110,7 +104,7 @@
                 [weakSelf.liveCollectionView.mj_header endRefreshing];
                 [weakSelf.liveCollectionView.mj_footer endRefreshing];
                 [weakSelf.liveCollectionView reloadData];
-                [GiFHUD dismiss];
+                
             });
         }
         
