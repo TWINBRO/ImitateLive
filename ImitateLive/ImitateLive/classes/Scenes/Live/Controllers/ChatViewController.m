@@ -8,6 +8,7 @@
 
 #import "ChatViewController.h"
 #import "LoginViewController.h"
+#import "MessageTableViewCell.h"
 
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,AVIMClientDelegate,UITextViewDelegate>
 
@@ -20,7 +21,7 @@
 @property (strong, nonatomic) UIButton *sendBtn;
 @end
 
-#define UITableViewCell_Identify @"UITableViewCell_Identify"
+
 
 @implementation ChatViewController
 
@@ -34,12 +35,16 @@
 //    self.chatTableView.backgroundColor = [UIColor greenColor];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
-    [self.chatTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCell_Identify];
+
+    
+    [self.chatTableView registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:MessageTableViewCell_Identify];
+    
     self.chatTableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:self.chatTableView];
-
-    [self addSendView];
     
+    [self addSendView];
+   
+
     self.messageArr = [NSMutableArray array];
     [self queryConversationByConditions];
     
@@ -57,6 +62,28 @@
       defaultCenter] addObserver:self selector:@selector(keyboardDidHidden) name:UIKeyboardDidHideNotification object:nil];
 
     
+}
+
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能发言" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            
+            [self presentViewController:loginVC animated:YES completion:nil];
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        // 添加按钮
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    return YES;
 }
 
 
@@ -102,6 +129,7 @@
     
 //    [self.view endEditing:YES];
     [self.msgTextView resignFirstResponder];
+
 }
 
 - (void)addSendView {
@@ -109,6 +137,7 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40)];
     self.msgTextView = textView;
     self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.msgTextView.delegate = self;
     self.msgTextView.text = @"发点弹幕吧！";
     self.msgTextView.textColor = [UIColor grayColor];
     self.msgTextView.layer.borderWidth = 1.0;
@@ -126,6 +155,14 @@
     [self.view addSubview:self.sendBtn];
     
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 44;
+    
+}
+
 
 //将要开始编辑
 
@@ -164,9 +201,12 @@
 //    
 //}
 
+
 - (void)sendAction:(UIButton *)button
 {
+    
     [self sendMessage];
+    
 }
 #pragma mark -- 聊天
 // 创建聊天室
@@ -178,9 +218,9 @@
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         // Tom 创建名称为 「HelloKitty PK 加菲猫」的会话
-        [weakSelf.client createConversationWithName:weakSelf.liveModel.nickname clientIds:@[self.liveModel.liveID] attributes:nil options:AVIMConversationOptionTransient callback:^(AVIMConversation *conversation, NSError *error) {
 
-            
+        [weakSelf.client createConversationWithName:weakSelf.liveModel.nickname clientIds:@[weakSelf.liveModel.liveID] attributes:nil options:AVIMConversationOptionTransient callback:^(AVIMConversation *conversation, NSError *error) {
+
             if (!error) {
                 NSLog(@"创建成功！");
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -194,15 +234,6 @@
     }];
 }
 
-// 对象
-//- (AVIMClient *)client
-//{
-//    static AVIMClient *client = nil;
-//    if (client == nil) {
-//        client = [[AVIMClient alloc] initWithClientId:self.liveModel.liveID];
-//    }
-//    return client;
-//}
 // 查询聊天室
 - (void)queryConversationByConditions {
     // Tom 创建了一个 client，用自己的名字作为 clientId
@@ -224,7 +255,8 @@
                 if (objects.count != 0) {
                     weakSelf.conversation = [objects firstObject];
 
-//                    [weakSelf joinConversation];// 加入聊天室
+//                    [weakSelf getConversationFromSever];
+
 
                     
                 }else{
@@ -256,10 +288,12 @@
 // 发送消息
 - (void)sendMessage
 {
+    NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+    
     __weak typeof(self) weakSelf = self;
-    
-    AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.msgTextView.text attributes:@{@"userId":@"username"}];
-    
+
+    AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.msgTextView.text attributes:@{@"userName":currentUsername}];
+
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         [weakSelf.conversation sendMessage:message  callback:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
@@ -319,10 +353,8 @@
     }
     // 获取tableview的最后一行
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messageArr.count - 1 inSection:0];
-    
-    
+    // 滑到tableview最后一行的最小面
 
-    // 滑到tableview最后一行的最下面
     [self.chatTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
     if (_danmuDelegate != nil && [_danmuDelegate respondsToSelector:@selector(sendDanMuWithArray:)]) {
@@ -337,23 +369,13 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *systemCell = [self.chatTableView dequeueReusableCellWithIdentifier:UITableViewCell_Identify];
+    MessageTableViewCell *cell = [self.chatTableView dequeueReusableCellWithIdentifier:MessageTableViewCell_Identify];
     AVIMTextMessage *message = self.messageArr[indexPath.row];
-    systemCell.textLabel.font = [UIFont systemFontOfSize:15];
-    systemCell.textLabel.text = message.text;
-    return systemCell;
+    cell.messageLabel.text = message.text;
+    cell.userNmaeLabel.text = [NSString stringWithFormat:@"%@:",[message.attributes objectForKey:@"userName"]];
+    return cell;
+
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    return 30;
-    
-}
-
-
-
-
-
 
 
 - (void)didReceiveMemoryWarning {
