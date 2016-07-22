@@ -138,6 +138,8 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.DanmuSize = 30.0;
     
     [self queryConversationByConditions];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didreceiveMessageNotification:) name:@"message" object:nil];
 }
 
 
@@ -347,8 +349,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 - (void)sendBarrageClickAction:(UIButton *)button
 {
     self.sendView.hidden = YES;
+    NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+    
     __weak typeof(self) weakSelf = self;
-    AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.sendView.barrageTextView.text attributes:@{@"userId":@"username"}];
+    
+    AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.sendView.barrageTextView.text attributes:@{@"userName":currentUsername}];
+    
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         [weakSelf.conversation sendMessage:message  callback:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
@@ -368,7 +374,6 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // Tom 创建了一个 client，用自己的名字作为 clientId
     __weak typeof(self) weakSelf = self;
     self.client = [[AVIMClient alloc] initWithClientId:@"tom"];
-    self.client.delegate = self;
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         // Tom 创建属性中 topic 是 movie 的查询
@@ -393,6 +398,11 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         }];
     }];
     
+}
+- (void)didreceiveMessageNotification:(NSNotification *)notify
+{
+    NSDictionary *userInfo = notify.userInfo;
+    [self createLabelWithTitle:[userInfo objectForKey:@"message"]];
 }
 #pragma mark --清晰度代理方法
 - (void)adjustDefinitionAction:(UIButton *)button definition:(Definition)definition
@@ -797,7 +807,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 

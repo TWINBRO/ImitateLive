@@ -257,8 +257,6 @@
                     weakSelf.conversation = [objects firstObject];
 
 //                    [weakSelf getConversationFromSever];
-
-
                     
                 }else{
                     [weakSelf creatTransientCoversation];
@@ -317,7 +315,7 @@
     [self.messageArr addObject:message];
     [self.chatTableView reloadData];
     [self scrollViewToBottom];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"message" object:nil userInfo:@{@"message":message.text}];
 }
 // 获取消息
 - (void)getConversationFromSever
