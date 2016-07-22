@@ -17,6 +17,7 @@
 #import "HeaderView.h"
 #import "CarouselCollectionViewCell.h"
 #import "LiveDetailViewController.h"
+#import "TalentShowViewController.h"
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CarouselDelegate>
 //@property (strong, nonatomic) NSMutableArray *carousels;
 @property (strong, nonatomic) UIImageView *imgView;
@@ -104,7 +105,7 @@ static NSString * const headID = @"head";
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             
-//            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
                 for (NSDictionary *dictory in dataDetail) {
                     
                     //                ListModel *listModel = [[ListModel alloc]init];
@@ -121,7 +122,7 @@ static NSString * const headID = @"head";
                     
                 }
                 [weakSelf.sectionDic setObject:array forKey:homeModel.title];
-//            }
+            }
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -217,11 +218,18 @@ static NSString * const headID = @"head";
         [self presentViewController:liveDetailVC animated:YES completion:nil];
         
     }else{
-    LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
-    HomeModel *model = self.homeDataArr[indexPath.section-1];
-    liveDetailVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
-    //    [self.navigationController pushViewController:liveDetailVC animated:YES];
-    [self presentViewController:liveDetailVC animated:YES completion:nil];
+        
+        HomeModel *model = self.homeDataArr[indexPath.section-1];
+    
+        if ([model.title isEqualToString:@"达人美拍"]) {
+            TalentShowViewController *talentShowVC = [TalentShowViewController new];
+            talentShowVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
+            [self presentViewController:talentShowVC animated:YES completion:nil];
+        }else{
+        LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+        liveDetailVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
+        [self presentViewController:liveDetailVC animated:YES completion:nil];
+        }
     }
 }
 
