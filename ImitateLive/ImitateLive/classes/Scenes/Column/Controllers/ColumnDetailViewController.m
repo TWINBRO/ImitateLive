@@ -98,14 +98,27 @@
     }
     
 }
+
+#pragma mark - 添加loading信息
+//- (void)p_setupProgressHud
+//{
+//    [GiFHUD setGifWithImageName:@"loading.gif"];
+//    [GiFHUD show];
+//    
+//}
+
 // 请求数据
 - (void)requestColumnData:(NSString *)ID
 {
+    
+//    [self p_setupProgressHud];
+    
     __weak typeof(self) weakSelf = self;
     NSDictionary *parmar = [NSDictionary dictionaryWithObject:ID forKey:@"id"];
     ColumnRequest *columnRequest = [[ColumnRequest alloc] init];
     [columnRequest columnRequestWithParameter:parmar success:^(NSDictionary *dic) {
 //        NSLog(@"%@",dic);
+        
         NSDictionary *tempDict = [dic objectForKey:@"data"];
         NSArray *tempArr = [tempDict objectForKey:@"rooms"];
         for (NSDictionary *tempdic in tempArr) {
@@ -120,6 +133,7 @@
             [weakSelf.columnDetailView.mj_header endRefreshing];
             [weakSelf.columnDetailView.mj_footer endRefreshing];
             [weakSelf.columnDetailView reloadData];
+//            [GiFHUD dismiss];
         });
         
         

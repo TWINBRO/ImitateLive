@@ -115,10 +115,10 @@
 - (void)createLabelWithTitle:(NSString *)titleString {
     
     NSString *waitDisplayString = titleString;
-    if (!(titleString && titleString.length != 0)) {
-        u_int32_t index = arc4random_uniform((u_int32_t)self.danMuArr.count);
-        waitDisplayString = self.danMuArr[index];
-    }
+//    if (!(titleString && titleString.length != 0)) {
+//        u_int32_t index = arc4random_uniform((u_int32_t)self.danMuArr.count);
+//        waitDisplayString = self.danMuArr[index];
+//    }
     
     // y 坐标
     int yPoint = arc4random_uniform(250-45-25)+45;
@@ -131,10 +131,10 @@
     waitDisplayLabel.textColor = [self randomColor];
     
     // 若弹幕为自己发送的，将Label的边框显示为白色并且宽带为1
-    if (titleString && titleString.length != 0) {
-        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-        waitDisplayLabel.layer.borderWidth = 1.0f;
-    }
+//    if (titleString && titleString.length != 0) {
+//        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+//        waitDisplayLabel.layer.borderWidth = 1.0f;
+//    }
     
     [self.view addSubview:waitDisplayLabel];
     

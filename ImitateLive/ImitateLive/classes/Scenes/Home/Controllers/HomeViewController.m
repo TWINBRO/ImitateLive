@@ -17,6 +17,7 @@
 #import "HeaderView.h"
 #import "CarouselCollectionViewCell.h"
 #import "LiveDetailViewController.h"
+#import "TalentShowViewController.h"
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CarouselDelegate>
 //@property (strong, nonatomic) NSMutableArray *carousels;
 @property (strong, nonatomic) UIImageView *imgView;
@@ -90,6 +91,8 @@ static NSString * const headID = @"head";
 
 #pragma mark 首页其他数据
 - (void)requestHomeData {
+    
+    [self p_setupProgressHud];
 
     __weak typeof(self) weakSelf = self;
     HomeRequest *homerequest = [[HomeRequest alloc] init];
@@ -118,19 +121,29 @@ static NSString * const headID = @"head";
                     [array addObject:liveModel];
 
    
-                    [weakSelf.sectionDic setObject:array forKey:homeModel.title];
+                    
                 }
+                [weakSelf.sectionDic setObject:array forKey:homeModel.title];
             }
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.homeCollectionView.mj_header endRefreshing];
             [weakSelf.homeCollectionView reloadData];
+            [GiFHUD dismiss];
         });
         
     } failure:^(NSError *error) {
         NSLog(@"home data error =  %@",error);
     }];
+    
+}
+
+#pragma mark - 添加loading信息
+- (void)p_setupProgressHud
+{
+    [GiFHUD setGifWithImageName:@"pika.gif"];
+    [GiFHUD show];
     
 }
 
@@ -216,11 +229,18 @@ static NSString * const headID = @"head";
         [self presentViewController:liveDetailVC animated:YES completion:nil];
         
     }else{
-    LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
-    HomeModel *model = self.homeDataArr[indexPath.section-1];
-    liveDetailVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
-    //    [self.navigationController pushViewController:liveDetailVC animated:YES];
-    [self presentViewController:liveDetailVC animated:YES completion:nil];
+        
+        HomeModel *model = self.homeDataArr[indexPath.section-1];
+    
+        if ([model.title isEqualToString:@"达人美拍"]) {
+            TalentShowViewController *talentShowVC = [TalentShowViewController new];
+            talentShowVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
+            [self presentViewController:talentShowVC animated:YES completion:nil];
+        }else{
+        LiveDetailViewController *liveDetailVC = [LiveDetailViewController new];
+        liveDetailVC.liveModel = [self.sectionDic objectForKey:model.title][indexPath.item];
+        [self presentViewController:liveDetailVC animated:YES completion:nil];
+        }
     }
 }
 

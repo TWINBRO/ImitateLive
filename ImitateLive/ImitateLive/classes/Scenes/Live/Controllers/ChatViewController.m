@@ -32,7 +32,11 @@
     self.msgArray = [NSMutableArray array];
     
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -2, WindownWidth, WindowHeight-345) style:UITableViewStylePlain];
-//    self.chatTableView.backgroundColor = [UIColor greenColor];
+    
+    //tableView头部视图
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 0, 20)];
+    self.chatTableView.tableHeaderView = header;
+    
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
 
@@ -53,6 +57,13 @@
     tap1.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap1];
     
+    
+
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
     //添加键盘的监听事件
     //注册通知,监听键盘弹出事件
     [[NSNotificationCenter
@@ -60,10 +71,8 @@
     //注册通知,监听键盘消失事件
     [[NSNotificationCenter
       defaultCenter] addObserver:self selector:@selector(keyboardDidHidden) name:UIKeyboardDidHideNotification object:nil];
-
     
 }
-
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
@@ -137,21 +146,22 @@
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40)];
     self.msgTextView = textView;
-    self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+//    self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.msgTextView.backgroundColor = [UIColor whiteColor];
     self.msgTextView.delegate = self;
     self.msgTextView.text = @"发点弹幕吧！";
     self.msgTextView.textColor = [UIColor grayColor];
     self.msgTextView.layer.borderWidth = 1.0;
-    self.msgTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.msgTextView.layer.borderColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1].CGColor;
     self.msgTextView.layer.cornerRadius = 5.0;
     self.msgTextView.delegate = self;
     [self.view addSubview:self.msgTextView];
     self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.sendBtn.backgroundColor = [UIColor colorWithRed:210.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.sendBtn.backgroundColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
     self.sendBtn.layer.cornerRadius = 5.0;
     [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-    self.sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 337, 70, 40 );
-    [self.sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.sendBtn.frame = CGRectMake(WindownWidth - 74, WindowHeight - 337, 70, 40 );
+    [self.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.sendBtn addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.sendBtn];
     
@@ -160,48 +170,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 44;
+    return 24;
     
 }
-
-
-//将要开始编辑
-
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-//
-//    self.msgTextView.frame
-//    
-//}
-
-//- (void)sendMsg:(UIButton *)btn {
-//    
-//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能发言" preferredStyle:(UIAlertControllerStyleAlert)];
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            
-//            UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//            LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//           
-//            [self presentViewController:loginVC animated:YES completion:nil];
-//            
-//        }];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-//        // 添加按钮
-//        [alertController addAction:okAction];
-//        [alertController addAction:cancelAction];
-//        [self presentViewController:alertController animated:YES completion:nil];
-//    }
-//    else {
-//        
-//        NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
-//        [self createClientID:currentUsername];
-//        
-//    }
-//    
-//    
-//    
-//}
-
 
 - (void)sendAction:(UIButton *)button
 {
@@ -376,10 +347,34 @@
 
 }
 
+// 设置区头（每个分区开始区域的视图）
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 0, 20)];
+    label.text = [NSString stringWithFormat:@"   欢迎来到%@的直播间",self.liveModel.nickname];
+    label.font = [UIFont systemFontOfSize:13.0];
+    label.textColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
+    return label;
+
+}
+
+//设置分区区头高度
+- (CGFloat )tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    
+    return 20;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewDidDisappear:(BOOL)paramAnimated {
+    
+    [super viewDidDisappear:paramAnimated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 /*
