@@ -83,6 +83,7 @@
         [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:nil];
     }
+    
     return YES;
 }
 
@@ -238,7 +239,7 @@
 - (void)queryConversationByConditions {
     // Tom 创建了一个 client，用自己的名字作为 clientId
     __weak typeof(self) weakSelf = self;
-    self.client = [[AVIMClient alloc] initWithClientId:@"tom"];
+    self.client = [[AVIMClient alloc] initWithClientId:self.liveModel.liveID];
     self.client.delegate = self;
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
