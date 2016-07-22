@@ -66,7 +66,8 @@
     self.settingBtn = [self buttonWithImage:@"movie_setting@2x" frame:CGRectMake(kWidth - 55, 5, 40, 40) center:CGPointMake(kWidth - 22, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(settingAction:) superView:self.topBackgroundView corner:YES];
     self.definitionBtn = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(kWidth - 105, 10, 50, 40) center:CGPointMake(kWidth - 70, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(definitionAction:) superView:self.topBackgroundView corner:NO];
     self.isBarrage = [self buttonWithImage:@"movie_subtitle_off@2x" frame:CGRectMake(kWidth - 100, 0, 40, 40) center:CGPointMake(kWidth - 70, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(isBarrageAction:)  superView:self.bottomBackgroundView corner:NO];
-    self.sendBtn = [self buttonWithImage:@"background" frame:CGRectMake(70, 0, kWidth - 180, 40) center:CGPointMake(kWidth / 2.0 - 30, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor blueColor] action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
+    self.sendBtn = [self buttonWithImage:@"" frame:CGRectMake(70, 0, kWidth - 180, 40) center:CGPointMake(kWidth / 2.0 - 30, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor whiteColor] action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
+    self.sendBtn.titleLabel.text = @"发送弹幕呗😃";
     
 }
 - (void)addHistoryControl

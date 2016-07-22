@@ -109,7 +109,7 @@
 - (void)fullScreenClick:(UIButton *)btn
 {
     if (_delegate) {
-        [_delegate barragePositionAction:btn position:topScreen];
+        [_delegate barragePositionAction:btn position:fullScreen];
         [self.topScreenBtn setImage:[UIImage imageNamed:@"btn_setting_shangfgang_normal@2x"] forState:UIControlStateNormal];
         [self.fullScreenBtn setImage:[UIImage imageNamed:@"btn_setting_quanping_highlight@2x"] forState:UIControlStateNormal];
         [self.bottomScreenBtn setImage:[UIImage imageNamed:@"btn_setting_xiafang_normal@2x"] forState:UIControlStateNormal];
@@ -118,7 +118,7 @@
 - (void)bottomScreenClick:(UIButton *)btn
 {
     if (_delegate) {
-        [_delegate barragePositionAction:btn position:topScreen];
+        [_delegate barragePositionAction:btn position:bottomScreen];
         [self.topScreenBtn setImage:[UIImage imageNamed:@"btn_setting_shangfgang_normal@2x"] forState:UIControlStateNormal];
         [self.fullScreenBtn setImage:[UIImage imageNamed:@"btn_setting_quanping_normal@2x"] forState:UIControlStateNormal];
         [self.bottomScreenBtn setImage:[UIImage imageNamed:@"btn_setting_xiafang_highlight@2x"] forState:UIControlStateNormal];

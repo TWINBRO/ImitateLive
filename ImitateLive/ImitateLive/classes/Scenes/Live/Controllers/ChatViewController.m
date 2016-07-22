@@ -136,7 +136,7 @@
 - (void)queryConversationByConditions {
     // Tom 创建了一个 client，用自己的名字作为 clientId
     __weak typeof(self) weakSelf = self;
-    self.client = [[AVIMClient alloc] initWithClientId:self.liveModel.liveID];
+    self.client = [[AVIMClient alloc] initWithClientId:@"tom"];
     self.client.delegate = self;
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
@@ -152,7 +152,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (objects.count != 0) {
                     weakSelf.conversation = [objects firstObject];
-                    [weakSelf getConversationFromSever];
+//                    [weakSelf joinConversation];// 加入聊天室
                     
                 }else{
                     [weakSelf creatTransientCoversation];
@@ -166,12 +166,15 @@
 // 加入聊天室
 - (void)joinConversation
 {
+    __weak typeof(self) weakSelf = self;
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         AVIMConversationQuery *query = [self.client conversationQuery];
         [query getConversationById:self.conversation.conversationId callback:^(AVIMConversation *conversation, NSError *error) {
             [conversation joinWithCallback:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@"加入成功！");
+                    weakSelf.conversation = conversation;
+//                    [weakSelf getConversationFromSever];
                 }
             }];
         }];
@@ -205,6 +208,7 @@
     [self.messageArr addObject:message];
     [self.chatTableView reloadData];
     [self scrollViewToBottom];
+    
 }
 // 获取消息
 - (void)getConversationFromSever
@@ -216,9 +220,10 @@
         // Tom 获取 id 为 2f08e882f2a11ef07902eeb510d4223b 的会话
         [query getConversationById:weakSelf.conversation.conversationId callback:^(AVIMConversation *conversation, NSError *error) {
             // 查询对话中最后 10 条消息，由于之前关闭了消息缓存功能，查询会走网络请求。
-            [conversation queryMessagesWithLimit:10 callback:^(NSArray *objects, NSError *error) {
-                NSLog(@"查询成功！");
+            [conversation queryMessagesWithLimit:-1 callback:^(NSArray *objects, NSError *error) {
+                
                 if (!error) {
+                    NSLog(@"查询成功！");
                     for (AVIMTextMessage *textMessage in objects) {
                         [weakSelf.messageArr addObject:textMessage];
                     }
@@ -242,7 +247,7 @@
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messageArr.count - 1 inSection:0];
     
     
-    // 滑到tableview最后一行的最小面
+    // 滑到tableview最后一行的最下面
     [self.chatTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
     if (_danmuDelegate != nil && [_danmuDelegate respondsToSelector:@selector(sendDanMuWithArray:)]) {

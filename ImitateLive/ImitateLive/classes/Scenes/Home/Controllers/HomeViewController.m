@@ -103,19 +103,24 @@ static NSString * const headID = @"head";
      
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
-            for (NSDictionary *dictory in dataDetail) {
-                
-//                ListModel *listModel = [[ListModel alloc]init];
-//                [listModel setValuesForKeysWithDictionary:dictory];
-//                [weakSelf.homeDataDetail addObject:listModel];
-//                [array addObject:listModel];
-                
-                LiveModel *liveModel = [[LiveModel alloc]init];
-                [liveModel setValuesForKeysWithDictionary:dictory];
-                [weakSelf.homeDataDetail addObject:liveModel];
-                [array addObject:liveModel];
+            
+            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+                for (NSDictionary *dictory in dataDetail) {
+                    
+                    //                ListModel *listModel = [[ListModel alloc]init];
+                    //                [listModel setValuesForKeysWithDictionary:dictory];
+                    //                [weakSelf.homeDataDetail addObject:listModel];
+                    //                [array addObject:listModel];
+                    
+                    LiveModel *liveModel = [[LiveModel alloc]init];
+                    [liveModel setValuesForKeysWithDictionary:dictory];
+                    [weakSelf.homeDataDetail addObject:liveModel];
+                    [array addObject:liveModel];
+                }
+                [weakSelf.sectionDic setObject:array forKey:homeModel.title];
             }
-            [weakSelf.sectionDic setObject:array forKey:homeModel.title];
+            
+            
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
