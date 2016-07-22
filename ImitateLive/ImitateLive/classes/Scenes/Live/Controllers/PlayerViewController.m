@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // 显示弹幕视图
     self.showDanmuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
     [self.view addSubview:self.showDanmuView];
-    self.showDanmuView.hidden = YES;
+    self.showDanmuView.hidden = NO;
     [self.view addSubview:self.interactiveView];
     
     self.interactiveView.titleLabel.text = self.liveModel.title;
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [self.view addSubview:self.settingView];
     self.settingView.hidden = YES;// 隐藏设置按钮视图
     
-    self.isBarrage = NO;// 是否打开弹幕
+    self.isBarrage = YES;// 是否打开弹幕
     
     [self addGestureRecognizer];
     
@@ -308,7 +308,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }];
 }
 
-//TODO: 是否打开弹幕
+// 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
     if (self.isBarrage) {
@@ -318,13 +318,14 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }else{
         [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_on@2x"] forState:UIControlStateNormal];
         self.showDanmuView.hidden = NO;
-        [self createLabelWithTitle:@"lalallalala"];
         self.isBarrage = YES;
     }
 }
+// 弹出发送弹幕界面
 - (void)sendBarrageAction:(UIButton *)button
 {
     self.sendView.hidden = NO;
+    [self.sendView.barrageTextView becomeFirstResponder];
 }
 // 拖动进度条
 - (void)progressSLiderValueChangedAction:(UISlider *)progress
