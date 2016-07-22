@@ -117,19 +117,10 @@ static NSString * const headID = @"head";
                     [weakSelf.homeDataDetail addObject:liveModel];
                     [array addObject:liveModel];
 
-                
-
-
-                    
-                    
+   
                     [weakSelf.sectionDic setObject:array forKey:homeModel.title];
                 }
-                
-                
-                
-
             }
-            
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{

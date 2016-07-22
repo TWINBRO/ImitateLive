@@ -474,6 +474,7 @@
 		D65E23C11D35101B00BA0BF0 /* WheelImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23C01D35101B00BA0BF0 /* WheelImageModel.m */; };
 		D65E23C81D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */; };
 		D65E23CE1D35358A00BA0BF0 /* ColumnDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */; };
+		D65F9B101D40CEDB0092D897 /* SendBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D65F9B0F1D40CEDB0092D897 /* SendBarrageView.m */; };
 		D67B01821D376B150072967A /* BriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D67B01801D376B150072967A /* BriefViewController.m */; };
 		D67B01871D376B260072967A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D67B01851D376B260072967A /* ChatViewController.m */; };
 		D67B018C1D376B450072967A /* HistoryVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D67B018A1D376B450072967A /* HistoryVideoViewController.m */; };
@@ -1062,6 +1063,8 @@
 		D65E23C61D3515FB00BA0BF0 /* ColumnCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColumnCollectionViewCell.xib; sourceTree = "<group>"; };
 		D65E23CC1D35358A00BA0BF0 /* ColumnDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnDetailViewController.h; sourceTree = "<group>"; };
 		D65E23CD1D35358A00BA0BF0 /* ColumnDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColumnDetailViewController.m; sourceTree = "<group>"; };
+		D65F9B0E1D40CEDB0092D897 /* SendBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendBarrageView.h; sourceTree = "<group>"; };
+		D65F9B0F1D40CEDB0092D897 /* SendBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendBarrageView.m; sourceTree = "<group>"; };
 		D67B017F1D376B150072967A /* BriefViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefViewController.h; sourceTree = "<group>"; };
 		D67B01801D376B150072967A /* BriefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefViewController.m; sourceTree = "<group>"; };
 		D67B01841D376B260072967A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -1494,6 +1497,8 @@
 				D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */,
 				D610B2031D366DD100B5E6E2 /* BigInteractiveView.h */,
 				D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */,
+				D65F9B0E1D40CEDB0092D897 /* SendBarrageView.h */,
+				D65F9B0F1D40CEDB0092D897 /* SendBarrageView.m */,
 				D63103B31D3873E800FC2636 /* DefinitionView.h */,
 				D63103B41D3873E800FC2636 /* DefinitionView.m */,
 				D63103B61D3873FD00FC2636 /* SettingView.h */,
@@ -2829,6 +2834,7 @@
 				D6F864EA1D37AB3000A3EBA4 /* RegisterRequest.m in Sources */,
 				D6F864C51D3741C600A3EBA4 /* LoginViewController.m in Sources */,
 				D6F864E91D37AB3000A3EBA4 /* LoginRequest.m in Sources */,
+				D65F9B101D40CEDB0092D897 /* SendBarrageView.m in Sources */,
 				D60D86111D3679F500D08387 /* DLTabedSlideView.m in Sources */,
 				D60E79381D3F0AD20055970B /* SeverHandle.m in Sources */,
 				D67B01961D3799160072967A /* HistoryVideoViewCell.m in Sources */,

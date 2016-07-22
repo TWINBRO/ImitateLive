@@ -46,6 +46,7 @@
     self.hidesBottomBarWhenPushed = YES;
     UIStoryboard *mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RegistrViewController *registerVC = [mainsb instantiateViewControllerWithIdentifier:@"RegistrViewController"];
+
 //    [self.navigationController pushViewController:registerVC animated:YES];
     [self presentViewController:registerVC animated:YES completion:nil];
 //    self.hidesBottomBarWhenPushed = NO;

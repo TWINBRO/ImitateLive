@@ -24,7 +24,6 @@
 
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 
-
 @interface LiveDetailViewController ()<DLTabedSlideViewDelegate,HistoryVideoDelegate,UIApplicationDelegate,littleInteractiveViewDelegate,UMSocialUIDelegate,DanMuDelegate>
 
 

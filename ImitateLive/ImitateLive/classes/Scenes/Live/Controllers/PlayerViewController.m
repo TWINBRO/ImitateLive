@@ -12,6 +12,9 @@
 #import "DefinitionView.h"
 #import "SettingView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <UMSocialSnsService.h>
+#import <UMSocial.h>
+#import "SendBarrageView.h"
 
 // 枚举值，包含水平移动方向和垂直移动方向
 typedef NS_ENUM(NSInteger, PanDirection){
@@ -32,7 +35,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     BigInteractiveViewDelegate,
     DefinitionViewDelegate,
     settingViewDelegate,
-    UIGestureRecognizerDelegate
+    UIGestureRecognizerDelegate,
+    UMSocialUIDelegate,
+    sendBarrageViewDelegate
 >
 
 @property (assign, nonatomic) CATransform3D myTransform;// 旋转屏幕
@@ -61,6 +66,15 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 /** 音量滑杆 */
 @property (nonatomic, strong) UISlider            *volumeViewSlider;
 
+@property (strong, nonatomic) SendBarrageView *sendView;// 写弹幕的视图
+@property (strong, nonatomic) NSMutableArray *danMuArr;
+@property (strong, nonatomic) UIView *showDanmuView;// 显示弹幕的视图
+@property (assign, nonatomic) CGFloat DanmuSize;// 弹幕大小
+
+// 聊天室
+@property (strong, nonatomic) AVIMClient *client;
+@property (strong, nonatomic) AVIMConversation *conversation;
+
 @end
 
 @implementation PlayerViewController
@@ -85,6 +99,11 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }];
     
     [self.view.layer addSublayer:self.playerView.playerLayer];
+    
+    // 显示弹幕视图
+    self.showDanmuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
+    [self.view addSubview:self.showDanmuView];
+    self.showDanmuView.hidden = YES;
     [self.view addSubview:self.interactiveView];
     
     self.interactiveView.titleLabel.text = self.liveModel.title;
@@ -109,6 +128,18 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [self continuePlaying];
     
     [self timerBegin];
+    
+    // 写弹幕的视图
+    self.sendView = [[SendBarrageView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
+    self.sendView.delegate = self;
+    [self.view addSubview:self.sendView];
+    self.sendView.hidden = YES;
+    
+    self.DanmuSize = 30.0;
+    
+    [self queryConversationByConditions];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didreceiveMessageNotification:) name:@"message" object:nil];
 }
 
 
@@ -148,10 +179,18 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.continuePlaying(self.playerView);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-//TODO: 分享按钮
+// 分享按钮
 - (void)shareVideoAction:(UIButton *)button
 {
-    
+    [UMSocialData defaultData].extConfig.title = @"转发到微博";
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.liveModel.spic];
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c804167e58e5c90000c6b"
+                                      shareText:[NSString stringWithFormat:@"我正在#战旗TV#观看大神%@的现场直播：【%@】，精彩炫酷，大家速速来围观！http://www.zhanqi.tv%@（分享自@战旗TV直播平台）",self.liveModel.nickname,self.liveModel.title,self.liveModel.url] // 分享的内容
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,UMShareToSina]
+                                       delegate:self];
 }
 // 播放按钮
 - (void)playOrPauseAction:(UIButton *)buttton
@@ -208,16 +247,84 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.interactiveView.hidden = YES;
     self.definitionView.hidden = NO;
 }
+#pragma mark -- 弹幕视图
+/**
+ *  创建界面上显示的弹幕Label
+ *
+ *  @param titleString 显示的字幕
+ */
+- (void)createLabelWithTitle:(NSString *)titleString {
+    
+    NSString *waitDisplayString = titleString;
+    if (!(titleString && titleString.length != 0)) {
+        u_int32_t index = arc4random_uniform((u_int32_t)self.danMuArr.count);
+        waitDisplayString = self.danMuArr[index];
+    }
+    
+    // y 坐标
+    int yPoint = arc4random_uniform(CGRectGetHeight(self.showDanmuView.bounds)-45-25)+45;
+    // 当期弹幕Label的长度
+    float labelLength = waitDisplayString.length*self.DanmuSize;
+    
+    UILabel *waitDisplayLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth([UIScreen mainScreen].bounds), yPoint, labelLength, self.DanmuSize)];
+    waitDisplayLabel.text = waitDisplayString;
+    waitDisplayLabel.backgroundColor = [UIColor clearColor];
+    waitDisplayLabel.textColor = [self randomColor];
+    waitDisplayLabel.font = [UIFont systemFontOfSize:self.DanmuSize];
+    // 若弹幕为自己发送的，将Label的边框显示为白色并且宽带为1
+    if (titleString && titleString.length != 0) {
+        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        waitDisplayLabel.layer.borderWidth = 1.0f;
+    }
+    
+    [self.showDanmuView addSubview:waitDisplayLabel];
+    
+    // 给当前弹幕Label增加向左移动的动画
+    [self moveAnimation:waitDisplayLabel];
+}
+
+/**
+ *  产生随意的Label颜色
+ *
+ *  @return 对应的Label颜色
+ */
+- (UIColor *)randomColor {
+    UIColor *randomColorSend = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
+    return randomColorSend;
+}
+
+/**
+ *  弹幕Label向左滚动动作
+ *
+ *  @param waitMoveLabel 待滚动的Label的距离
+ */
+- (void)moveAnimation:(UILabel *)waitMoveLabel {
+    [UIView animateWithDuration:4 animations:^{
+        waitMoveLabel.center = CGPointMake(waitMoveLabel.center.x-CGRectGetMaxX(waitMoveLabel.frame), waitMoveLabel.center.y);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [waitMoveLabel removeFromSuperview];
+        }
+    }];
+}
+
 //TODO: 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
     if (self.isBarrage) {
         [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_off@2x"] forState:UIControlStateNormal];
+        self.showDanmuView.hidden = YES;
         self.isBarrage = NO;
     }else{
         [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_on@2x"] forState:UIControlStateNormal];
+        self.showDanmuView.hidden = NO;
+        [self createLabelWithTitle:@"lalallalala"];
         self.isBarrage = YES;
     }
+}
+- (void)sendBarrageAction:(UIButton *)button
+{
+    self.sendView.hidden = NO;
 }
 // 拖动进度条
 - (void)progressSLiderValueChangedAction:(UISlider *)progress
@@ -237,6 +344,65 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         //        [self.player pause];
     }
     [self timerBegin];
+}
+#pragma mark -- 发送弹幕代理
+- (void)sendBarrageClickAction:(UIButton *)button
+{
+    self.sendView.hidden = YES;
+    NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+    
+    __weak typeof(self) weakSelf = self;
+    
+    AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.sendView.barrageTextView.text attributes:@{@"userName":currentUsername}];
+    
+    [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
+        [weakSelf.conversation sendMessage:message  callback:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"发送成功！");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.danMuArr addObject:message];
+                    [weakSelf createLabelWithTitle:message.text];
+                });
+            }else if (error){
+                NSLog(@"%@",error);
+            }
+        }];
+    }];
+}
+// 查询聊天室
+- (void)queryConversationByConditions {
+    // Tom 创建了一个 client，用自己的名字作为 clientId
+    __weak typeof(self) weakSelf = self;
+    self.client = [[AVIMClient alloc] initWithClientId:@"tom"];
+    // Tom 打开 client
+    [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
+        // Tom 创建属性中 topic 是 movie 的查询
+        AVIMConversationQuery *query = [weakSelf.client conversationQuery];
+        [query whereKey:@"name" equalTo:weakSelf.liveModel.nickname];
+        // 额外调用一次确保查询的是聊天室而不是普通对话
+        [query whereKey:@"tr" equalTo:@(YES)];
+        [query findConversationsWithCallback:^(NSArray *objects, NSError *error) {
+            if (error) {
+                NSLog(@"queryConversation error = %@",error);
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (objects.count != 0) {
+                    weakSelf.conversation = [objects firstObject];
+                    //   [weakSelf joinConversation];// 加入聊天室
+                    
+                }else{
+                    
+                }
+            });
+            
+        }];
+    }];
+    
+}
+- (void)didreceiveMessageNotification:(NSNotification *)notify
+{
+    NSDictionary *userInfo = notify.userInfo;
+    [self createLabelWithTitle:[userInfo objectForKey:@"message"]];
 }
 #pragma mark --清晰度代理方法
 - (void)adjustDefinitionAction:(UIButton *)button definition:(Definition)definition
@@ -265,17 +431,42 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 // 弹幕大小
 - (void)barrageSizeAction:(UIButton *)button size:(barrageSize)size
 {
-    
+    switch (size) {
+        case bigBarrageSize:
+            self.DanmuSize = 50.0;
+            break;
+        case middleBarrageSize:
+            self.DanmuSize = 30.0;
+            break;
+        case littleBarrageSize:
+            self.DanmuSize = 17.0;
+            break;
+        default:
+            break;
+    }
 }
 // 弹幕透明度
 - (void)barrageTransparencySliderValueChanged:(UISlider *)slider
 {
-    
+    float alpha = slider.value;
+    self.showDanmuView.backgroundColor = YD_COLOR(225, 225, 225, alpha * 0.7);
 }
 // 弹幕位置
 - (void)barragePositionAction:(UIButton *)button position:(barragePosition)position
 {
-    
+    switch (position) {
+        case topScreen:
+            self.showDanmuView.frame = CGRectMake(0, 0, WindownWidth, WindowHeight / 2.0);
+            break;
+        case fullScreen:
+            self.showDanmuView.frame = CGRectMake(0, 0, WindowHeight, WindownWidth);
+            break;
+        case bottomScreen:
+            self.showDanmuView.frame = CGRectMake(0, WindowHeight / 2.0, WindownWidth, WindowHeight / 2.0);
+            break;
+        default:
+            break;
+    }
 }
 #pragma mark --定时休眠
 - (void)timeSleepSwitchAction:(UISwitch *)timeSwitch
@@ -616,7 +807,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 /*
 #pragma mark - Navigation
 
