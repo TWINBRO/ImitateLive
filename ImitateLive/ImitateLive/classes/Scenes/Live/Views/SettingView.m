@@ -74,8 +74,9 @@
 #pragma mark --弹幕透明度
 - (void)barrageTransparency
 {
-    self.transparencySlider = [[UISlider alloc] initWithFrame:CGRectMake(120, settingWidth * 2.0 - 40, 260, 80)];
+    self.transparencySlider = [[UISlider alloc] initWithFrame:CGRectMake(130, settingWidth * 2.0 - 40, 230, 80)];
     self.transparencySlider.maximumValue = 1.0;
+    self.transparencySlider.value = 1.0;
     [self.transparencySlider setMaximumTrackTintColor:[UIColor grayColor]];
     [self.transparencySlider setMinimumTrackTintColor:[UIColor greenColor]];
     [self.transparencySlider setThumbTintColor:[UIColor whiteColor]];

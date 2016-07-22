@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (strong, nonatomic) NSMutableArray *danMuArr;
 @property (strong, nonatomic) UIView *showDanmuView;// 显示弹幕的视图
 @property (assign, nonatomic) CGFloat DanmuSize;// 弹幕大小
-
+@property (assign, nonatomic) CGFloat DanmuAlpha;// 弹幕透明度
 // 聊天室
 @property (strong, nonatomic) AVIMClient *client;
 @property (strong, nonatomic) AVIMConversation *conversation;
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     // 显示弹幕视图
     self.showDanmuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
     [self.view addSubview:self.showDanmuView];
-    self.showDanmuView.hidden = YES;
+    self.showDanmuView.hidden = NO;
     [self.view addSubview:self.interactiveView];
     
     self.interactiveView.titleLabel.text = self.liveModel.title;
@@ -115,12 +115,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.definitionView.hidden = YES;// 隐藏清晰度视图
     
     // 设置按钮视图
-    self.settingView = [[SettingView alloc] initWithFrame:CGRectMake(self.playerView.frame.size.height, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height)];
+    self.settingView = [[SettingView alloc] initWithFrame:CGRectMake(self.playerView.frame.size.height - 45, 0, self.view.frame.size.width / 2.0, self.view.frame.size.height)];
     self.settingView.delegate = self;
     [self.view addSubview:self.settingView];
     self.settingView.hidden = YES;// 隐藏设置按钮视图
     
-    self.isBarrage = NO;// 是否打开弹幕
+    self.isBarrage = YES;// 是否打开弹幕
     
     [self addGestureRecognizer];
     
@@ -136,6 +136,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.sendView.hidden = YES;
     
     self.DanmuSize = 30.0;
+    self.DanmuAlpha = 1.0;
     
     [self queryConversationByConditions];
     
@@ -289,7 +290,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
  *  @return 对应的Label颜色
  */
 - (UIColor *)randomColor {
-    UIColor *randomColorSend = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
+    UIColor *randomColorSend = [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:self.DanmuAlpha];
     return randomColorSend;
 }
 
@@ -308,7 +309,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }];
 }
 
-//TODO: 是否打开弹幕
+// 是否打开弹幕
 - (void)isBarrageAction:(UIButton *)button
 {
     if (self.isBarrage) {
@@ -318,13 +319,14 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     }else{
         [self.interactiveView.isBarrage setImage:[UIImage imageNamed:@"movie_subtitle_on@2x"] forState:UIControlStateNormal];
         self.showDanmuView.hidden = NO;
-        [self createLabelWithTitle:@"lalallalala"];
         self.isBarrage = YES;
     }
 }
+// 弹出发送弹幕界面
 - (void)sendBarrageAction:(UIButton *)button
 {
     self.sendView.hidden = NO;
+    [self.sendView.barrageTextView becomeFirstResponder];
 }
 // 拖动进度条
 - (void)progressSLiderValueChangedAction:(UISlider *)progress
@@ -449,7 +451,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 - (void)barrageTransparencySliderValueChanged:(UISlider *)slider
 {
     float alpha = slider.value;
-    self.showDanmuView.backgroundColor = YD_COLOR(225, 225, 225, alpha * 0.7);
+    self.DanmuAlpha = alpha;
 }
 // 弹幕位置
 - (void)barragePositionAction:(UIButton *)button position:(barragePosition)position
@@ -492,7 +494,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     self.interactiveView.nowTimeLabel.text = [NSString getStringFormatByTime:f];
     self.interactiveView.progressSlider.value = f / CMTimeGetSeconds(self.playerView.playerItem.duration);
     static int i = 1;
-    if (i % 5 == 0) {
+    if (i % 7 == 0) {
         self.interactiveView.hidden = YES;
     }
     i++;
