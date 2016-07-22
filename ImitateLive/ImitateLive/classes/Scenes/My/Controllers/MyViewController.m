@@ -180,11 +180,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self.navigationController pushViewController:loginVC animated:YES];
-    }
+//    if (indexPath.section == 0) {
+//        UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        [self.navigationController pushViewController:loginVC animated:YES];
+//    }
     if (indexPath.section == 1) {
         CollectListViewController *collectVC = [CollectListViewController new];
         [self.navigationController pushViewController:collectVC animated:YES];
