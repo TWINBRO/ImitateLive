@@ -104,7 +104,7 @@ static NSString * const headID = @"head";
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             
-            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+//            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
                 for (NSDictionary *dictory in dataDetail) {
                     
                     //                ListModel *listModel = [[ListModel alloc]init];
@@ -118,9 +118,10 @@ static NSString * const headID = @"head";
                     [array addObject:liveModel];
 
    
-                    [weakSelf.sectionDic setObject:array forKey:homeModel.title];
+                    
                 }
-            }
+                [weakSelf.sectionDic setObject:array forKey:homeModel.title];
+//            }
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{

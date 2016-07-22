@@ -32,7 +32,11 @@
     self.msgArray = [NSMutableArray array];
     
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -2, WindownWidth, WindowHeight-345) style:UITableViewStylePlain];
-//    self.chatTableView.backgroundColor = [UIColor greenColor];
+    
+    //tableView头部视图
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 0, 20)];
+    self.chatTableView.tableHeaderView = header;
+    
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
 
@@ -160,48 +164,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 44;
+    return 24;
     
 }
-
-
-//将要开始编辑
-
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-//
-//    self.msgTextView.frame
-//    
-//}
-
-//- (void)sendMsg:(UIButton *)btn {
-//    
-//    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能发言" preferredStyle:(UIAlertControllerStyleAlert)];
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            
-//            UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-//            LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//           
-//            [self presentViewController:loginVC animated:YES completion:nil];
-//            
-//        }];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-//        // 添加按钮
-//        [alertController addAction:okAction];
-//        [alertController addAction:cancelAction];
-//        [self presentViewController:alertController animated:YES completion:nil];
-//    }
-//    else {
-//        
-//        NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
-//        [self createClientID:currentUsername];
-//        
-//    }
-//    
-//    
-//    
-//}
-
 
 - (void)sendAction:(UIButton *)button
 {
@@ -376,6 +341,22 @@
 
 }
 
+// 设置区头（每个分区开始区域的视图）
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 0, 20)];
+    label.text = [NSString stringWithFormat:@"   欢迎来到%@的直播间",self.liveModel.nickname];
+    label.font = [UIFont systemFontOfSize:13.0];
+    label.textColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
+    return label;
+
+}
+
+//设置分区区头高度
+- (CGFloat )tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    
+    return 20;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
