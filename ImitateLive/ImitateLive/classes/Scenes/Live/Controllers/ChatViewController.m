@@ -238,7 +238,7 @@
 - (void)queryConversationByConditions {
     // Tom 创建了一个 client，用自己的名字作为 clientId
     __weak typeof(self) weakSelf = self;
-    self.client = [[AVIMClient alloc] initWithClientId:@"tom"];
+    self.client = [[AVIMClient alloc] initWithClientId:self.liveModel.liveID];
     self.client.delegate = self;
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
@@ -256,8 +256,6 @@
                     weakSelf.conversation = [objects firstObject];
 
 //                    [weakSelf getConversationFromSever];
-
-
                     
                 }else{
                     [weakSelf creatTransientCoversation];
@@ -316,7 +314,7 @@
     [self.messageArr addObject:message];
     [self.chatTableView reloadData];
     [self scrollViewToBottom];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"message" object:nil userInfo:@{@"message":message.text}];
 }
 // 获取消息
 - (void)getConversationFromSever
