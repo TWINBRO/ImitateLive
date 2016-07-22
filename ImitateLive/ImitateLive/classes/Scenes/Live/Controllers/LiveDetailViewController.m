@@ -121,7 +121,7 @@
     }
     
     // y 坐标
-    int yPoint = arc4random_uniform(CGRectGetHeight([UIScreen mainScreen].bounds)-45-25)+45;
+    int yPoint = arc4random_uniform(250-45-25)+45;
     // 当期弹幕Label的长度
     float labelLength = waitDisplayString.length*17;
     

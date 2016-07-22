@@ -9,13 +9,15 @@
 #import "ChatViewController.h"
 #import "LoginViewController.h"
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,AVIMClientDelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,AVIMClientDelegate,UITextViewDelegate>
 
 // 聊天室
 @property (strong, nonatomic) AVIMConversation *conversation;
 // 所有消息
 @property (strong, nonatomic) NSMutableArray *messageArr;
 
+
+@property (strong, nonatomic) UIButton *sendBtn;
 @end
 
 #define UITableViewCell_Identify @"UITableViewCell_Identify"
@@ -35,36 +37,103 @@
     [self.chatTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCell_Identify];
     self.chatTableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:self.chatTableView];
-    
-    
-    
+
     [self addSendView];
     
-   
     self.messageArr = [NSMutableArray array];
     [self queryConversationByConditions];
     
+    //添加手势
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tap1.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap1];
+    
+    //添加键盘的监听事件
+    //注册通知,监听键盘弹出事件
+    [[NSNotificationCenter
+      defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    //注册通知,监听键盘消失事件
+    [[NSNotificationCenter
+      defaultCenter] addObserver:self selector:@selector(keyboardDidHidden) name:UIKeyboardDidHideNotification object:nil];
+
     
 }
 
 
+//键盘弹出时
+-(void)keyboardDidShow:(NSNotification *)notification
+
+{
+    //获取键盘高度
+    NSValue
+    *keyboardObject = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect;
+
+    [keyboardObject getValue:&keyboardRect];
+    //调整放置有textView的view的位置
+    //设置动画
+    [UIView beginAnimations:nil context:nil];
+    //定义动画时间
+//    [UIView setAnimationDuration:0.2];
+    //设置view的frame，往上平移
+
+    self.msgTextView.frame = CGRectMake(5, 130, WindownWidth-85, 40);
+    self.sendBtn.frame = CGRectMake(WindownWidth - 70, 130, 70, 40 );
+
+    [UIView commitAnimations];
+
+}
+//键盘消失时
+-(void)keyboardDidHidden {
+    //定义动画
+    [UIView beginAnimations:nil context:nil];
+//    [UIView
+//     setAnimationDuration:0.2];
+    
+    self.msgTextView.frame = CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40);
+    self.sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 337, 70, 40 );
+    
+    [UIView commitAnimations];
+    
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tap1
+{
+    
+//    [self.view endEditing:YES];
+    [self.msgTextView resignFirstResponder];
+}
 
 - (void)addSendView {
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(70, WindowHeight - 345, WindownWidth-140, 50)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40)];
     self.msgTextView = textView;
     self.msgTextView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
     self.msgTextView.text = @"发点弹幕吧！";
     self.msgTextView.textColor = [UIColor grayColor];
+    self.msgTextView.layer.borderWidth = 1.0;
+    self.msgTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.msgTextView.layer.cornerRadius = 5.0;
+    self.msgTextView.delegate = self;
     [self.view addSubview:self.msgTextView];
-    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sendBtn.backgroundColor = [UIColor colorWithRed:210.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
-    [sendBtn setImage:[UIImage imageNamed:@"发送弹幕(1)"] forState:UIControlStateNormal];
-    sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 345, 70, 50 );
-    [sendBtn addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:sendBtn];
+    self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.sendBtn.backgroundColor = [UIColor colorWithRed:210.0/255.0 green:230.0/255.0 blue:210.0/255.0 alpha:1];
+    self.sendBtn.layer.cornerRadius = 5.0;
+    [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    self.sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 337, 70, 40 );
+    [self.sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.sendBtn addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.sendBtn];
     
 }
+
+//将要开始编辑
+
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+//
+//    self.msgTextView.frame
+//    
+//}
 
 //- (void)sendMsg:(UIButton *)btn {
 //    
@@ -109,7 +178,9 @@
     // Tom 打开 client
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         // Tom 创建名称为 「HelloKitty PK 加菲猫」的会话
-        [weakSelf.client createConversationWithName:weakSelf.liveModel.nickname clientIds:@[weakSelf.client.clientId] attributes:nil options:AVIMConversationOptionTransient callback:^(AVIMConversation *conversation, NSError *error) {
+        [weakSelf.client createConversationWithName:weakSelf.liveModel.nickname clientIds:@[self.liveModel.liveID] attributes:nil options:AVIMConversationOptionTransient callback:^(AVIMConversation *conversation, NSError *error) {
+
+            
             if (!error) {
                 NSLog(@"创建成功！");
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -152,7 +223,9 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (objects.count != 0) {
                     weakSelf.conversation = [objects firstObject];
+
 //                    [weakSelf joinConversation];// 加入聊天室
+
                     
                 }else{
                     [weakSelf creatTransientCoversation];
@@ -184,7 +257,9 @@
 - (void)sendMessage
 {
     __weak typeof(self) weakSelf = self;
+    
     AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.msgTextView.text attributes:@{@"userId":@"username"}];
+    
     [self.client openWithCallback:^(BOOL succeeded, NSError *error) {
         [weakSelf.conversation sendMessage:message  callback:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
@@ -199,7 +274,6 @@
             }
         }];
     }];
-    
 }
 #pragma mark - AVIMClientDelegate
 // 接收消息
@@ -247,6 +321,7 @@
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.messageArr.count - 1 inSection:0];
     
     
+
     // 滑到tableview最后一行的最下面
     [self.chatTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
@@ -264,9 +339,22 @@
 {
     UITableViewCell *systemCell = [self.chatTableView dequeueReusableCellWithIdentifier:UITableViewCell_Identify];
     AVIMTextMessage *message = self.messageArr[indexPath.row];
+    systemCell.textLabel.font = [UIFont systemFontOfSize:15];
     systemCell.textLabel.text = message.text;
     return systemCell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return 30;
+    
+}
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
