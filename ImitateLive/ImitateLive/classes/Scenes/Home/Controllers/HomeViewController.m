@@ -90,6 +90,8 @@ static NSString * const headID = @"head";
 
 #pragma mark 首页其他数据
 - (void)requestHomeData {
+    
+    [self p_setupProgressHud];
 
     __weak typeof(self) weakSelf = self;
     HomeRequest *homerequest = [[HomeRequest alloc] init];
@@ -104,7 +106,7 @@ static NSString * const headID = @"head";
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             
-//            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
                 for (NSDictionary *dictory in dataDetail) {
                     
                     //                ListModel *listModel = [[ListModel alloc]init];
@@ -121,17 +123,26 @@ static NSString * const headID = @"head";
                     
                 }
                 [weakSelf.sectionDic setObject:array forKey:homeModel.title];
-//            }
+            }
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.homeCollectionView.mj_header endRefreshing];
             [weakSelf.homeCollectionView reloadData];
+            [GiFHUD dismiss];
         });
         
     } failure:^(NSError *error) {
         NSLog(@"home data error =  %@",error);
     }];
+    
+}
+
+#pragma mark - 添加loading信息
+- (void)p_setupProgressHud
+{
+    [GiFHUD setGifWithImageName:@"pika.gif"];
+    [GiFHUD show];
     
 }
 

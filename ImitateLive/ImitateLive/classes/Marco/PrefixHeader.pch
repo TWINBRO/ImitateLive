@@ -13,6 +13,7 @@
 #import "RequestUrl.h"
 #import "NetworkRequest.h"
 #import "Color_marco.h"
+#import "GiFHUD.h"
 #import "UIImage+ImageContentWithColor.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
