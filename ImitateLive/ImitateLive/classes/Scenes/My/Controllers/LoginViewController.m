@@ -46,9 +46,12 @@
     self.hidesBottomBarWhenPushed = YES;
     UIStoryboard *mainsb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     RegistrViewController *registerVC = [mainsb instantiateViewControllerWithIdentifier:@"RegistrViewController"];
-    [self.navigationController pushViewController:registerVC animated:YES];
+//    [self.navigationController pushViewController:registerVC animated:YES];
     [self presentViewController:registerVC animated:YES completion:nil];
 //    self.hidesBottomBarWhenPushed = NO;
+}
+- (IBAction)closeButtonClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)login {
@@ -99,7 +102,7 @@
                 // 立即保存
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 // 登录成功之后消失
-                [self.navigationController popToRootViewControllerAnimated:YES];
+//                [self.navigationController popToRootViewControllerAnimated:YES];
 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
