@@ -109,8 +109,8 @@ static NSString * const headID = @"head";
             
 //            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
             
-            if ([tempDic objectForKey:@"lists"]){
-                
+            if (dataDetail != nil && ![dataDetail isKindOfClass:[NSNull class]] && dataDetail.count != 0){
+            
                 
                 for (NSDictionary *dictory in dataDetail) {
                     
