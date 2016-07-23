@@ -107,7 +107,11 @@ static NSString * const headID = @"head";
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
             
-            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+//            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
+            
+            if ([tempDic objectForKey:@"lists"]){
+                
+                
                 for (NSDictionary *dictory in dataDetail) {
                     
                     //                ListModel *listModel = [[ListModel alloc]init];
@@ -119,8 +123,6 @@ static NSString * const headID = @"head";
                     [liveModel setValuesForKeysWithDictionary:dictory];
                     [weakSelf.homeDataDetail addObject:liveModel];
                     [array addObject:liveModel];
-
-   
                     
                 }
                 [weakSelf.sectionDic setObject:array forKey:homeModel.title];
