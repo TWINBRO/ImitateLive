@@ -131,10 +131,12 @@
     waitDisplayLabel.textColor = [self randomColor];
     
     // 若弹幕为自己发送的，将Label的边框显示为白色并且宽带为1
-//    if (titleString && titleString.length != 0) {
-//        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-//        waitDisplayLabel.layer.borderWidth = 1.0f;
-//    }
+    AVIMTextMessage *message = self.danMuArr[self.danMuArr.count-1];
+    NSString *currentname = [AVUser currentUser].username;
+    if (titleString && titleString.length != 0 && [currentname isEqualToString:[message.attributes objectForKey:@"userName"]]) {
+        waitDisplayLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        waitDisplayLabel.layer.borderWidth = 1.0f;
+    }
     
     [self.view addSubview:waitDisplayLabel];
     
