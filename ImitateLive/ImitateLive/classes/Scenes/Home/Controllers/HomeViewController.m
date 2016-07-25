@@ -102,7 +102,7 @@ static NSString * const headID = @"head";
         for (NSDictionary *tempDic in dataArr) {
             HomeModel *homeModel = [[HomeModel alloc] init];
             [homeModel setValuesForKeysWithDictionary:tempDic];
-            [weakSelf.homeDataArr addObject:homeModel];
+//            [weakSelf.homeDataArr addObject:homeModel];
             
             NSMutableArray *array = [NSMutableArray array];
             NSArray *dataDetail = [tempDic objectForKey:@"lists"];
@@ -110,7 +110,7 @@ static NSString * const headID = @"head";
 //            if (![[tempDic objectForKey:@"title"] isEqualToString:@"战旗奥运行"]) {
             
             if (dataDetail != nil && ![dataDetail isKindOfClass:[NSNull class]] && dataDetail.count != 0){
-            
+            [weakSelf.homeDataArr addObject:homeModel];
                 
                 for (NSDictionary *dictory in dataDetail) {
                     
