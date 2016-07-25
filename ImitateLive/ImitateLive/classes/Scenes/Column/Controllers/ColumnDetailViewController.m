@@ -12,6 +12,7 @@
 #import "ColumnDetailModel.h"
 #import "LiveDetailViewController.h"
 #import "ListModel.h"
+#import "TalentShowViewController.h"
 
 #define header_Identifier @"header_Identifier"
 #define footer_identifier @"footer_Identifier"
@@ -158,10 +159,19 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     LiveDetailViewController *liveDetail = [[LiveDetailViewController alloc] init];
+    TalentShowViewController *talentShowVC = [[TalentShowViewController alloc] init];
     LiveModel *model = self.allVideoArr[indexPath.row];
-    liveDetail.liveModel = model;
-    [self.navigationController presentViewController:liveDetail animated:YES completion:nil];
+    if ([model.verscr isEqualToString:@"1"]) {
+        talentShowVC.liveModel = model;
+        [self presentViewController:talentShowVC animated:YES completion:nil];
+    }else{
+        
+        liveDetail.liveModel = model;
+        [self.navigationController presentViewController:liveDetail animated:YES completion:nil];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
