@@ -34,6 +34,8 @@
     [super viewDidLoad];
     self.title = self.model.name;
     
+    
+    
     // 创建collectionView
     [self creatColumnDetailView];
     self.allVideoArr = [NSMutableArray array];
@@ -57,7 +59,7 @@
 {
     // 创建UICollerctionView
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    self.columnDetailView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, WindownWidth, WindowHeight - 64 - 49) collectionViewLayout:flowLayout];
+    self.columnDetailView = [[UICollectionView alloc] initWithFrame: CGRectMake(0, 0, WindownWidth, WindowHeight - 64) collectionViewLayout:flowLayout];
     flowLayout.minimumInteritemSpacing = 5;
     flowLayout.minimumLineSpacing = 5;
     flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);

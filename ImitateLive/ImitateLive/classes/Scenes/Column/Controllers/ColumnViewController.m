@@ -167,9 +167,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.hidesBottomBarWhenPushed = YES;
     ColumnDetailViewController *columnDetailVC = [[ColumnDetailViewController alloc] init];
     columnDetailVC.model = self.allGamesArr[indexPath.row];
     [self.navigationController pushViewController:columnDetailVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 
