@@ -56,7 +56,12 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NOTIFICATION" object:nil];
 //    
 //}
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self selectAllLiveModel];
+    [self.collectCollectionView reloadData];
+}
 #pragma mark 获取所有活动
 - (void)selectAllLiveModel
 {
@@ -150,6 +155,8 @@
     //    [self.navigationController pushViewController:liveDetailVC animated:YES];
     [self presentViewController:liveDetailVC animated:YES completion:nil];
     
+    [self.allLivesArray removeAllObjects];
+    [self.collectCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
