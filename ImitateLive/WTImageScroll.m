@@ -220,14 +220,14 @@
      */
     NSString *md5Str=[str md5];
     
-    NSData *imgData=[imgChaceDic objectForKey:md5Str];
-
-    if(imgData){
-        
-        UIImage *img=[[UIImage alloc]initWithData:imgData];
-        
-        [aBtn setImage:img forState:UIControlStateNormal];
-    }
+//    NSData *imgData=[imgChaceDic objectForKey:md5Str];
+//
+//    if(imgData){
+//        
+//        UIImage *img=[[UIImage alloc]initWithData:imgData];
+//        
+//        [aBtn setImage:img forState:UIControlStateNormal];
+//    }
     
     NSString *paths = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/Image"];
     

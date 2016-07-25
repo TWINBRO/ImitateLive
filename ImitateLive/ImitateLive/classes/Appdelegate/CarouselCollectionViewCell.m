@@ -50,7 +50,7 @@
         for (NSDictionary *tempDic in data) {
             WheelImageModel *model = [[WheelImageModel alloc] init];
             [model setValuesForKeysWithDictionary:tempDic];
-            [weakSelf.carousels addObject:model.spic];
+            [weakSelf.carousels addObject:model.bpic];
             
             
             LiveModel *live = [LiveModel new];
