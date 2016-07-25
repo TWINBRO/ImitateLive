@@ -47,15 +47,15 @@
     [self.view addSubview:self.collectCollectionView];
     [self selectAllLiveModel];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"NOTIFICATION" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshView) name:@"NOTIFICATION" object:nil];
 }
 
-- (void)refreshView{
-    
-    [self selectAllLiveModel];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NOTIFICATION" object:nil];
-    
-}
+//- (void)refreshView{
+//    
+//    [self selectAllLiveModel];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NOTIFICATION" object:nil];
+//    
+//}
 
 #pragma mark 获取所有活动
 - (void)selectAllLiveModel

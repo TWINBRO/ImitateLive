@@ -61,7 +61,7 @@
             [self.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
             self.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
             [[SeverHandle shareInstance] deleteLiveModel:_liveModel];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"NOTIFICATION" object:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"NOTIFICATION" object:nil];
             return;
         }
         
