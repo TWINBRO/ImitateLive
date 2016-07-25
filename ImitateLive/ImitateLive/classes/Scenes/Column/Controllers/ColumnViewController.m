@@ -48,7 +48,7 @@
     
     [self creatColumnCollectionView];
     
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     // 下拉刷新
     self.columnCollectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self loadTop];
