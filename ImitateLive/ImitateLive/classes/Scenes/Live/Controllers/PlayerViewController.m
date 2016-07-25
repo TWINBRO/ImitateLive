@@ -411,6 +411,19 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 {
     self.definitionView.frame = CGRectMake(0, self.playerView.frame.size.height, self.playerView.frame.size.width, self.playerView.frame.size.height);
     
+    switch (definition) {
+            case superDefinition:
+            [self.interactiveView.definitionBtn setImage:[UIImage imageNamed:@"btn_cq_pressed@2x"] forState:UIControlStateNormal];
+            break;
+            case highDefinition:
+            [self.interactiveView.definitionBtn setImage:[UIImage imageNamed:@"btn_gq_pressed@2x"] forState:UIControlStateNormal];
+            break;
+            case standardDefinition:
+            [self.interactiveView.definitionBtn setImage:[UIImage imageNamed:@"btn_bq_pressed@2x"] forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
     //TODO: 记录切换分辨率的时刻
 //    NSInteger currentTime = (NSInteger)CMTimeGetSeconds([self.playerView.player currentTime]);
     
