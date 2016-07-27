@@ -38,4 +38,5 @@
 
 @property (weak, nonatomic) id<AddAlertControllerDelegate> alertDelegate;
 
+@property (assign, nonatomic) BOOL isFavorite;
 @end

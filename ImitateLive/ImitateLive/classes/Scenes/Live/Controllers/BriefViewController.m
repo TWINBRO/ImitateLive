@@ -61,19 +61,19 @@
     // 判断是否已经收藏
     BOOL isFavorite = [[SeverHandle shareInstance] isFavoriteLiveModelWithID:_liveModel.liveID];
     
-        if (isFavorite) {
-            [cell.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
-            cell.collectButton.backgroundColor = [UIColor lightGrayColor];
-            
-        }else {
-            [cell.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
-            cell.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
-        }
+    if (isFavorite) {
+        [cell.collectButton setTitle:@"已订阅" forState:UIControlStateNormal];
+        cell.collectButton.backgroundColor = [UIColor lightGrayColor];
+        
+    }else {
+        [cell.collectButton setTitle:@"订阅" forState:UIControlStateNormal];
+        cell.collectButton.backgroundColor = [UIColor colorWithRed:18/255.0 green:186/255.0 blue:255/255.0 alpha:1];
+    }
     
     cell.videoModel = self.videoModel;
     
     cell.liveModel = self.liveModel;
-    
+    cell.isFavorite = isFavorite;
     return cell;
     
 }
