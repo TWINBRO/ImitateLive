@@ -543,6 +543,7 @@
 		D6F864EE1D37C1F900A3EBA4 /* crash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F864EB1D37C1F900A3EBA4 /* crash@3x.png */; };
 		D6F864EF1D37C1F900A3EBA4 /* crash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F864EC1D37C1F900A3EBA4 /* crash@2x.png */; };
 		D6F864F01D37C1F900A3EBA4 /* crash.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F864ED1D37C1F900A3EBA4 /* crash.png */; };
+		D6FB750E1D488448008E6A20 /* 消息.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB750D1D488448008E6A20 /* 消息.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1182,6 +1183,7 @@
 		D6F864EB1D37C1F900A3EBA4 /* crash@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crash@3x.png"; sourceTree = "<group>"; };
 		D6F864EC1D37C1F900A3EBA4 /* crash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crash@2x.png"; sourceTree = "<group>"; };
 		D6F864ED1D37C1F900A3EBA4 /* crash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crash.png; sourceTree = "<group>"; };
+		D6FB750D1D488448008E6A20 /* 消息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "消息.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1263,6 +1265,7 @@
 		D606CBFA1D3C78D9006B41C7 /* 发送弹幕 */ = {
 			isa = PBXGroup;
 			children = (
+				D6FB750D1D488448008E6A20 /* 消息.png */,
 				D65D54291D421E6F004A2377 /* heart.png */,
 				D65D542B1D421F1B004A2377 /* heartB.png */,
 				D606CBFB1D3C78D9006B41C7 /* 发送弹幕(1).png */,
@@ -2619,6 +2622,7 @@
 				D606CC031D3C78D9006B41C7 /* 发送弹幕(3).png in Resources */,
 				D65E22991D35074200BA0BF0 /* ic_bjk_slevel_7@2x.png in Resources */,
 				D65E22911D35074200BA0BF0 /* ic_big_normal@2x.png in Resources */,
+				D6FB750E1D488448008E6A20 /* 消息.png in Resources */,
 				D65E23651D35074200BA0BF0 /* more_block_selected@2x.png in Resources */,
 				D65E22FF1D35074200BA0BF0 /* ic_logo_big@2x.png in Resources */,
 				D60D8CC01D35E865001B6BCE /* HeaderView.xib in Resources */,

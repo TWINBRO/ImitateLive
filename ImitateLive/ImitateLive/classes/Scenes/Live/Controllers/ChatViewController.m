@@ -113,9 +113,9 @@
 //    //定义动画时间
 //    [UIView setAnimationDuration:0.2];
     //设置view的frame，往上平移
-
-    self.msgTextView.frame = CGRectMake(5, 130, WindownWidth-85, 40);
-    self.sendBtn.frame = CGRectMake(WindownWidth - 74, 130, 70, 40 );
+    
+    self.msgTextView.frame = CGRectMake(5, self.chatTableView.bounds.size.height-keyboardRect.size.height, WindownWidth-85, 40);
+    self.sendBtn.frame = CGRectMake(WindownWidth - 74, self.chatTableView.bounds.size.height-keyboardRect.size.height, 70, 40 );
 
 //    [UIView commitAnimations];
 

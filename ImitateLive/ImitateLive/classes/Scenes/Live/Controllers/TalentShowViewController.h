@@ -10,4 +10,19 @@
 #import "LiveModel.h"
 @interface TalentShowViewController : BaseViewController
 @property (strong, nonatomic) LiveModel *liveModel;
+
+@property (strong, nonatomic)UITableView *chatTableView;
+
+@property (strong, nonatomic) UITextView *msgTextView;
+
+@property (strong, nonatomic) AVIMClient *client;
+
+@property (strong, nonatomic) NSString *clientName;
+
+@property (strong, nonatomic) NSString *conversationID;
+
+@property (strong, nonatomic) NSMutableArray *msgArray;
+
+- (void)addSendView;
+
 @end
