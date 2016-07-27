@@ -109,28 +109,28 @@
     [keyboardObject getValue:&keyboardRect];
     //调整放置有textView的view的位置
     //设置动画
-    [UIView beginAnimations:nil context:nil];
-    //定义动画时间
+//    [UIView beginAnimations:nil context:nil];
+//    //定义动画时间
 //    [UIView setAnimationDuration:0.2];
     //设置view的frame，往上平移
 
     self.msgTextView.frame = CGRectMake(5, 130, WindownWidth-85, 40);
-    self.sendBtn.frame = CGRectMake(WindownWidth - 70, 130, 70, 40 );
+    self.sendBtn.frame = CGRectMake(WindownWidth - 74, 130, 70, 40 );
 
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
 
 }
 //键盘消失时
 -(void)keyboardDidHidden {
     //定义动画
-    [UIView beginAnimations:nil context:nil];
+//    [UIView beginAnimations:nil context:nil];
 //    [UIView
 //     setAnimationDuration:0.2];
     
     self.msgTextView.frame = CGRectMake(5, WindowHeight - 337, WindownWidth-85, 40);
-    self.sendBtn.frame = CGRectMake(WindownWidth - 70, WindowHeight - 337, 70, 40 );
+    self.sendBtn.frame = CGRectMake(WindownWidth - 74, WindowHeight - 337, 70, 40 );
     
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
     
 }
 
