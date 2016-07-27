@@ -8,7 +8,10 @@
 
 #import "TalentShowViewController.h"
 #import "PlayerView.h"
-@interface TalentShowViewController ()
+#import <UMSocialSnsService.h>
+#import <UMSocial.h>
+
+@interface TalentShowViewController ()<UMSocialUIDelegate>
 @property (strong, nonatomic) UIImageView *imgView;
 @property (strong, nonatomic) UIButton *heartButton;
 @property (strong, nonatomic) PlayerView *playerView;
@@ -66,6 +69,13 @@
     self.numberLabel.text = [NSString stringWithFormat:@"欢迎来到%@的直播间",self.liveModel.nickname];
     self.numberLabel.textColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
     
+    UIButton *shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(WindownWidth - 100, WindowHeight - 47, 25, 25)];
+    shareBtn.layer.masksToBounds = YES;
+    shareBtn.layer.cornerRadius = 5;
+    [shareBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:shareBtn];
     [self.view addSubview:self.numberLabel];
     [self.view addSubview:self.personLabel];
     [self.view addSubview:self.heartButton];
@@ -97,6 +107,33 @@
 //        [self.imgView removeFromSuperview];
         
     }];
+    
+}
+
+// 分享
+- (void)shareAction {
+    
+    [UMSocialData defaultData].extConfig.title = @"转发到微博";
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.liveModel.spic];
+    //如果需要分享回调，请将delegate对象设置self，并实现下面的回调方法
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c804167e58e5c90000c6b"
+                                      shareText:[NSString stringWithFormat:@"我正在#战旗TV#观看%@的现场直播：【%@】，精彩炫酷，大家速速来围观！http://www.zhanqi.tv%@（分享自@战旗TV直播平台）",self.liveModel.nickname,self.liveModel.title,self.liveModel.url] // 分享的内容
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,UMShareToQzone,UMShareToSina]
+                                       delegate:self];
+    
+}
+
+// 实现回调方法
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response {
+    
+    // 根据responseCode得到发送的结果
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        NSLog(@"分享成功");
+    }else {
+        NSLog(@"%d",response.responseCode);
+    }
     
 }
 
