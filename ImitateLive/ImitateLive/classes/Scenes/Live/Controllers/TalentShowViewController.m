@@ -18,6 +18,8 @@
 @property (strong, nonatomic) UIButton *closeButton;
 @property (strong, nonatomic) UILabel *personLabel;
 @property (strong, nonatomic) UILabel *numberLabel;
+@property (strong, nonatomic) UILabel *nickNameLabel;
+
 @end
 #define HLS_URL @"http://dlhls.cdn.zhanqi.tv/zqlive/"
 @implementation TalentShowViewController
@@ -56,7 +58,7 @@
     [self.heartButton addTarget:self action:@selector(heartButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    self.personLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 85, 30)];
+    self.personLabel = [[UILabel alloc] initWithFrame:CGRectMake(-15, 100, 85, 30)];
     self.personLabel.text = [NSString stringWithFormat:@"%@",self.liveModel.online];
     self.personLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     self.personLabel.layer.cornerRadius = 15;
@@ -69,6 +71,7 @@
     self.numberLabel.text = [NSString stringWithFormat:@"欢迎来到%@的直播间",self.liveModel.nickname];
     self.numberLabel.textColor = [UIColor colorWithRed:14.0/255.0 green:192.0/255.0 blue:228.0/255.0 alpha:1];
     
+
     UIButton *shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(WindownWidth - 100, WindowHeight - 47, 25, 25)];
     shareBtn.layer.masksToBounds = YES;
     shareBtn.layer.cornerRadius = 5;
@@ -76,6 +79,18 @@
     [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:shareBtn];
+
+    self.nickNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 100, 30)];
+    self.nickNameLabel.text = [NSString stringWithFormat:@"%@",self.liveModel.nickname];
+    self.nickNameLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    self.nickNameLabel.layer.cornerRadius = 15;
+    self.nickNameLabel.clipsToBounds = YES;
+    self.nickNameLabel.textColor = [UIColor whiteColor];
+    self.nickNameLabel.font = [UIFont systemFontOfSize:13.0];
+    self.nickNameLabel.textAlignment = UITextAlignmentCenter;
+    
+    [self.view addSubview:self.nickNameLabel];
+
     [self.view addSubview:self.numberLabel];
     [self.view addSubview:self.personLabel];
     [self.view addSubview:self.heartButton];
