@@ -58,7 +58,11 @@
 		D610B1FF1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D610B1FD1D35D29D00B5E6E2 /* ColumnDetailCollectionViewCell.xib */; };
 		D610B2021D366D8100B5E6E2 /* LittleInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */; };
 		D610B2051D366DD100B5E6E2 /* BigInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */; };
+
 		D6224ED71D48926D001F7FB0 /* 发送弹幕btn.png in Resources */ = {isa = PBXBuildFile; fileRef = D6224ED61D48926D001F7FB0 /* 发送弹幕btn.png */; };
+
+		D6132D241D486A1200450B99 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = D6132D231D486A1200450B99 /* share.png */; };
+
 		D63103B51D3873E800FC2636 /* DefinitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63103B41D3873E800FC2636 /* DefinitionView.m */; };
 		D63103B81D3873FD00FC2636 /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63103B71D3873FD00FC2636 /* SettingView.m */; };
 		D63103B91D38CEB100FC2636 /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D65E23BD1D350E3800BA0BF0 /* GameModel.m */; };
@@ -635,7 +639,11 @@
 		D610B2011D366D8100B5E6E2 /* LittleInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LittleInteractiveView.m; sourceTree = "<group>"; };
 		D610B2031D366DD100B5E6E2 /* BigInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigInteractiveView.h; sourceTree = "<group>"; };
 		D610B2041D366DD100B5E6E2 /* BigInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigInteractiveView.m; sourceTree = "<group>"; };
+
 		D6224ED61D48926D001F7FB0 /* 发送弹幕btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发送弹幕btn.png"; sourceTree = "<group>"; };
+
+		D6132D231D486A1200450B99 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+
 		D63103B31D3873E800FC2636 /* DefinitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinitionView.h; sourceTree = "<group>"; };
 		D63103B41D3873E800FC2636 /* DefinitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinitionView.m; sourceTree = "<group>"; };
 		D63103B61D3873FD00FC2636 /* SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingView.h; sourceTree = "<group>"; };
@@ -1254,6 +1262,7 @@
 				D606CBE01D3C746A006B41C7 /* 分享(4).png */,
 				D606CBE11D3C746A006B41C7 /* 分享(5).png */,
 				D606CBE21D3C746A006B41C7 /* 分享.png */,
+				D6132D231D486A1200450B99 /* share.png */,
 			);
 			name = "分享图标";
 			path = "ImitateLive/classes/Resources/分享图标";
@@ -2682,6 +2691,7 @@
 				D65E22711D35074200BA0BF0 /* btn_setting_xiao_highlight@2x.png in Resources */,
 				D60D8CD41D367508001B6BCE /* background.png in Resources */,
 				D65E23291D35074200BA0BF0 /* ic_normal-register_closed-eyes@2x.png in Resources */,
+				D6132D241D486A1200450B99 /* share.png in Resources */,
 				D65E226C1D35074200BA0BF0 /* btn_setting_quanping_normal@2x.png in Resources */,
 				D65E22EB1D35074200BA0BF0 /* ic_level_wz_01@2x.png in Resources */,
 				D65E228D1D35074200BA0BF0 /* ic_admin_room@2x.png in Resources */,
