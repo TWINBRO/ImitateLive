@@ -67,9 +67,7 @@
 //    self.definitionBtn = [self buttonWithImage:@"btn_cq_pressed@2x" frame:CGRectMake(kWidth - 105, 10, 60, 40) center:CGPointMake(kWidth - 80, kTopBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(definitionAction:) superView:self.topBackgroundView corner:NO];
     self.isBarrage = [self buttonWithImage:@"movie_subtitle_on@2x" frame:CGRectMake(kWidth - 100, 0, 40, 40) center:CGPointMake(kWidth - 70, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor clearColor] action:@selector(isBarrageAction:)  superView:self.bottomBackgroundView corner:NO];
     
-    self.sendBtn = [self buttonWithImage:@"" frame:CGRectMake(70, 0, kWidth - 180, 40) center:CGPointMake(kWidth / 2.0 - 30, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor whiteColor] action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
-    [self.sendBtn setTitle:@"发送弹幕呗😃" forState:UIControlStateNormal];
-    self.sendBtn.titleLabel.textColor = [UIColor blackColor];
+    self.sendBtn = [self buttonWithImage:@"发送弹幕btn" frame:CGRectMake(70, 0, kWidth - 180, 40) center:CGPointMake(kWidth / 2.0 - 30, kBottomBackViewHeight / 2.0) backgroundColor:[UIColor whiteColor] action:@selector(sendBarrageAction:) superView:self.bottomBackgroundView corner:NO];
     
 }
 - (void)addHistoryControl
