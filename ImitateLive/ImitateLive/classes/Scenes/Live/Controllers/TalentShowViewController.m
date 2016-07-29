@@ -204,7 +204,7 @@
     self.sendBtn.frame = CGRectMake(WindownWidth - 74, WindowHeight-keyboardRect.size.height-40, 70, 40 );
     
     //    [UIView commitAnimations];
-     
+    
 }
 //键盘消失时
 -(void)keyboardDidHidden {
@@ -473,7 +473,7 @@
         
     } completion:^(BOOL finished) {
         // 动画完成后执行的代码
-        [self.imgView removeFromSuperview];
+//        [self.imgView removeFromSuperview];
         
     }];
     
