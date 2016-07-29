@@ -65,6 +65,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 @property (nonatomic, assign) BOOL                isVolume;
 /** 音量滑杆 */
 @property (nonatomic, strong) UISlider            *volumeViewSlider;
+@property (strong, nonatomic) UIImageView *volumnImage;// 音量图标
 
 @property (strong, nonatomic) SendBarrageView *sendView;// 写弹幕的视图
 @property (strong, nonatomic) NSMutableArray *danMuArr;
@@ -82,31 +83,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.playerView.frame = CGRectMake(0, 0, WindowHeight, WindownWidth);
-    // 用户交互视图
-    self.interactiveView = [[BigInteractiveView alloc] initWithFrame:self.playerView.frame];
-    self.interactiveView.isHistory = self.isHistory;
-    self.interactiveView.delegate = self;
-    self.playerView.playerLayer.frame = self.playerView.frame;
-    [UIView animateWithDuration:0.3 animations:^{
-        CATransform3D transform = CATransform3DMakeRotation(M_PI / 2, 0, 0, 1.0);
-        //
-        _playerView.layer.transform  =  transform;
-        _playerView.center = self.view.center;
-        
-    } completion:^(BOOL finished) {
-        _playerView.center = self.view.center;
-    }];
-    
-    [self.view.layer addSublayer:self.playerView.playerLayer];
-    
-    // 显示弹幕视图
-    self.showDanmuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
-    [self.view addSubview:self.showDanmuView];
-    self.showDanmuView.hidden = NO;
-    [self.view addSubview:self.interactiveView];
-    
-    self.interactiveView.titleLabel.text = self.liveModel.title;
+    [self addView];
     
     // 清晰度调整视图
     self.definitionView = [[DefinitionView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.height, self.view.frame.size.width)];
@@ -141,6 +118,38 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [self queryConversationByConditions];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didreceiveMessageNotification:) name:@"message" object:nil];
+}
+
+- (void)addView
+{
+    self.playerView.frame = CGRectMake(0, 0, WindowHeight, WindownWidth);
+    // 用户交互视图
+    self.interactiveView = [[BigInteractiveView alloc] initWithFrame:self.playerView.frame];
+    self.interactiveView.isHistory = self.isHistory;
+    self.interactiveView.delegate = self;
+    self.playerView.playerLayer.frame = self.playerView.frame;
+    [UIView animateWithDuration:0.3 animations:^{
+        CATransform3D transform = CATransform3DMakeRotation(M_PI / 2, 0, 0, 1.0);
+        //
+        _playerView.layer.transform  =  transform;
+        _playerView.center = self.view.center;
+        
+    } completion:^(BOOL finished) {
+        _playerView.center = self.view.center;
+    }];
+    
+    [self.view.layer addSublayer:self.playerView.playerLayer];
+    
+    // 显示弹幕视图
+    self.showDanmuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WindowHeight, WindownWidth)];
+    [self.view addSubview:self.showDanmuView];
+    self.showDanmuView.hidden = NO;
+    [self.view addSubview:self.interactiveView];
+    
+    self.interactiveView.titleLabel.text = self.liveModel.title;
+    self.volumnImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.volumnImage.center = CGPointMake(self.view.frame.size.height / 2.0, self.view.frame.size.width / 2.0);
+    [self.view addSubview:self.volumnImage];
 }
 
 
@@ -564,7 +573,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                 // 暂停timer
                 [self.timer invalidate];
             }else if (x < y){ // 垂直移动
-                self.interactiveView.volumnImage.hidden = NO;
+                self.volumnImage.hidden = NO;
                 self.panDirection = PanDirectionVerticalMoved;
                 // 开始滑动的时候，状态改为正在控制音量
                 if (locationPoint.x > self.view.bounds.size.width / 2) {
@@ -610,7 +619,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                     // 垂直移动结束后，把状态改为不再控制音量
                     self.isVolume = NO;
                     self.interactiveView.horizontalLabel.hidden = YES;
-                    self.interactiveView.volumnImage.hidden = YES;
+                    self.volumnImage.hidden = YES;
                     break;
                 }
                 default:
@@ -717,12 +726,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         self.volumeViewSlider.value -= value / 10000;
         NSInteger volumeNumber = (NSInteger)(self.volumeViewSlider.value * 3);
 //        NSLog(@"%f",self.volumeViewSlider.value);
-        self.interactiveView.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"volume_%ld@2x",volumeNumber]];
+        self.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"volume_%ld@2x",volumeNumber]];
     }else{
         [UIScreen mainScreen].brightness -= value / 10000;
         NSInteger brightNumber = (NSInteger)([UIScreen mainScreen].brightness * 4);
 //        NSLog(@"%f",[UIScreen mainScreen].brightness);
-        self.interactiveView.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"brightness_%ld@2x",(long)brightNumber]];
+        self.volumnImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"brightness_%ld@2x",(long)brightNumber]];
     }
 }
 /**
@@ -807,7 +816,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return UIInterfaceOrientationLandscapeLeft;
+    return UIInterfaceOrientationLandscapeRight;
     
 }
 

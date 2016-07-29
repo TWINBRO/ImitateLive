@@ -52,9 +52,7 @@
     self.onlineImage.image = [UIImage imageNamed:@"ic_account@2x"];
     [self addSubview:self.onlineImage];
     
-    self.volumnImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    self.volumnImage.center = CGPointMake(kWidth / 2.0, kHeight / 2.0);
-    [self addSubview:self.volumnImage];
+    
     
 }
 
