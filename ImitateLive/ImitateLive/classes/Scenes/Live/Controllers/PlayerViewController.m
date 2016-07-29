@@ -125,7 +125,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [self addGestureRecognizer];
     
     // 获取系统音量
-    [self continuePlaying];
+    [self configureVolume];
     
     [self timerBegin];
     
