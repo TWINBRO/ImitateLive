@@ -473,7 +473,7 @@
         
     } completion:^(BOOL finished) {
         // 动画完成后执行的代码
-//        [self.imgView removeFromSuperview];
+        [self.imgView removeFromSuperview];
         
     }];
     
