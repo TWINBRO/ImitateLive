@@ -63,6 +63,7 @@
                             <constraint firstItem="KRR-nI-0oL" firstAttribute="top" secondItem="jVK-HP-MdO" secondAttribute="top" constant="6" id="hKG-NN-Q3Y"/>
                             <constraint firstItem="htc-Ah-aRV" firstAttribute="leading" secondItem="jVK-HP-MdO" secondAttribute="leading" id="nTe-x8-1Uc"/>
                             <constraint firstAttribute="bottom" secondItem="KRR-nI-0oL" secondAttribute="bottom" constant="7" id="rAn-Iw-vdZ"/>
+                            <constraint firstItem="jbT-I2-AHM" firstAttribute="leading" secondItem="v2Z-6G-gmF" secondAttribute="trailing" constant="28" id="rTg-UG-mcu"/>
                             <constraint firstItem="KRR-nI-0oL" firstAttribute="leading" secondItem="jbT-I2-AHM" secondAttribute="trailing" id="uPx-CY-Zgc"/>
                             <constraint firstAttribute="trailing" secondItem="KRR-nI-0oL" secondAttribute="trailing" constant="13" id="ubz-zE-HWM"/>
                         </constraints>
