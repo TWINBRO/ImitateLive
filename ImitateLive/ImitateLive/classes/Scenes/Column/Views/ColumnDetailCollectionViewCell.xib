@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,9 +21,9 @@
                         <rect key="frame" x="0.0" y="235" width="274" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2Z-6G-gmF">
-                                <rect key="frame" x="28" y="8" width="155" height="13"/>
+                                <rect key="frame" x="28" y="8" width="175" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="155" id="gtV-LZ-vfF"/>
+                                    <constraint firstAttribute="width" constant="175" id="Ovz-AD-gVU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,15 +56,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jbT-I2-AHM" firstAttribute="top" secondItem="jVK-HP-MdO" secondAttribute="top" constant="5" id="3Nu-Fb-2Jg"/>
-                            <constraint firstItem="v2Z-6G-gmF" firstAttribute="top" secondItem="jVK-HP-MdO" secondAttribute="top" constant="8" id="5rs-BU-YxS"/>
-                            <constraint firstItem="v2Z-6G-gmF" firstAttribute="leading" secondItem="htc-Ah-aRV" secondAttribute="trailing" constant="8" id="A4I-dv-zMx"/>
+                            <constraint firstItem="jbT-I2-AHM" firstAttribute="leading" secondItem="v2Z-6G-gmF" secondAttribute="trailing" constant="8" symbolic="YES" id="QDI-lK-v7H"/>
+                            <constraint firstItem="v2Z-6G-gmF" firstAttribute="leading" secondItem="htc-Ah-aRV" secondAttribute="trailing" constant="8" symbolic="YES" id="S4r-ti-2VW"/>
+                            <constraint firstItem="v2Z-6G-gmF" firstAttribute="centerY" secondItem="htc-Ah-aRV" secondAttribute="centerY" id="Tm0-Ja-yFv"/>
                             <constraint firstAttribute="height" constant="30" id="UdL-eq-KiA"/>
-                            <constraint firstAttribute="bottom" secondItem="v2Z-6G-gmF" secondAttribute="bottom" constant="9" id="WEm-0G-3Ue"/>
                             <constraint firstItem="htc-Ah-aRV" firstAttribute="centerY" secondItem="jVK-HP-MdO" secondAttribute="centerY" id="bRp-fi-V5Y"/>
+                            <constraint firstItem="v2Z-6G-gmF" firstAttribute="top" secondItem="jVK-HP-MdO" secondAttribute="topMargin" id="g2E-xW-Mmj"/>
                             <constraint firstItem="KRR-nI-0oL" firstAttribute="top" secondItem="jVK-HP-MdO" secondAttribute="top" constant="6" id="hKG-NN-Q3Y"/>
                             <constraint firstItem="htc-Ah-aRV" firstAttribute="leading" secondItem="jVK-HP-MdO" secondAttribute="leading" id="nTe-x8-1Uc"/>
                             <constraint firstAttribute="bottom" secondItem="KRR-nI-0oL" secondAttribute="bottom" constant="7" id="rAn-Iw-vdZ"/>
-                            <constraint firstItem="jbT-I2-AHM" firstAttribute="leading" secondItem="v2Z-6G-gmF" secondAttribute="trailing" constant="28" id="rTg-UG-mcu"/>
                             <constraint firstItem="KRR-nI-0oL" firstAttribute="leading" secondItem="jbT-I2-AHM" secondAttribute="trailing" id="uPx-CY-Zgc"/>
                             <constraint firstAttribute="trailing" secondItem="KRR-nI-0oL" secondAttribute="trailing" constant="13" id="ubz-zE-HWM"/>
                         </constraints>

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,10 +25,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRp-un-rD2">
-                        <rect key="frame" x="32" y="147" width="113" height="21"/>
+                        <rect key="frame" x="32" y="147" width="134" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="113" id="KIG-oT-gwx"/>
-                            <constraint firstAttribute="height" constant="21" id="XGc-we-src"/>
+                            <constraint firstAttribute="width" constant="134" id="gk0-Z5-m6Q"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,18 +57,19 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="KRp-un-rD2" firstAttribute="baseline" secondItem="Ne8-9O-fdy" secondAttribute="baseline" id="0KG-NG-K24"/>
+                <constraint firstItem="KRp-un-rD2" firstAttribute="firstBaseline" secondItem="Ne8-9O-fdy" secondAttribute="firstBaseline" id="51m-ri-Zks"/>
                 <constraint firstItem="tHS-5U-VCA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="CxP-QR-CIK"/>
-                <constraint firstItem="KRp-un-rD2" firstAttribute="leading" secondItem="0ZP-2c-9Yd" secondAttribute="trailing" constant="4" id="Orh-aR-vvJ"/>
                 <constraint firstItem="tHS-5U-VCA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="123" id="Tw4-5b-6ur"/>
+                <constraint firstItem="KRp-un-rD2" firstAttribute="leading" secondItem="0ZP-2c-9Yd" secondAttribute="trailing" constant="4" id="U5D-ac-ZY4"/>
                 <constraint firstItem="PPs-H6-W1J" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="ZqV-Us-MBD"/>
-                <constraint firstItem="Ne8-9O-fdy" firstAttribute="leading" secondItem="KRp-un-rD2" secondAttribute="trailing" constant="29" id="bll-gG-1SJ"/>
                 <constraint firstAttribute="trailing" secondItem="Ne8-9O-fdy" secondAttribute="trailing" constant="10" id="cJX-9n-2dX"/>
                 <constraint firstItem="0ZP-2c-9Yd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="fKJ-8W-slw"/>
                 <constraint firstAttribute="trailing" secondItem="PPs-H6-W1J" secondAttribute="trailing" constant="8" id="g9d-Je-HGr"/>
-                <constraint firstItem="KRp-un-rD2" firstAttribute="top" secondItem="PPs-H6-W1J" secondAttribute="bottom" constant="3" id="iwa-Xg-JHD"/>
                 <constraint firstItem="PPs-H6-W1J" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="jVX-0l-gy5"/>
                 <constraint firstAttribute="bottom" secondItem="PPs-H6-W1J" secondAttribute="bottom" constant="30" id="mtx-1u-29C"/>
                 <constraint firstItem="0ZP-2c-9Yd" firstAttribute="top" secondItem="PPs-H6-W1J" secondAttribute="bottom" constant="3" id="vKe-KU-HGr"/>
+                <constraint firstItem="Ne8-9O-fdy" firstAttribute="leading" secondItem="KRp-un-rD2" secondAttribute="trailing" constant="8" symbolic="YES" id="xBr-2m-5lw"/>
                 <constraint firstItem="Ne8-9O-fdy" firstAttribute="top" secondItem="PPs-H6-W1J" secondAttribute="bottom" constant="3" id="xtD-Ju-b6E"/>
             </constraints>
             <size key="customSize" width="238" height="174"/>

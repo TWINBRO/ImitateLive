@@ -2,7 +2,7 @@
 //  ChatViewController.m
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/14.
+//  Created by ssx on 16/7/14.
 //  Copyright © 2016年 SJH. All rights reserved.
 //
 
@@ -176,8 +176,28 @@
 
 - (void)sendAction:(UIButton *)button
 {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能发言" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            
+            [self presentViewController:loginVC animated:YES completion:nil];
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        // 添加按钮
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else {
     
-    [self sendMessage];
+        [self sendMessage];
+        
+    }
+    
+    
     
 }
 #pragma mark -- 聊天

@@ -2,7 +2,7 @@
 //  NSString+timeFormatter.m
 //  GXMusicPlayer
 //
-//  Created by lanou3g on 16/5/17.
+//  Created by ssx on 16/5/17.
 //  Copyright © 2016年 郭旭. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  MyViewController.m
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/12.
+//  Created by ssx on 16/7/12.
 //  Copyright © 2016年 sjp. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UITableView *MyTableView;
 @property (strong, nonatomic) NSArray *array;
 @property (strong, nonatomic) UIButton *btn;
+@property (strong, nonatomic) UIImageView *navigationImageView;
 @end
 
 @implementation MyViewController
@@ -34,9 +35,31 @@
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.MyTableView registerNib:[UINib nibWithNibName:@"MyHeaderTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:MyHeaderTableViewCell_Identify];
     
+    self.MyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     [self.MyTableView registerNib:[UINib nibWithNibName:@"MyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:MyTableViewCell_Identify];
     [self addRightNavigationItem];
     [self.view addSubview:self.MyTableView];
+    UIImageView *navigationImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    self.navigationImageView = navigationImageView;
+}
+-(UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+    
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.navigationImageView.hidden = NO;
 }
 
 - (void)addRightNavigationItem {
@@ -45,6 +68,7 @@
 
     _btn = [UIButton buttonWithType:UIButtonTypeCustom];
 
+    [_btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
         [_btn setTitle:@"切换账号" forState:UIControlStateNormal];
     }else {
@@ -112,6 +136,7 @@
     
     if (indexPath.section == 0) {
         MyHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHeaderTableViewCell_Identify];
+        
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
             NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
             if (currentUsername) {
@@ -288,7 +313,8 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
+    self.navigationImageView.hidden = YES;
     [self.MyTableView reloadData];
     
 }

@@ -2,7 +2,7 @@
 //  CarouselFingure.m
 //  cUItest
 //
-//  Created by lanou3g on 16/3/29.
+//  Created by ssx on 16/3/29.
 //  Copyright © 2016年 史京辉. All rights reserved.
 //
 

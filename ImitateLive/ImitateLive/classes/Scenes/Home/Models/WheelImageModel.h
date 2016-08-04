@@ -2,7 +2,7 @@
 //  WheelImageModel.h
 //  zhanqi
 //
-//  Created by lanou3g on 16/7/12.
+//  Created by ssx on 16/7/12.
 //  Copyright © 2016年 guo. All rights reserved.
 //
 

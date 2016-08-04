@@ -2,7 +2,7 @@
 //  TalentShowViewController.m
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/22.
+//  Created by ssx on 16/7/22.
 //  Copyright © 2016年 SJH. All rights reserved.
 //
 
@@ -265,7 +265,26 @@
 - (void)sendAction:(UIButton *)button
 {
     
-    [self sendMessage];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"0"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您未登录,登录后才能发言" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"去登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            UIStoryboard *mainSb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            LoginViewController *loginVC = [mainSb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            
+            [self presentViewController:loginVC animated:YES completion:nil];
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+        // 添加按钮
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else {
+        
+        [self sendMessage];
+        
+    }
     
 }
 #pragma mark -- 聊天
@@ -459,21 +478,22 @@
 
 - (void)heartButtonClicked:(UIButton *)button {
 
-    self.imgView = [[UIImageView alloc]initWithFrame:CGRectMake(WindownWidth - 50, WindowHeight - 50, 30, 30)];
-    self.imgView.image = [UIImage imageNamed:@"heart"];
-    [self.view addSubview:self.imgView];
-    [UIView animateWithDuration:2 animations:^{
-        self.imgView.alpha = 0;
-        
-    }];
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(WindownWidth - 50, WindowHeight - 50, 30, 30)];
+    imgView.image = [UIImage imageNamed:@"heart"];
+    [self.view addSubview:imgView];
+//    [UIView animateWithDuration:2 animations:^{
+//        imgView.alpha = 0;
+//        
+//    }];
 
-    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionAutoreverse animations:^{
+    [UIView animateWithDuration:2 delay:0 options:nil animations:^{
         // 动画主体部分
-        self.imgView.frame = CGRectMake(300, 100, 30, 30);
+        imgView.alpha = 0;
+        imgView.frame = CGRectMake(300, 100, 30, 30);
         
     } completion:^(BOOL finished) {
         // 动画完成后执行的代码
-        [self.imgView removeFromSuperview];
+        [imgView removeFromSuperview];
         
     }];
     

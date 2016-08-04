@@ -2,7 +2,7 @@
 //  HomeViewController.m
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/12.
+//  Created by ssx on 16/7/12.
 //  Copyright © 2016年 sjp. All rights reserved.
 //
 
@@ -152,7 +152,7 @@ static NSString * const headID = @"head";
 {
     
     if (indexPath.section == 0) {
-        return CGSizeMake(WindownWidth,200);
+        return CGSizeMake(WindownWidth,WindowHeight/7.0*2);
     }else {
         
         return CGSizeMake(self.view.bounds.size.width/2.0, 174);

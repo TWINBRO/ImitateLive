@@ -521,9 +521,11 @@
 		D6CA5D701D3534C600E5C4BE /* LiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CA5D6F1D3534C600E5C4BE /* LiveDetailViewController.m */; };
 		D6D6895D1D40ECBE00EEDFA0 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D6895B1D40ECBE00EEDFA0 /* MessageTableViewCell.m */; };
 		D6D6895E1D40ECBE00EEDFA0 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D6895C1D40ECBE00EEDFA0 /* MessageTableViewCell.xib */; };
+		D6E4ABD21D4EF25D006D20D5 /* lanch.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E4ABD11D4EF25D006D20D5 /* lanch.png */; };
 		D6F334BC1D38856A004B7A6B /* lun.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F334BB1D38856A004B7A6B /* lun.png */; };
 		D6F334BF1D389316004B7A6B /* RoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F334BE1D389316004B7A6B /* RoomModel.m */; };
 		D6F334C01D38CA08004B7A6B /* LiveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A7E7C21D34EE68006649CC /* LiveRequest.m */; };
+		D6F745471D4C5FE30008AB7B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F745461D4C5FE30008AB7B /* icon.png */; };
 		D6F864AF1D37321C00A3EBA4 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F864AD1D37321C00A3EBA4 /* MyTableViewCell.m */; };
 		D6F864B01D37321C00A3EBA4 /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F864AE1D37321C00A3EBA4 /* MyTableViewCell.xib */; };
 		D6F864B41D373DA900A3EBA4 /* Image_focus.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F864B11D373DA900A3EBA4 /* Image_focus.png */; };
@@ -1157,9 +1159,11 @@
 		D6D6895A1D40ECBE00EEDFA0 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		D6D6895B1D40ECBE00EEDFA0 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		D6D6895C1D40ECBE00EEDFA0 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		D6E4ABD11D4EF25D006D20D5 /* lanch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lanch.png; sourceTree = "<group>"; };
 		D6F334BB1D38856A004B7A6B /* lun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lun.png; sourceTree = "<group>"; };
 		D6F334BD1D389316004B7A6B /* RoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomModel.h; sourceTree = "<group>"; };
 		D6F334BE1D389316004B7A6B /* RoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomModel.m; sourceTree = "<group>"; };
+		D6F745461D4C5FE30008AB7B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D6F864AC1D37321C00A3EBA4 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTableViewCell.h; path = ImitateLive/classes/Appdelegate/MyTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		D6F864AD1D37321C00A3EBA4 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTableViewCell.m; path = ImitateLive/classes/Appdelegate/MyTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		D6F864AE1D37321C00A3EBA4 /* MyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyTableViewCell.xib; path = ImitateLive/classes/Appdelegate/MyTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -1267,6 +1271,8 @@
 		D606CBFA1D3C78D9006B41C7 /* 发送弹幕 */ = {
 			isa = PBXGroup;
 			children = (
+				D6E4ABD11D4EF25D006D20D5 /* lanch.png */,
+				D6F745461D4C5FE30008AB7B /* icon.png */,
 				D6FB750D1D488448008E6A20 /* 消息.png */,
 				D6224ED61D48926D001F7FB0 /* 发送弹幕btn.png */,
 				D65D54291D421E6F004A2377 /* heart.png */,
@@ -2284,7 +2290,7 @@
 				TargetAttributes = {
 					D6A7E76F1D34DF96006649CC = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4Q2S4HWM4G;
+						DevelopmentTeam = XSL6VZLGLD;
 					};
 					D6A7E7881D34DF96006649CC = {
 						CreatedOnToolsVersion = 7.2;
@@ -2409,6 +2415,7 @@
 				D65E222D1D35074200BA0BF0 /* AppIcon76x76@2x~ipad.png in Resources */,
 				D606CBF91D3C746A006B41C7 /* 分享.png in Resources */,
 				D65E22B91D35074200BA0BF0 /* ic_level_bj_04@2x.png in Resources */,
+				D6E4ABD21D4EF25D006D20D5 /* lanch.png in Resources */,
 				D65E229C1D35074200BA0BF0 /* ic_broadcastroom_intro_default@2x.png in Resources */,
 				D6F864B41D373DA900A3EBA4 /* Image_focus.png in Resources */,
 				D65E226F1D35074200BA0BF0 /* btn_setting_xiafang_highlight@2x.png in Resources */,
@@ -2457,6 +2464,7 @@
 				D65E22271D35074200BA0BF0 /* AppIcon57x57.png in Resources */,
 				D65E227C1D35074200BA0BF0 /* btn_user_selected@2x.png in Resources */,
 				D65E23941D35074200BA0BF0 /* qn_btn_add@2x.png in Resources */,
+				D6F745471D4C5FE30008AB7B /* icon.png in Resources */,
 				D65E22211D35074200BA0BF0 /* AppIcon40x40@2x.png in Resources */,
 				D65E22941D35074200BA0BF0 /* ic_bjk_slevel_2@2x.png in Resources */,
 				D65E22BC1D35074200BA0BF0 /* ic_level_bj_05_no@2x.png in Resources */,
@@ -3069,6 +3077,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3096,6 +3106,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijinghui.ImitateLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -3105,6 +3116,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImitateLive/classes/Marco/PrefixHeader.pch";
 				INFOPLIST_FILE = ImitateLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3132,6 +3145,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijinghui.ImitateLive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

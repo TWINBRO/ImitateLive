@@ -2,7 +2,7 @@
 //  MessageTableViewCell.h
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/21.
+//  Created by ssx on 16/7/21.
 //  Copyright © 2016年 SJH. All rights reserved.
 //
 

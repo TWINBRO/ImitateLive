@@ -2,7 +2,7 @@
 //  SeverHandle.h
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/20.
+//  Created by ssx on 16/7/20.
 //  Copyright © 2016年 SJH. All rights reserved.
 //
 

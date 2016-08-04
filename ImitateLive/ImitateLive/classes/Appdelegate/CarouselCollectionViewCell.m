@@ -2,7 +2,7 @@
 //  CarouselCollectionViewCell.m
 //  ImitateLive
 //
-//  Created by lanou3g on 16/7/13.
+//  Created by ssx on 16/7/13.
 //  Copyright © 2016年 SJH. All rights reserved.
 //
 
@@ -74,7 +74,7 @@
 // 获取图片并且添加轮播图
 - (void)addCarousel {
     
-    UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, 230) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
+    UIView *imageScorll=[WTImageScroll ShowNetWorkImageScrollWithFream:CGRectMake(0, -30, WindownWidth, WindowHeight/7.0*2+30) andImageArray:self.carousels andBtnClick:^(NSInteger tagValue) {
 //        NSLog(@"点击的图片--%@",@(tagValue));
 
         if (_carouselDelegate != nil && [_carouselDelegate respondsToSelector:@selector(changeController:)]) {
